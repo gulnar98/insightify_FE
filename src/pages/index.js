@@ -1,3 +1,5 @@
+import NavItem from "@/components/Navigation/NavItem";
+import NavList from "@/components/Navigation/NavList";
 import Head from "next/head";
 
 export default function Home() {
@@ -10,7 +12,12 @@ export default function Home() {
         <title>Home page</title>
       </Head>
 
-      <h1>Home page</h1>
+      <NavList>
+        <NavItem label={"dashboard"} />
+        <NavItem label={"dashboard"} isActive />
+        <NavItem label={"dashboard"} />
+        <NavItem label={"dashboard"} />
+      </NavList>
     </>
   );
 }

@@ -1,0 +1,8 @@
+.navItemWrapper {
+  padding: 11px 13px;
+  color: #303742;
+}
+
+.isActive {
+  background-color: #f4f7ff;
+}
