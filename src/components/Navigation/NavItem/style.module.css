@@ -1,0 +1,39 @@
+.itemWrapper {
+  padding: 11px 13px;
+}
+
+.itemWrapper:hover {
+  background-color: #f4f7ff;
+  color: #418efd;
+  border-radius: 8px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  color: #303742;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.item p {
+  margin-right: auto;
+}
+
+.isActive {
+  background-color: #f4f7ff;
+  color: #418efd;
+  border-radius: 8px;
+}
+
+.soon {
+  padding: 3px 6px;
+  border: 1px solid #418efd;
+  border-radius: 10px;
+  font-size: 10px;
+  color: #418efd;
+}
