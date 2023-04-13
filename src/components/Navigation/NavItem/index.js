@@ -1,29 +1,31 @@
 import Link from "next/link";
+import PropTypes from "prop-types";
+
 import style from "./style.module.css";
 
-import overview from "@//assets/images/overview.svg";
-import dashboard from "@//assets/images/dashboard.svg";
-import highlights from "@//assets/images/highlights.svg";
-import trends from "@//assets/images/trends.svg";
-import funnels from "@//assets/images/funnels.svg";
-import recording from "@//assets/images/recording.svg";
-import heatmaps from "@//assets/images/heatmaps.svg";
-import feedback from "@//assets/images/feedback.svg";
-import surveys from "@//assets/images/surveys.svg";
-import engage from "@//assets/images/engage.svg";
-import collapse from "@//assets/images/collapse.svg";
+import overview from "@//assets/images/nav-icons/overview.svg";
+import dashboard from "@//assets/images/nav-icons/dashboard.svg";
+import highlights from "@//assets/images/nav-icons/highlights.svg";
+import trends from "@//assets/images/nav-icons/trends.svg";
+import funnels from "@//assets/images/nav-icons/funnels.svg";
+import recording from "@//assets/images/nav-icons/recording.svg";
+import heatmaps from "@//assets/images/nav-icons/heatmaps.svg";
+import feedback from "@//assets/images/nav-icons/feedback.svg";
+import surveys from "@//assets/images/nav-icons/surveys.svg";
+import engage from "@//assets/images/nav-icons/engage.svg";
+import collapse from "@//assets/images/nav-icons/collapse.svg";
 
-import overviewActive from "@//assets/images/overview-active.svg";
-import dashboardActive from "@//assets/images/dashboard-active.svg";
-import highlightsActive from "@//assets/images/highlights-active.svg";
-import trendsActive from "@//assets/images/trends-active.svg";
-import funnelsActive from "@//assets/images/funnels-active.svg";
-import recordingActive from "@//assets/images/recording-active.svg";
-import heatmapsActive from "@//assets/images/heatmaps-active.svg";
-import feedbackActive from "@//assets/images/feedback-active.svg";
-import surveysActive from "@//assets/images/surveys-active.svg";
-import engageActive from "@//assets/images/engage-active.svg";
-import collapseActive from "@//assets/images/collapse-active.svg";
+import overviewActive from "@//assets/images/nav-icons/overview-active.svg";
+import dashboardActive from "@//assets/images/nav-icons/dashboard-active.svg";
+import highlightsActive from "@//assets/images/nav-icons/highlights-active.svg";
+import trendsActive from "@//assets/images/nav-icons/trends-active.svg";
+import funnelsActive from "@//assets/images/nav-icons/funnels-active.svg";
+import recordingActive from "@//assets/images/nav-icons/recording-active.svg";
+import heatmapsActive from "@//assets/images/nav-icons/heatmaps-active.svg";
+import feedbackActive from "@//assets/images/nav-icons/feedback-active.svg";
+import surveysActive from "@//assets/images/nav-icons/surveys-active.svg";
+import engageActive from "@//assets/images/nav-icons/engage-active.svg";
+import collapseActive from "@//assets/images/nav-icons/collapse-active.svg";
 
 function NavItem({ children, isActive, path, iconName, soon }) {
   function getIcon() {
@@ -64,7 +66,8 @@ function NavItem({ children, isActive, path, iconName, soon }) {
         href={path}
         className={`${style.item} ${isActive && style.isActive}`}
       >
-        {icon && <img src={icon.src} />}
+        {icon && <img src={icon.src} alt={iconName} />}
+
         <p>{children}</p>
 
         {soon && <div className={style.soon}>Soon</div>}

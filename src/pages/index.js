@@ -1,5 +1,6 @@
 import NavItem from "@/components/Navigation/NavItem";
 import NavList from "@/components/Navigation/NavList";
+import Header from "@/components/header";
 import Head from "next/head";
 
 const navItems = [
@@ -74,7 +75,9 @@ export default function Home() {
         <title>Home page</title>
       </Head>
 
-      <NavList isHorizontal={false}>
+      <Header />
+
+      <NavList direction={"vertical"}>
         {navItems.map((item, index) => (
           <NavItem key={`item-${index}`} {...item}>
             {item.label}
