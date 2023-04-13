@@ -1,4 +1,10 @@
-import { WagmiConfig, createClient, configureChains, mainnet } from "wagmi";
+import { 
+  WagmiConfig, 
+  createClient, 
+  configureChains, 
+  mainnet, 
+  goerli
+} from "wagmi";
 
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
@@ -13,7 +19,7 @@ import { Profile } from "./Profile";
 // Two popular providers are Alchemy (alchemy.com) and Infura (infura.io)
 const { chains, provider, webSocketProvider } = configureChains(
   [mainnet],
-  [alchemyProvider({ apiKey: "yourAlchemyApiKey" }), publicProvider()]
+  [alchemyProvider({ apiKey: "dgLZn3k5KXjNWxXH9iHEGJBcid9cTBY9" })]
 );
 
 // Set up client
@@ -22,24 +28,17 @@ const client = createClient({
   connectors: [
     new MetaMaskConnector({ chains }),
     new CoinbaseWalletConnector({
-      chains,
-      options: {
-        appName: "wagmi",
-      },
+      chains
+      // options: {
+      //   appName: "wagmi",
+      // },
     }),
-    new WalletConnectConnector({
-      chains,
-      options: {
-        projectId: "...",
-      },
-    }),
-    new InjectedConnector({
-      chains,
-      options: {
-        name: "Injected",
-        shimDisconnect: true,
-      },
-    }),
+    // new WalletConnectConnector({
+    //   chains,
+    //   // options: {
+    //   //   projectId: "...",
+    //   // },
+    // }),
   ],
   provider,
   webSocketProvider,
