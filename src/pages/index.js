@@ -1,3 +1,4 @@
+import Login from "@/components/Login";
 import Head from "next/head";
 
 function Home() {

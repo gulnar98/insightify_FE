@@ -1,0 +1,26 @@
+.main {
+    display: flex;
+}
+.code {
+    flex: 11;
+}
+.copy {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    margin: 13px 0px 13px 0px;
+    padding: 15px;
+    background-color: white;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.btnCopy {
+    height: 1.8em;
+    background-color: white;
+    border: solid 1px #418EFD;
+    color: #418EFD;
+    font-weight: bold;
+    border-radius: 4px;
+    padding: 0px 10px;
+    cursor: pointer;
+}

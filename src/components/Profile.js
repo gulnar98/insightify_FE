@@ -17,7 +17,6 @@ export function Profile() {
   if (isConnected) {
     return (
       <div>
-        <img src={ensAvatar} alt="ENS Avatar" />
         <div>{ensName ? `${ensName} (${address})` : address}</div>
         <div>Connected to {connector.name}</div>
         <button onClick={disconnect}>Disconnect</button>
@@ -45,3 +44,6 @@ export function Profile() {
     </div>
   )
 }
+
+
+
