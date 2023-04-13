@@ -1,0 +1,80 @@
+.main {
+    border-radius: 8px;
+    border: solid 1px #E1E1E1;
+    background-color: #F4F7FF;
+    padding: 25px;
+    width: 75%;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 40px;
+}
+
+.divOne {
+    display: flex;
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    height: 20px;
+}
+
+.h1 {
+    margin-left: 15px;
+    font-weight: 600;
+    font-size: 25px;
+}
+ 
+.divTwo {
+    margin-left:45px ;
+}
+.short {
+    display: flex;
+    flex-wrap: nowrap;
+    margin: 25px 0px;
+    font-weight: 500;
+}
+.phead {
+    color: #418EFD;
+    margin: 0px 4px;
+}
+
+.code {
+    margin-bottom: 10px;
+}
+
+.down {
+    display: flex;
+    justify-content: space-between;
+}
+
+.leftbtn {
+    flex: 5;
+}
+
+.verify {
+    background-color: #418EFD;
+    border: solid 2px #418EFD;
+    border-radius: 5px;
+    color: white;
+    padding: 7px 15px;
+    cursor: pointer;
+}
+
+.other {
+    background: none;
+    border: none;
+    padding: 4px 9px;
+    margin-left: 40px;
+    cursor: pointer;
+
+}
+
+.rightbottom {
+    display: flex;
+    align-items: center;
+}
+
+.link {
+    text-decoration: none;
+    color: black;
+}
