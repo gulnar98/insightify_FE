@@ -74,7 +74,7 @@ export default function Home() {
         <title>Home page</title>
       </Head>
 
-      <NavList>
+      <NavList isHorizontal={false}>
         {navItems.map((item, index) => (
           <NavItem key={`item-${index}`} {...item}>
             {item.label}
