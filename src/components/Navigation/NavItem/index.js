@@ -76,4 +76,11 @@ function NavItem({ children, isActive, path, iconName, soon }) {
   );
 }
 
+NavItem.protoTypes = {
+  isActive: PropTypes.bool.isRequired,
+  path: PropTypes.string.isRequired,
+  iconName: PropTypes.string,
+  soon: PropTypes.bool,
+};
+
 export default NavItem;
