@@ -10,7 +10,7 @@ export default function App({ Component, pageProps }) {
   return (
     <main className={inter.className}>
       {/* <Test> */}
-      <Component {...pageProps} />
+        <Component {...pageProps} />
       {/* </Test> */}
     </main>
   );
