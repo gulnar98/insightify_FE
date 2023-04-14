@@ -26,8 +26,13 @@ import feedbackActive from "@//assets/images/nav-icons/feedback-active.svg";
 import surveysActive from "@//assets/images/nav-icons/surveys-active.svg";
 import engageActive from "@//assets/images/nav-icons/engage-active.svg";
 import collapseActive from "@//assets/images/nav-icons/collapse-active.svg";
+import { useRouter } from "next/router";
 
-function NavItem({ children, isActive, path, iconName, soon }) {
+function NavItem({ children, path, iconName, soon }) {
+  const { pathname } = useRouter();
+
+  let isActive = pathname == path ? true : false;
+
   function getIcon() {
     switch (iconName) {
       case "overview":
