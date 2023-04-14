@@ -4,7 +4,7 @@ import { useState } from 'react';
 import SyntaxHighlighter from "react-syntax-highlighter";
 
 export default function CodeBox({code}) {
-    const [isCopy, setIsCopy] = useState(true);
+    const [isCopy, setIsCopy] = useState(false);
   
     const customStyle = {
       backgroundColor: "white",

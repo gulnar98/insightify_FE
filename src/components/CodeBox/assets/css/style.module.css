@@ -1,5 +1,6 @@
 .main {
     display: flex;
+    padding: 13px 0px;
 }
 .code {
     flex: 11;
@@ -8,7 +9,6 @@
     flex: 1;
     display: flex;
     justify-content: center;
-    margin: 13px 0px 13px 0px;
     padding: 15px;
     background-color: white;
     border-top-right-radius: 5px;
