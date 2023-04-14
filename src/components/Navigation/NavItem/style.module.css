@@ -1,5 +1,8 @@
 .itemWrapper {
-  padding: 11px 13px;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  height: 44px;
 }
 
 .itemWrapper:hover {
@@ -14,10 +17,16 @@
   justify-content: space-between;
   gap: 12px;
 
+  width: 100%;
+
   color: #303742;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   text-decoration: none;
+}
+
+.item img {
+  margin-bottom: 3px;
 }
 
 .item p {
@@ -31,7 +40,7 @@
 }
 
 .soon {
-  padding: 3px 6px;
+  padding: 4px 8px;
   border: 1px solid #418efd;
   border-radius: 10px;
   font-size: 10px;

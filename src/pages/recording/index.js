@@ -1,7 +1,7 @@
 import Head from "next/head";
 import style from "./assets/css/style.module.css";
 
-export default function Recordings() {
+export default function Recording() {
   return (
     <>
       <Head>

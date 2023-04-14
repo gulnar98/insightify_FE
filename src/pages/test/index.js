@@ -1,6 +1,6 @@
 import NavItem from "@/components/Navigation/NavItem";
 import NavList from "@/components/Navigation/NavList";
-import Header from "@/components/header";
+import Header from "@/components/Header";
 import Head from "next/head";
 
 const navItems = [
@@ -15,7 +15,6 @@ const navItems = [
     path: "/dashboard",
   },
   {
-    isActive: true,
     label: "Highlights",
     iconName: "highlights",
     path: "/highlights",
@@ -65,7 +64,7 @@ const navItems = [
   },
 ];
 
-export default function Home() {
+export default function Test() {
   return (
     <>
       <Head>
