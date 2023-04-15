@@ -7,6 +7,10 @@
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
 }
 
+.isOpen {
+  width: 44px;
+}
+
 .navListWrapper li:nth-child(3) {
   position: relative;
   margin-bottom: 12px;
@@ -20,10 +24,6 @@
   position: absolute;
   bottom: -20%;
   left: 0;
-}
-
-.navListWrapper li:last-child {
-  margin-top: 44px;
 }
 
 .horizontal {

@@ -1,7 +1,7 @@
+import style from "./style.module.css";
+
 import Link from "next/link";
 import PropTypes from "prop-types";
-
-import style from "./style.module.css";
 
 import overview from "@//assets/images/nav-icons/overview.svg";
 import dashboard from "@//assets/images/nav-icons/dashboard.svg";
@@ -13,7 +13,6 @@ import heatmaps from "@//assets/images/nav-icons/heatmaps.svg";
 import feedback from "@//assets/images/nav-icons/feedback.svg";
 import surveys from "@//assets/images/nav-icons/surveys.svg";
 import engage from "@//assets/images/nav-icons/engage.svg";
-import collapse from "@//assets/images/nav-icons/collapse.svg";
 
 import overviewActive from "@//assets/images/nav-icons/overview-active.svg";
 import dashboardActive from "@//assets/images/nav-icons/dashboard-active.svg";
@@ -25,10 +24,10 @@ import heatmapsActive from "@//assets/images/nav-icons/heatmaps-active.svg";
 import feedbackActive from "@//assets/images/nav-icons/feedback-active.svg";
 import surveysActive from "@//assets/images/nav-icons/surveys-active.svg";
 import engageActive from "@//assets/images/nav-icons/engage-active.svg";
-import collapseActive from "@//assets/images/nav-icons/collapse-active.svg";
+
 import { useRouter } from "next/router";
 
-function NavItem({ children, path, iconName, soon }) {
+function NavItem({ children, path, iconName, soon, isOpen }) {
   const { pathname } = useRouter();
 
   let isActive = pathname == path ? true : false;
@@ -55,8 +54,6 @@ function NavItem({ children, path, iconName, soon }) {
         return isActive ? surveysActive : surveys;
       case "engage":
         return isActive ? engageActive : engage;
-      case "collapse":
-        return isActive ? collapseActive : collapse;
 
       default:
         return null;
@@ -73,9 +70,9 @@ function NavItem({ children, path, iconName, soon }) {
       >
         {icon && <img src={icon.src} alt={iconName} />}
 
-        <p>{children}</p>
+        {isOpen && <p>{children}</p>}
 
-        {soon && <div className={style.soon}>Soon</div>}
+        {soon && isOpen && <div className={style.soon}>Soon</div>}
       </Link>
     </li>
   );
@@ -86,6 +83,7 @@ NavItem.protoTypes = {
   path: PropTypes.string.isRequired,
   iconName: PropTypes.string,
   soon: PropTypes.bool,
+  isOpen: PropTypes.bool,
 };
 
 export default NavItem;

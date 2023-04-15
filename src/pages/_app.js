@@ -1,5 +1,6 @@
 import Layout from "@/components/layout";
 import "../assets/css/reset.css";
+// import "../assets/css/global.css";
 
 import { Inter } from "next/font/google";
 
