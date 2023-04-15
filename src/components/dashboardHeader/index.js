@@ -3,7 +3,7 @@ import style from "./style.module.css";
 import logo from "@//assets/images/header/logo.svg";
 import profile from "@//assets/images/header/profile.svg";
 
-function Header() {
+function DashboardHeader() {
   return (
     <header className={style.header}>
       <Link className={style.logoWrapper} href={"/"}>
@@ -16,4 +16,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default DashboardHeader;
