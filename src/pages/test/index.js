@@ -2,6 +2,8 @@ import NavItem from "@/components/Navigation/NavItem";
 import NavList from "@/components/Navigation/NavList";
 import Header from "@/components/Header";
 import Head from "next/head";
+import Collapse from "@/components/Navigation/Collapse";
+import { useState } from "react";
 
 const navItems = [
   {
@@ -57,14 +59,11 @@ const navItems = [
     path: "/engage",
     soon: true,
   },
-  {
-    label: "Collapse",
-    iconName: "collapse",
-    path: "/collapse",
-  },
 ];
 
-export default function Test() {
+export default function Test({ children }) {
+  const [isOpen, setIsOpen] = useState(true);
+
   return (
     <>
       <Head>
@@ -76,12 +75,15 @@ export default function Test() {
 
       <Header />
 
-      <NavList direction={"vertical"}>
+      <NavList direction={"vertical"} isOpen={isOpen}>
         {navItems.map((item, index) => (
-          <NavItem key={`item-${index}`} {...item}>
+          <NavItem key={`item-${index}`} {...item} isOpen={isOpen}>
             {item.label}
           </NavItem>
         ))}
+        <Collapse setIsOpen={setIsOpen} isOpen={isOpen}>
+          Collapse
+        </Collapse>
       </NavList>
     </>
   );

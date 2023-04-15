@@ -1,9 +1,13 @@
 import style from "./style.module.css";
 import PropTypes from "prop-types";
 
-function NavList({ children, direction }) {
+function NavList({ children, direction, isOpen }) {
   return (
-    <ul className={`${style[direction]} ${style.navListWrapper}`}>
+    <ul
+      className={`${style[direction]} ${style.navListWrapper} ${
+        !isOpen && style.isOpen
+      }`}
+    >
       {children}
     </ul>
   );
@@ -11,10 +15,12 @@ function NavList({ children, direction }) {
 
 NavList.defaultProps = {
   direction: "vertical",
+  isOpen: true,
 };
 
 NavList.propTypes = {
   direction: PropTypes.oneOf(["vertical", "horizontal"]),
+  isOpen: PropTypes.bool,
 };
 
 export default NavList;
