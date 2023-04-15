@@ -1,3 +1,4 @@
+import Head from "next/head";
 import style from "./assets/css/style.module.css";
 
 function Dashboard() {

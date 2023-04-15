@@ -22,30 +22,31 @@ export default function Overview() {
       </Head>
 
       <InstallBox
-          title="Install UserSnap"
-
-          leftBottom1={
-                        <Button padding='7px 15px'
-                        borderRadius='5px'
-                        color='#418EFD'
-                        text='Verify installation'
-                        textColor='white'
-                        border='solid 2px #418EFD' />}
-
-          leftBottom2={
-                        <Button padding='4px 9px'
-                        color='#F4F7FF'
-                        text='Other ways to install'
-                        textColor='black'
-                        border='none'
-                        margin="0px 0px 0px 40px" />}
-
-          rightBottom1={"3342123"}
-        >
-          <CodeBox code={codeText}/>
-        </InstallBox>
-
-      <h1>Overview page</h1>
+        title="Install UserSnap"
+        leftBottom1={
+          <Button
+            padding="7px 15px"
+            borderRadius="5px"
+            color="#418EFD"
+            text="Verify installation"
+            textColor="white"
+            border="solid 2px #418EFD"
+          />
+        }
+        leftBottom2={
+          <Button
+            padding="4px 9px"
+            color="#F4F7FF"
+            text="Other ways to install"
+            textColor="black"
+            border="none"
+            margin="0px 0px 0px 40px"
+          />
+        }
+        rightBottom1={"3342123"}
+      >
+        <CodeBox code={codeText} />
+      </InstallBox>
     </>
   );
 }
