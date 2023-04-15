@@ -7,7 +7,7 @@ import { navItems } from "./constants";
 
 import style from "./style.module.css";
 
-function Layout({ children }) {
+function DashboardLayout({ children }) {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
@@ -29,4 +29,4 @@ function Layout({ children }) {
   );
 }
 
-export default Layout;
+export default DashboardLayout;

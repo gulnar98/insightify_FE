@@ -1,6 +1,5 @@
-import Layout from "@/components/layout";
+import DashboardLayout from "@/components/dashboardLayout";
 import "../assets/css/reset.css";
-// import "../assets/css/global.css";
 
 import { Inter } from "next/font/google";
 
@@ -9,9 +8,9 @@ const inter = Inter({ subsets: ["latin"] });
 export default function App({ Component, pageProps }) {
   return (
     <main className={inter.className}>
-      <Layout>
+      <DashboardLayout>
         <Component {...pageProps} />
-      </Layout>
+      </DashboardLayout>
     </main>
   );
 }

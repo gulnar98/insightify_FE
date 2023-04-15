@@ -9,6 +9,7 @@
 
 .isOpen {
   width: 44px;
+  padding-right: 10px;
 }
 
 .navListWrapper li:nth-child(3) {
