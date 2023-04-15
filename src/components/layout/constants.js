@@ -52,9 +52,4 @@ export const navItems = [
     path: "/engage",
     soon: true,
   },
-  {
-    label: "Collapse",
-    iconName: "collapse",
-    path: "/collapse",
-  },
 ];
