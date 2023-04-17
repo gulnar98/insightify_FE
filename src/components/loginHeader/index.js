@@ -5,8 +5,8 @@ function LoginHeader() {
   return (
     <header className={style.header}>
       <ul className={style.stepItems}>
-        <li>1. Create account</li>
-        <li>2. Install Usersnap</li>
+        <li>1.Create account</li>
+        <li>2.Install Usersnap</li>
       </ul>
 
       <img className={style.logo} src={logo.src} alt="logo" />

@@ -1,7 +1,6 @@
 .login {
-  background-image: url("../../assets/images/login/login-bg.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: #f4f7ff;
+  overflow: hidden;
 }
 
 .dashboard {
