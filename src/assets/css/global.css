@@ -1,0 +1,9 @@
+.login {
+  background-image: url("../../assets/images/login/login-bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.dashboard {
+  background-color: #fff;
+}
