@@ -6,6 +6,9 @@ import { getDefaultWallets, RainbowKitProvider, lightTheme } from '@rainbow-me/r
 import { configureChains, createClient, WagmiConfig } from 'wagmi';
 import { arbitrum, goerli, mainnet, optimism, polygon } from 'wagmi/chains';
 import { publicProvider } from 'wagmi/providers/public';
+import "../assets/css/global.css";
+import { useEffect } from "react";
+import LoginLayout from "@/components/loginLayout";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,6 +37,10 @@ const wagmiClient = createClient({
 });
 
 export default function App({ Component, pageProps }) {
+  useEffect(() => {
+    document.body.className = pageProps.isLogin ? "login" : "dashboard";
+  });
+
   return (
     <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider chains={chains} modalSize='compact' theme={lightTheme({
@@ -42,9 +49,15 @@ export default function App({ Component, pageProps }) {
       overlayBlur: 'small',
     })}>
       <main className={inter.className}>
-        {/* <DashboardLayout> */}
+        {pageProps.isLogin ? (
+        <LoginLayout>
           <Component {...pageProps} />
-        {/* </DashboardLayout> */}
+        </LoginLayout>
+      ) : (
+        <DashboardLayout>
+          <Component {...pageProps} />
+        </DashboardLayout>
+      )}
       </main>
     </RainbowKitProvider>
     </WagmiConfig>
