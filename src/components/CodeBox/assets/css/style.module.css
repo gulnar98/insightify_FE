@@ -4,13 +4,14 @@
 }
 .code {
     flex: 11;
+    
 }
 .copy {
     flex: 1;
     display: flex;
     justify-content: center;
     padding: 15px;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
 }
