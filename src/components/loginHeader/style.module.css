@@ -1,0 +1,28 @@
+.header {
+  position: relative;
+  background-color: #fff;
+  padding: 28px 98px;
+}
+
+.stepItems {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.stepItems li:first-child {
+  font-weight: 600;
+  color: #fd267a;
+}
+
+.stepItems li:last-child {
+  color: #d1d2d4;
+}
+
+.logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

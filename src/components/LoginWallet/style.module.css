@@ -1,0 +1,15 @@
+.topDiv, .centerDiv, .bottomDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px;
+}
+.centerDiv {
+    flex-direction: column;
+    gap: 5px;
+}
+.centerDiv p {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #303742
+}

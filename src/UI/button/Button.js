@@ -7,10 +7,11 @@ export default function Button(props) {
     let borderRadius = props.borderRadius
     let padding = props.padding
     let margin = props.margin
+    let fontSize = props.fontSize
 
     return (
         <>
-            <button style={{backgroundColor: btncolor, borderRadius, color: textColor, border, padding, margin}}>{text}</button>
+            <button style={{backgroundColor: btncolor, borderRadius, color: textColor, border, padding, margin, fontSize}}>{text}</button>
         </>
     )
 }

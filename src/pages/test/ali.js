@@ -1,10 +1,11 @@
-import Login from "@/components/Login";
+import LoginWallet from "@/components/LoginWallet";
 
-
-export default function Ali () {
-    return(
-        <>
-            <Login/>
-        </>
-    )
+function HomePage() {
+  return (
+    <div>
+      <LoginWallet />
+    </div>
+  );
 }
+
+export default HomePage;
