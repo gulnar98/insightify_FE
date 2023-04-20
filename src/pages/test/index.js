@@ -1,7 +1,7 @@
-import LoginLayout from "@/components/loginLayout";
+import style from "./style.module.css";
 
 function Test() {
-  return <LoginLayout />;
+  return <h1>test</h1>;
 }
 
 export default Test;

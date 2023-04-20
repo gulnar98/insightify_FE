@@ -1,5 +1,6 @@
 import Head from "next/head";
 import style from "./assets/css/style.module.css";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 export default function Login() {
   return (
