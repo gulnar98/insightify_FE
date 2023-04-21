@@ -3,6 +3,8 @@ import styles from "./asset/css/style.module.css";
 import chart from "./asset/images/chart.svg";
 import hash from "./asset/images/hash.svg";
 
+//Bu boyuk divlerin top pages, top clicked button and links olan hisselerin header hissesidi.
+
 function HeaderChartBar (props) {
     const { text, children } = props;
     const displayText = text || 'Top clicked buttons & links';

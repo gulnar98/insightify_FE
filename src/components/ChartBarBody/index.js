@@ -1,5 +1,7 @@
 import React from 'react';
 
+// Bu ise top clicked button ve top pages  technology ve top countries olan sehifelerin body hissesi ucundur
+
 const ChartBarBody = ({
   imageSrc,
   iconSrc,

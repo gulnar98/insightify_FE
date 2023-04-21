@@ -1,7 +1,7 @@
 import React from 'react'
 import ChartBarBody from '../ChartBarBody';
 import HeaderChartBar from '../headerChartBar';
-import Drop_down from '@/UI/drop-down/Drop_down_button';
+import Drop_down from '@/UI/drop-down';
 import Alert from '@/UI/alert/Alert';
 import Button from '@/UI/button/Button';
 import styles from './asset/css/style.module.css';
@@ -12,6 +12,9 @@ import line4 from './asset/images/line4.svg'
 import line5 from './asset/images/line5.svg'
 import faleft from './asset/images/Left.svg'
 import mapIcon from './asset/images/map.svg'
+
+
+//Bu Toppages boyuk conteynerdi
 
 
 function TopPages(count) {

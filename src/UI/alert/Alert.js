@@ -1,6 +1,7 @@
 import React from 'react';
 import alert from './asset/images/alert.svg'
 
+//Alert 
 
 
 export default function Alert(props) {

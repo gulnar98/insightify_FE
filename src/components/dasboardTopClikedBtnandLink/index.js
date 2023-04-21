@@ -11,6 +11,8 @@ import line4 from './asset/images/line4.svg'
 import line5 from './asset/images/line5.svg'
 import faleft from './asset/images/Left.svg'
 
+//TopClicked button and Link olan konteyner
+
 
 function TopClickedBtnandLink(count) {
  count=false;

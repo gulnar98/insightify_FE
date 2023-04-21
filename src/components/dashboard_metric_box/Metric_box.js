@@ -3,6 +3,7 @@ import styles from "./asset/css/style.module.css";
 import graph from "./asset/images/graph.svg";
 import box from "./asset/images/box.svg";
 
+//Bu dasboradda olan total session, total connected wallet ve s. bildiren balaca divlerdir 
 
 
 export default function Metric_box(props) {
