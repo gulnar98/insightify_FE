@@ -22,17 +22,20 @@ function DashboardLayout({ children }) {
         <DropDownProfile isOpen={isDropDownOpen} />
       </div>
 
-      <NavList direction={"vertical"} isOpen={isCollapseOpen}>
-        {navItems.map((item, index) => (
-          <NavItem key={`item-${index}`} {...item} isOpen={isCollapseOpen}>
-            {item.label}
-          </NavItem>
-        ))}
-        <Collapse isOpen={isCollapseOpen} setIsOpen={setIsCollapseOpen}>
-          Collapse
-        </Collapse>
-      </NavList>
-      <div>{children}</div>
+      <nav>
+        <NavList direction={"vertical"} isOpen={isCollapseOpen}>
+          {navItems.map((item, index) => (
+            <NavItem key={`item-${index}`} {...item} isOpen={isCollapseOpen}>
+              {item.label}
+            </NavItem>
+          ))}
+          <Collapse isOpen={isCollapseOpen} setIsOpen={setIsCollapseOpen}>
+            Collapse
+          </Collapse>
+        </NavList>
+      </nav>
+
+      <main>{children}</main>
     </div>
   );
 }

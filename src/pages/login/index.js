@@ -1,6 +1,7 @@
 import Head from "next/head";
 import style from "./assets/css/style.module.css";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { useRouter } from "next/router";
 
 export default function Login() {
   return (
@@ -12,7 +13,16 @@ export default function Login() {
         <title>Login page</title>
       </Head>
 
-      <h1>Login page</h1>
+      <div
+        style={{
+          padding: 32,
+          textAlign: "center",
+          width: "fit-content",
+        }}
+      >
+        <h1 style={{ marginBottom: 16 }}>Login page</h1>
+        <ConnectButton />
+      </div>
     </>
   );
 }
