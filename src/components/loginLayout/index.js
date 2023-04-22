@@ -8,10 +8,7 @@ function LoginLayout({ children }) {
   return (
     <>
       <LoginHeader />
-      {children}
-
-      <img className={style.topRight} src={topLeft.src} alt="topLeft" />
-      <img className={style.bottomLeft} src={bottomLeft.src} alt="bottomLeft" />
+      <main>{children}</main>
     </>
   );
 }
