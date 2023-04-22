@@ -25,7 +25,7 @@ function DropDownProfile({ isOpen }) {
         <div className={style.dropDownProfile}>
           <div className={style.profileInfo}>
             <img src={logo.src} alt="logo" />
-            <p>{shortAddress}</p>
+            {address && <p>{shortAddress}</p>}
           </div>
           <div>
             <img className={style.logoutImg} src={logout.src} alt="logout" />

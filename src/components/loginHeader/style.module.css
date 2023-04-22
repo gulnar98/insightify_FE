@@ -8,11 +8,11 @@
 }
 
 .stepItems {
-  flex: 2;
+  flex: 3;
   display: flex;
   align-items: center;
   gap: 22px;
-  padding-left: 88px;
+  padding-left: 72px;
 }
 
 .stepItem {
@@ -27,5 +27,5 @@
 }
 
 .logo {
-  flex: 3;
+  flex: 4;
 }
