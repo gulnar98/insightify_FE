@@ -1,28 +1,31 @@
 .header {
   position: relative;
   background-color: #fff;
-  padding: 28px 98px;
+  padding: 22px 0;
+
+  display: flex;
+  align-items: center;
 }
 
 .stepItems {
-  flex: 0 0 auto;
+  flex: 2;
   display: flex;
   align-items: center;
   gap: 22px;
+  padding-left: 88px;
 }
 
-.stepItems li:first-child {
+.stepItem {
+  color: #d1d2d4;
+  text-decoration: line-through;
+}
+
+.isActive {
   font-weight: 600;
   color: #fd267a;
-}
-
-.stepItems li:last-child {
-  color: #d1d2d4;
+  text-decoration: none;
 }
 
 .logo {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  flex: 3;
 }

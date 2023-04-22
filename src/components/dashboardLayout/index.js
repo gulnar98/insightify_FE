@@ -7,25 +7,32 @@ import { useState } from "react";
 import { navItems } from "./constants";
 
 import style from "./style.module.css";
+import DropDownProfile from "../dropDownProfile";
 
 function DashboardLayout({ children }) {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isCollapseOpen, setIsCollapseOpen] = useState(true);
+
+  const [isDropDownOpen, setIsDropDownOpen] = useState(false);
 
   return (
     <div className={style.container}>
-      <DashboardHeader />
+      <DashboardHeader setIsOpen={setIsDropDownOpen} isOpen={isDropDownOpen} />
 
-      <NavList direction={"vertical"} isOpen={isOpen}>
+      <div className={style.dropDown}>
+        <DropDownProfile isOpen={isDropDownOpen} />
+      </div>
+
+      <NavList direction={"vertical"} isOpen={isCollapseOpen}>
         {navItems.map((item, index) => (
-          <NavItem key={`item-${index}`} {...item} isOpen={isOpen}>
+          <NavItem key={`item-${index}`} {...item} isOpen={isCollapseOpen}>
             {item.label}
           </NavItem>
         ))}
-        <Collapse isOpen={isOpen} setIsOpen={setIsOpen}>
+        <Collapse isOpen={isCollapseOpen} setIsOpen={setIsCollapseOpen}>
           Collapse
         </Collapse>
       </NavList>
-      {children}
+      <div>{children}</div>
     </div>
   );
 }

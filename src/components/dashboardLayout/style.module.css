@@ -4,3 +4,11 @@
   grid-template-rows: 1fr auto;
   grid-auto-flow: column;
 }
+
+.dropDown {
+  position: absolute;
+  top: 11%;
+  right: 3%;
+
+  background-color: #fff;
+}
