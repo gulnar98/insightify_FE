@@ -1,6 +1,4 @@
 import jwt from "jsonwebtoken";
-import bcrypt from "bcryptjs";
-import {ObjectId} from 'mongodb';
 import { recoverPersonalSignature, normalize } from 'eth-sig-util';
 import { setCookies } from "./utils/cookie.utils";
 import { getDatabase } from "../../../lib/mongodb";
@@ -13,16 +11,10 @@ const REFRESH_TOKEN_EXPIRATION_TIME = process.env.REFRESH_TOKEN_EXPIRATION_TIME 
 export default async function handler(req, res) {
   switch (req.method) {
     case "POST":
-      if (req.body.action === "signup") {
-        await handleSignup(req, res);
-      } else if (req.body.action === "login") {
+      if (req.body.action === "login") {
         await handleLogin(req, res);
       } else if (req.body.action === "refresh") {
         await handleRefreshToken(req, res);
-      } else if (req.body.action === "forgot_password") {
-        await handleForgotPassword(req, res);
-      } else if (req.body.action === "reset_password") {
-        await handleResetPassword(req, res);
       } else {
         res.status(400).end();
       }
@@ -37,42 +29,6 @@ export default async function handler(req, res) {
     default:
       res.status(405).end(`Method ${req.method} Not Allowed`);
   }
-}
-
-async function handleSignup(req, res) {
-  const db = getDatabase();
-  const { address, sign, message } = req.body;
-  const existingUser = await db.collection("users").findOne({ address });
-  if (existingUser) {
-    res.status(400).json({ message: "address is already taken." });
-    return;
-  }
-  const hashedPassword = await bcrypt.hash(password, 12);
-  const result = await db.collection("users").insertOne({
-    address
-  });
-  const user = { _id: result.insertedId };
-  const accessToken = jwt.sign(user, JWT_SECRET, { expiresIn: "15m" });
-  const refreshToken = jwt.sign(user, REFRESH_TOKEN_SECRET, {expiresIn: Math.round(Date.now() / 1000) + REFRESH_TOKEN_EXPIRATION_TIME});
-  await db.collection("refresh_tokens").insertOne({ token: refreshToken });
-
-  // Set access & refresh tokens as cookie
-  setCookies(res, [
-    {
-      name: 'accessToken',
-      value: accessToken,
-      Secure: process.env.NODE_ENV === 'production',
-      HttpOnly: true
-    },
-    {
-      name: 'refreshToken',
-      value: refreshToken,
-      Secure: process.env.NODE_ENV === 'production',
-      HttpOnly: true
-    }
-  ]);
-
-  res.status(201).json({ accessToken, refreshToken });
 }
 
 async function handleLogin(req, res) {
@@ -168,35 +124,6 @@ const handleRefreshToken = async (req, res) => {
   }
 }
 
-async function updateUserPassword (_id, password) {
-  const db = getDatabase();
-  const collection = db.collection('users');
-  const hashedPassword = await bcrypt.hash(password, 12);
-  await collection.updateOne({
-    _id: new ObjectId(_id)
-  }, {
-    $set: {
-      password: hashedPassword
-    }
-  }, {
-    upsert: true
-  });
-}
-
-async function getUserById(_id) {
-  const db = getDatabase();
-  const collection = db.collection('users');
-  const user = await collection.findOne({ _id: new ObjectId(_id) });
-  return user;
-}
-
-async function getUserByWalletAddress(address) {
-  const db = getDatabase();
-  const collection = db.collection('users');
-  const user = await collection.findOne({ address });
-  return user;
-}
-
 function checkSignature (sig, walletAddress) {
   const publicKey = recoverPersonalSignature({
     sig,
@@ -206,55 +133,6 @@ function checkSignature (sig, walletAddress) {
   return publicKey.toLowerCase() === walletAddress.toLowerCase();
 }
 
-// handle forgot password request
-async function handleForgotPassword(req, res) {
-  try {
-    const { address } = req.body;
-    const user = await getUserByWalletAddress(address);
-
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-
-    // generate password reset token
-    const resetToken = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "1h",
-    });
-
-    // send password reset link to user's wallet address
-    const resetLink = `${process.env.BASE_URL}/reset-password?token=${resetToken}`;
-    // send email using nodemailer or any other email service
-    console.log(`Password reset link: ${resetLink}`);
-
-    res.json({ message: "Password reset link sent to your email" });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: "Internal server error" });
-  }
-}
-
-async function handleResetPassword(req, res) {
-  try {
-    const { token, password } = req.body;
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-    const user = await getUserById(decoded._id);
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-
-    // update the user's password in the database
-    await updateUserPassword(user._id, password);
-
-    // send email confirmation to the user
-    // ...
-
-    res.json({ message: "Password reset successful" });
-  } catch (error) {
-    console.log(error);
-    res.status(401).json({ message: "Invalid or expired token" });
-  }
-}
 
 // handle token verification request
 async function handleVerifyToken(req, res) {
@@ -288,9 +166,7 @@ async function addRefreshTokenToBlacklist(refreshToken) {
 // generate access token
 function generateAccessToken(_id) {
   const accessToken = jwt.sign({ _id }, JWT_SECRET, {
-    expiresIn: "15m",
+    expiresIn: process.env.ACCESS_TOKEN_EXPIRATION_TIME || "15m",
   });
   return accessToken;
 }
-
-

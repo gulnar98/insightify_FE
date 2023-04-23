@@ -65,7 +65,7 @@ export default function App({ Component, pageProps }) {
     clearInterval(interval);
     interval = setInterval(() => {
       refreshToken();
-    }, 600000);
+    }, parseInt(process.env.NEXT_PUBLIC_REFRESH_ACCESS_TOKEN_TIME_DELAY));
 
     return () => clearInterval(interval);
   }, []);
