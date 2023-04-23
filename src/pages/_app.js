@@ -27,6 +27,8 @@ const { chains, provider, webSocketProvider } = configureChains(
   [publicProvider()]
 );
 
+let interval;
+
 const { connectors } = getDefaultWallets({
   appName: "RainbowKit App",
   projectId: "YOUR_PROJECT_ID",
@@ -40,10 +42,33 @@ const wagmiClient = createClient({
   webSocketProvider,
 });
 
+async function refreshToken () {
+  return await fetch('/api/auth', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      action: 'refresh'
+    })
+  });
+}
+
 export default function App({ Component, pageProps }) {
   useEffect(() => {
     document.body.className = pageProps.isLogin ? "login" : "dashboard";
-  });
+  }, [pageProps.isLogin]);
+
+  useEffect(() => {
+    refreshToken();
+    clearInterval(interval);
+    interval = setInterval(() => {
+      refreshToken();
+    }, 600000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <WagmiConfig client={wagmiClient}>
