@@ -3,4 +3,12 @@
   grid-template-columns: fit-content(20%) auto;
   grid-template-rows: 1fr auto;
   grid-auto-flow: column;
+  height: 100%;
+}
+
+.dropDown {
+  position: absolute;
+  top: 11%;
+  right: 3%;
+  background-color: #fff;
 }

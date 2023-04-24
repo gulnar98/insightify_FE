@@ -1,5 +1,8 @@
 .login {
-  background-color: #f4f7ff;
+  background-image: url("../images//login/login-bg.png");
+  background-repeat: no-repeat;
+  background-size: 100vw 100vh;
+
   overflow: hidden;
 }
 
