@@ -1,11 +1,11 @@
 import LoginWallet from "@/components/LoginWallet";
+import Verification from "@/components/verification";
 
-function HomePage() {
-  return (
-    <div>
-      <LoginWallet />
-    </div>
-  );
+
+export default function Ali () {
+    return(
+        <>
+            <Verification/>
+        </>
+    )
 }
-
-export default HomePage;
