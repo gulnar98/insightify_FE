@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken";
 import { recoverPersonalSignature, normalize } from 'eth-sig-util';
 import { setCookies } from "./utils/cookie.utils";
 import { getDatabase } from "../../../lib/mongodb";
+import { ObjectId } from "mongodb";
 
 const JWT_SECRET = process.env.JWT_SECRET || "your_jwt_secret_here";
 const REFRESH_TOKEN_SECRET = process.env.REFRESH_TOKEN_SECRET || "your_refresh_token_secret_here";
@@ -122,8 +123,15 @@ const handleRefreshToken = async (req, res) => {
       HttpOnly: true
     });
 
-    // Return a success response
-    res.status(200).json({ message: "Access token has been refreshed" });
+    const db = getDatabase();
+
+    const isNewUser = await db.collection("users").findOne({ _id: new ObjectId(_id) }) ? false : true;
+
+    res.status(200).json({
+      accessToken,
+      refreshToken,
+      isNewUser
+    });
   } catch (error) {
     console.log(error);
     return res.status(401).json({ message: "Invalid refresh token" });

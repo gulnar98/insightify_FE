@@ -7,12 +7,13 @@ import {
   RainbowKitProvider,
   lightTheme,
 } from "@rainbow-me/rainbowkit";
-import { configureChains, createClient, WagmiConfig } from "wagmi";
+import { configureChains, createClient, useAccount, WagmiConfig } from "wagmi";
 import { arbitrum, goerli, mainnet, optimism, polygon } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 import "../assets/css/global.css";
 import { useEffect } from "react";
 import LoginLayout from "@/components/loginLayout";
+import { useRefreshToken } from "@/hooks/refreshToken";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -42,30 +43,20 @@ const wagmiClient = createClient({
   webSocketProvider,
 });
 
-async function refreshToken () {
-  return await fetch('/api/auth', {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      action: 'refresh'
-    })
-  });
-}
-
 export default function App({ Component, pageProps }) {
-  useEffect(() => {
-    document.body.className = pageProps.isLogin ? "login" : "dashboard";
-  }, [pageProps.isLogin]);
+  const {
+    accessToken,
+    refreshToken,
+    isNewUser,
+    error,
+    callRefreshToken,
+  } = useRefreshToken();
 
   useEffect(() => {
-    refreshToken();
+    callRefreshToken();
+
     clearInterval(interval);
-    interval = setInterval(() => {
-      refreshToken();
-    }, parseInt(process.env.NEXT_PUBLIC_REFRESH_ACCESS_TOKEN_TIME_DELAY));
+    interval = setInterval(callRefreshToken, parseInt(process.env.NEXT_PUBLIC_REFRESH_ACCESS_TOKEN_TIME_DELAY));
 
     return () => clearInterval(interval);
   }, []);
@@ -81,17 +72,29 @@ export default function App({ Component, pageProps }) {
           overlayBlur: "small",
         })}
       >
-        <main className={inter.className}>
-          {pageProps.isLogin ? (
-            <LoginLayout>
-              <Component {...pageProps} />
-            </LoginLayout>
-          ) : (
-            <DashboardLayout>
-              <Component {...pageProps} />
-            </DashboardLayout>
-          )}
-        </main>
+        {(() => {
+          const { isConnected } = useAccount();
+
+          useEffect(() => {
+            document.body.className = !isConnected ? "login" : "dashboard";
+          }, [isConnected]);
+
+          return (
+            <>
+              <main className={inter.className}>
+                {!isConnected || !accessToken ? (
+                  <LoginLayout>
+                    <Component {...pageProps} />
+                  </LoginLayout>
+                ) : (
+                  <DashboardLayout>
+                    <Component {...pageProps} />
+                  </DashboardLayout>
+                )}
+              </main>
+            </>
+          );
+        })()}
       </RainbowKitProvider>
     </WagmiConfig>
   );
