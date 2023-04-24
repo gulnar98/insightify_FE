@@ -2,11 +2,13 @@ import jwt from "jsonwebtoken";
 import { recoverPersonalSignature, normalize } from 'eth-sig-util';
 import { setCookies } from "./utils/cookie.utils";
 import { getDatabase } from "../../../lib/mongodb";
-import { ObjectId } from "mongodb";
 
 const JWT_SECRET = process.env.JWT_SECRET || "your_jwt_secret_here";
 const REFRESH_TOKEN_SECRET = process.env.REFRESH_TOKEN_SECRET || "your_refresh_token_secret_here";
 const BLACKLIST_TOKENS_COLLECTION = process.env.BLACKLIST_TOKENS_COLLECTION || "blacklist_tokens";
+const REFRESH_TOKENS_COLLECTION = process.env.REFRESH_TOKENS_COLLECTION || 'refresh_tokens';
+const USERS_COLLECTION = process.env.USERS_COLLECTION || 'users';
+const USERS_APPS_COLLECTION = process.env.USERS_APPS_COLLECTION || 'users_apps';
 const REFRESH_TOKEN_EXPIRATION_TIME = process.env.REFRESH_TOKEN_EXPIRATION_TIME ? parseInt(process.env.REFRESH_TOKEN_EXPIRATION_TIME) : 3600;
 
 export default async function handler(req, res) {
@@ -16,6 +18,10 @@ export default async function handler(req, res) {
         await handleLogin(req, res);
       } else if (req.body.action === "refresh") {
         await handleRefreshToken(req, res);
+      } else if (req.body.action === "logout") {
+        await handleLogOut(req, res);
+      } else if (req.body.action === 'signup') {
+        await handleSignup(req, res);
       } else {
         res.status(400).end();
       }
@@ -43,9 +49,9 @@ async function handleLogin(req, res) {
     });
   }
 
-  const user = await db.collection("users").findOne({ address }) || {_id: null};
+  const user = await db.collection(USERS_COLLECTION).findOne({ address }) || {_id: null};
   if (!user._id) {
-    const result = await db.collection('users').insertOne({
+    const result = await db.collection(USERS_COLLECTION).insertOne({
       address
     });
 
@@ -61,7 +67,7 @@ async function handleLogin(req, res) {
     expiresIn: "15m",
   });
   const refreshToken = jwt.sign({ _id: user._id }, REFRESH_TOKEN_SECRET, {expiresIn: Math.round(Date.now() / 1000) + REFRESH_TOKEN_EXPIRATION_TIME});
-  await db.collection("refresh_tokens").insertOne({ token: refreshToken });
+  await db.collection(REFRESH_TOKENS_COLLECTION).insertOne({ token: refreshToken });
 
   // Set access & refresh tokens as cookie
   setCookies(res, [
@@ -84,6 +90,52 @@ async function handleLogin(req, res) {
     refreshToken,
     isNewUser
   });
+}
+
+const handleLogOut = async (req, res) => {
+  setCookies(res, [
+    {
+      name: 'accessToken',
+      value: '',
+      MaxAge: -1000000,
+      HttpOnly: true,
+      Secure: process.env.NODE_ENV === 'production'
+    },
+    {
+      name: 'refreshToken',
+      value: '',
+      MaxAge: -1000000,
+      HttpOnly: true,
+      Secure: process.env.NODE_ENV === 'production'
+    }
+  ]);
+
+  res.status(200).json({});
+}
+
+const handleSignup = async (req, res) => {
+  try {
+    const { accessToken } = req.cookies;
+    const { _id } = jwt.verify(accessToken, JWT_SECRET);
+
+    const { dao_name, role } = req.body;
+
+    const db = getDatabase();
+    db.collection(USERS_APPS_COLLECTION).updateOne({
+      user_id: _id
+    }, {
+      $set: {
+        dao_name,
+        role
+      }
+    }, {
+      upsert: true
+    })
+
+    res.json({ message: "Token is valid" });
+  } catch (error) {
+    res.status(401).json({ message: "Token is invalid or expired" });
+  }
 }
 
 const handleRefreshToken = async (req, res) => {
@@ -125,7 +177,7 @@ const handleRefreshToken = async (req, res) => {
 
     const db = getDatabase();
 
-    const isNewUser = await db.collection("users").findOne({ _id: new ObjectId(_id) }) ? false : true;
+    const isNewUser = await db.collection(USERS_APPS_COLLECTION).findOne({ user_id: _id }) ? false : true;
 
     res.status(200).json({
       accessToken,
@@ -151,13 +203,28 @@ function checkSignature (sig, walletAddress) {
 // handle token verification request
 async function handleVerifyToken(req, res) {
   try {
-    const { token } = req.body;
-
-    jwt.verify(token, process.env.JWT_SECRET);
+    const { accessToken } = req.cookies;
+    jwt.verify(accessToken, JWT_SECRET);
 
     res.json({ message: "Token is valid" });
   } catch (error) {
-    console.log(error);
+    setCookies(res, [
+      {
+        name: 'accessToken',
+        value: '',
+        MaxAge: -1000000,
+        HttpOnly: true,
+        Secure: process.env.NODE_ENV === 'production'
+      },
+      {
+        name: 'refreshToken',
+        value: '',
+        MaxAge: -1000000,
+        HttpOnly: true,
+        Secure: process.env.NODE_ENV === 'production'
+      }
+    ]);
+
     res.status(401).json({ message: "Token is invalid or expired" });
   }
 }

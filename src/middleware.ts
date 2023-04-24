@@ -14,9 +14,7 @@ async function loginMiddleware(request: NextRequest) {
       accessToken.value,
       new TextEncoder().encode(process.env.JWT_SECRET)
     );
-    if (Date.now() <= payload.exp * 1000) {
-      return NextResponse.redirect(new URL("/dashboard", request.url));
-    } else {
+    if (Date.now() > payload.exp * 1000) {
       return NextResponse.next();
     }
   } catch (error) {

@@ -7,7 +7,7 @@ import {
   RainbowKitProvider,
   lightTheme,
 } from "@rainbow-me/rainbowkit";
-import { configureChains, createClient, useAccount, WagmiConfig } from "wagmi";
+import { configureChains, createClient, useAccount, useSignMessage, WagmiConfig } from "wagmi";
 import { arbitrum, goerli, mainnet, optimism, polygon } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 import "../assets/css/global.css";
@@ -50,6 +50,7 @@ export default function App({ Component, pageProps }) {
     isNewUser,
     error,
     callRefreshToken,
+    callLogOut
   } = useRefreshToken();
 
   useEffect(() => {
@@ -59,7 +60,7 @@ export default function App({ Component, pageProps }) {
     interval = setInterval(callRefreshToken, parseInt(process.env.NEXT_PUBLIC_REFRESH_ACCESS_TOKEN_TIME_DELAY));
 
     return () => clearInterval(interval);
-  }, []);
+  });
 
   return (
     <WagmiConfig client={wagmiClient}>
@@ -73,22 +74,30 @@ export default function App({ Component, pageProps }) {
         })}
       >
         {(() => {
-          const { isConnected } = useAccount();
+          const { isConnected, isDisconnected } = useAccount();
 
           useEffect(() => {
-            document.body.className = !isConnected ? "login" : "dashboard";
-          }, [isConnected]);
+            document.body.className = !isConnected || !accessToken ? "login" : "dashboard";
+          }, [isConnected, accessToken]);
+
+          useEffect(() => {
+            if (isDisconnected) {
+              callLogOut().then(callRefreshToken);
+            }
+          }, [isDisconnected]);
+
+          const props = {...pageProps, isNewUser};
 
           return (
             <>
               <main className={inter.className}>
                 {!isConnected || !accessToken ? (
                   <LoginLayout>
-                    <Component {...pageProps} />
+                    <Component {...props} />
                   </LoginLayout>
                 ) : (
                   <DashboardLayout>
-                    <Component {...pageProps} />
+                    <Component {...props} />
                   </DashboardLayout>
                 )}
               </main>

@@ -3,4 +3,5 @@ export interface Cookie {
     value: string;
     HttpOnly: boolean;
     Secure: boolean;
+    MaxAge?: number;
 }

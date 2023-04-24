@@ -3,13 +3,11 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount, useSignMessage } from "wagmi";
 import { useEffect } from "react";
 
-export default function Login() {
+export default function Login({isNewUser}) {
 
   const message = process.env.NEXT_PUBLIC_WEB3_SIGN_MESSAGE;
   const {address, isConnected} = useAccount();
-  const {data: sign, isSuccess, signMessage} = useSignMessage({
-    message
-  });
+  const {data: sign, isSuccess, signMessage} = useSignMessage({message});
 
   useEffect(() => {
     if (isSuccess) {
@@ -31,8 +29,8 @@ export default function Login() {
           return result.json();
         }
       }).then(result => {
-        // success
-      })
+        window.location.reload();
+      });
     }
   }, [isSuccess]);
 
@@ -52,13 +50,12 @@ export default function Login() {
           width: "fit-content",
         }}
       >
-        <h1 style={{ marginBottom: 16 }}>Login page</h1>
-        <ConnectButton />
-        {isConnected && (
+        <h1 style={{ marginBottom: 16 }}>Login page {isNewUser && '(Yeni istifadəçi)'}</h1>
+        {isConnected ? (
           <div>
-            <button onClick={() => signMessage()}>Log in</button>
+            <button onClick={() => signMessage()}>Sign</button>
           </div>
-        )}
+        ) : <ConnectButton />}
       </div>
     </>
   );

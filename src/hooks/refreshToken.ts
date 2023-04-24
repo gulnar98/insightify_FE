@@ -29,11 +29,34 @@ export function useRefreshToken () {
         }
     }
 
+    const callLogOut = async () => {
+        try {
+            await fetch("/api/auth", {
+                method: "POST",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    action: "logout",
+                }),
+            });
+
+            setAccessToken(state => undefined);
+            setRefreshToken(state => undefined);
+            setIsNewUser(state => undefined);
+            setError(state => undefined);
+        } catch (err) {
+            setError(state => err);
+        }
+    }
+
     return {
         accessToken,
         refreshToken,
         isNewUser,
         error,
-        callRefreshToken
+        callRefreshToken,
+        callLogOut
     }
 }
