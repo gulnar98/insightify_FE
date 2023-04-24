@@ -34,6 +34,7 @@ export default async function handler(req, res) {
 async function handleLogin(req, res) {
   const db = getDatabase();
   const { address, sign } = req.body;
+  let isNewUser = false;
 
   if (!checkSignature(sign, address)) {
     return res.status(401).json({
@@ -48,6 +49,7 @@ async function handleLogin(req, res) {
     });
 
     user._id = result.insertedId;
+    isNewUser = true;
   }
   // const isPasswordValid = await bcrypt.compare(password, user.password);
   // if (!isPasswordValid) {
@@ -76,7 +78,11 @@ async function handleLogin(req, res) {
     }
   ]);
 
-  res.status(200).json({ accessToken, refreshToken });
+  res.status(200).json({ 
+    accessToken, 
+    refreshToken,
+    isNewUser
+  });
 }
 
 const handleRefreshToken = async (req, res) => {

@@ -1,10 +1,7 @@
 import Head from "next/head";
-import style from "./assets/css/style.module.css";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { useRouter } from "next/router";
 import { useAccount, useSignMessage } from "wagmi";
-import uuid4 from "uuid4";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export default function Login() {
 
