@@ -54,9 +54,9 @@ export default function App({ Component, pageProps }) {
           <Component {...pageProps} />
         </LoginLayout>
       ) : (
-        <DashboardLayout>
+        // <DashboardLayout>
           <Component {...pageProps} />
-        </DashboardLayout>
+        // </DashboardLayout>
       )}
       </main>
     </RainbowKitProvider>

@@ -1,0 +1,36 @@
+.main {
+    width: 43%;
+    border-radius: 5px;
+    margin: auto;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.header {
+    padding: 23px 20px;
+    color: white;
+    background-color: #418EFD;
+    border-top-right-radius:5px;
+    border-top-left-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+.header div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.btn {
+    background: none;
+    border: none;
+}
+.oneDiv {
+    border-bottom: solid #D6D6D6 1px;
+    font-weight: 600;
+    display: flex;
+    padding: 30px 10px 0px 20px;
+    gap: 25px;
+}
+.verify {
+    color: #418EFD;
+    border-bottom: #418EFD 2px solid;
+    padding-bottom: 10px;
+}

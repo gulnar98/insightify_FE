@@ -1,6 +1,5 @@
-export default function Button(props) {
+export default function Input(props) {
 
-    let btncolor = props.color
     let text = props.text
     let border = props.border
     let textColor = props.textColor
@@ -8,10 +7,11 @@ export default function Button(props) {
     let padding = props.padding
     let margin = props.margin
     let fontSize = props.fontSize
+    let width = props.width
 
-    return (
+    return(
         <>
-            <button style={{backgroundColor: btncolor, borderRadius, color: textColor, border, padding, margin, fontSize, cursor: "pointer"}}>{text}</button>
+            <input style={{borderRadius, color: textColor, border, padding, margin, fontSize, width}}/>
         </>
     )
 }
