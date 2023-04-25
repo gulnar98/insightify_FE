@@ -95,6 +95,10 @@ export default function App({ Component, pageProps }) {
                   <LoginLayout>
                     <Component {...props} />
                   </LoginLayout>
+                ) : isNewUser ? (
+                  <LoginLayout>
+                    <h1>Burada signup addimlar olmalidir</h1>
+                  </LoginLayout>
                 ) : (
                   <DashboardLayout>
                     <Component {...props} />
