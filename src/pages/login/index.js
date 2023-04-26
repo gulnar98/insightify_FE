@@ -2,6 +2,7 @@ import Head from "next/head";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount, useSignMessage } from "wagmi";
 import { useEffect } from "react";
+import DatingUser from "@/components/datingUser";
 
 export default function Login({isNewUser}) {
 
@@ -43,7 +44,7 @@ export default function Login({isNewUser}) {
         <title>Login page</title>
       </Head>
 
-      <div
+      {/* <div
         style={{
           padding: 32,
           textAlign: "center",
@@ -56,7 +57,8 @@ export default function Login({isNewUser}) {
             <button onClick={() => signMessage()}>Sign</button>
           </div>
         ) : <ConnectButton />}
-      </div>
+      </div> */}
+      <DatingUser/>
     </>
   );
 }
