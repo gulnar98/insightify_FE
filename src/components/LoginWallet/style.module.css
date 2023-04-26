@@ -1,15 +1,47 @@
-.topDiv, .centerDiv, .bottomDiv {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 12px;
+.main {
+  margin-top: 100px;
 }
+
+.topDiv,
+.centerDiv,
+.bottomDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+}
+
+.topDiv {
+  width: 100%;
+}
+
+.topDiv img {
+  width: 35%;
+}
+
 .centerDiv {
-    flex-direction: column;
-    gap: 5px;
+  flex-direction: column;
+  gap: 5px;
 }
 .centerDiv p {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #303742
+  font-size: 22px;
+  font-weight: bold;
+  color: #303742;
+}
+
+.bottomDiv > div > button {
+  padding: 12px 32px !important;
+  font-size: 22px !important;
+  border-radius: 8px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #303742;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.bottomDiv > div > button:hover {
+  transform: scale(1.08);
 }
