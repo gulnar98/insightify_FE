@@ -3,7 +3,11 @@ import style from "./assets/css/style.module.css";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount, useSignMessage } from "wagmi";
 import { useEffect } from "react";
+<<<<<<< HEAD
 import LoginWallet from "../../components/LoginWallet";
+=======
+import DatingUser from "@/components/datingUser";
+>>>>>>> bd9d2e3701a3919f17086e7097635f5d16269481
 
 export default function Login({ isNewUser }) {
   const message = process.env.NEXT_PUBLIC_WEB3_SIGN_MESSAGE;
@@ -48,7 +52,25 @@ export default function Login({ isNewUser }) {
         <title>Login page</title>
       </Head>
 
+<<<<<<< HEAD
       {isConnected ? <LoginWallet {...props} /> : <LoginWallet {...props} />}
+=======
+      {/* <div
+        style={{
+          padding: 32,
+          textAlign: "center",
+          width: "fit-content",
+        }}
+      >
+        <h1 style={{ marginBottom: 16 }}>Login page {isNewUser && '(Yeni istifadəçi)'}</h1>
+        {isConnected ? (
+          <div>
+            <button onClick={() => signMessage()}>Sign</button>
+          </div>
+        ) : <ConnectButton />}
+      </div> */}
+      <DatingUser/>
+>>>>>>> bd9d2e3701a3919f17086e7097635f5d16269481
     </>
   );
 }
