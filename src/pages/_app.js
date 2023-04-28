@@ -1,4 +1,6 @@
 import DashboardLayout from "@/components/dashboardLayout";
+import CreateAccount from "@/components/createAccount";
+import AccountProvider from "@/context/AccountProvider";
 import "../assets/css/reset.css";
 import { Inter } from "next/font/google";
 import "@rainbow-me/rainbowkit/styles.css";
@@ -82,42 +84,46 @@ export default function App({ Component, pageProps }) {
           overlayBlur: "small",
         })}
       >
-        {(() => {
-          const { isConnected, isDisconnected } = useAccount();
+        <AccountProvider>
+          {(() => {
+            const { isConnected, isDisconnected } = useAccount();
 
-          useEffect(() => {
-            document.body.className =
-              !isConnected || !accessToken || isNewUser ? "login" : "dashboard";
-          }, [isConnected, accessToken]);
+            useEffect(() => {
+              document.body.className =
+                !isConnected || !accessToken || isNewUser
+                  ? "login"
+                  : "dashboard";
+            }, [isConnected, accessToken]);
 
-          useEffect(() => {
-            if (isDisconnected) {
-              callLogOut().then(callRefreshToken);
-            }
-          }, [isDisconnected]);
+            useEffect(() => {
+              if (isDisconnected) {
+                callLogOut().then(callRefreshToken);
+              }
+            }, [isDisconnected]);
 
-          const props = { ...pageProps, isNewUser };
+            const props = { ...pageProps, isNewUser };
 
-          return (
-            <>
-              <main className={inter.className}>
-                {!isConnected || !accessToken ? (
-                  <LoginLayout>
-                    <Component {...props} />
-                  </LoginLayout>
-                ) : isNewUser ? (
-                  <LoginLayout>
-                    <h1>Burada signup addimlar olmalidir</h1>
-                  </LoginLayout>
-                ) : (
-                  <DashboardLayout>
-                    <Component {...props} />
-                  </DashboardLayout>
-                )}
-              </main>
-            </>
-          );
-        })()}
+            return (
+              <>
+                <main className={inter.className}>
+                  {!isConnected || !accessToken ? (
+                    <LoginLayout>
+                      <Component {...props} />
+                    </LoginLayout>
+                  ) : isNewUser ? (
+                    <LoginLayout>
+                      <CreateAccount />
+                    </LoginLayout>
+                  ) : (
+                    <DashboardLayout>
+                      <Component {...props} />
+                    </DashboardLayout>
+                  )}
+                </main>
+              </>
+            );
+          })()}
+        </AccountProvider>
       </RainbowKitProvider>
     </WagmiConfig>
   );
