@@ -102,7 +102,6 @@ export default function App({ Component, pageProps }) {
             }, [isDisconnected]);
 
             const props = { ...pageProps, isNewUser };
-
             return (
               <>
                 <main className={inter.className}>
