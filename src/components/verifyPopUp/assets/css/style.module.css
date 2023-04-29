@@ -1,15 +1,22 @@
 .main {
-    font-weight: 500;
-    padding: 20px 0px 20px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    box-sizing: border-box;
+  font-weight: 500;
+  padding: 20px 0px 20px 20px;
+
+  box-sizing: border-box;
+  width: 100%;
 }
-.about, .h1 {
-    color: #303742
+.about,
+.h1 {
+  color: #303742;
+  margin-bottom: 8px;
 }
+
+.h1 {
+  margin-bottom: 12px;
+}
+
 .address {
-    color: #707070;
-    font-size: 0.9em;
+  color: #707070;
+  font-size: 0.9em;
+  margin-bottom: 12px;
 }

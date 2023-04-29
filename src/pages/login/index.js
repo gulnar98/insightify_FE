@@ -1,39 +1,42 @@
 import Head from "next/head";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
+import style from "./assets/css/style.module.css";
 import { useAccount, useSignMessage } from "wagmi";
 import { useEffect } from "react";
-import DatingUser from "@/components/datingUser";
+import LoginWallet from "../../components/LoginWallet";
 
-export default function Login({isNewUser}) {
-
+export default function Login() {
   const message = process.env.NEXT_PUBLIC_WEB3_SIGN_MESSAGE;
-  const {address, isConnected} = useAccount();
-  const {data: sign, isSuccess, signMessage} = useSignMessage({message});
+  const { address, isConnected } = useAccount();
+  const { data: sign, isSuccess, signMessage } = useSignMessage({ message });
 
   useEffect(() => {
     if (isSuccess) {
-      fetch('/api/auth', {
-        method: 'POST',
+      fetch("/api/auth", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
+          "Content-Type": "application/json",
+          Accept: "application/json",
         },
         body: JSON.stringify({
-          action: 'login',
+          action: "login",
           address,
-          sign
+          sign,
+        }),
+      })
+        .then((result) => {
+          if (result.status !== 200) {
+            // error
+          } else {
+            return result.json();
+          }
         })
-      }).then(result => {
-        if (result.status !== 200) {
-          // error
-        } else {
-          return result.json();
-        }
-      }).then(result => {
-        window.location.reload();
-      });
+        .then((result) => {
+          window.location.reload();
+        });
     }
   }, [isSuccess]);
+
+  const props = { isConnected, signMessage };
 
   return (
     <>
@@ -44,21 +47,7 @@ export default function Login({isNewUser}) {
         <title>Login page</title>
       </Head>
 
-      {/* <div
-        style={{
-          padding: 32,
-          textAlign: "center",
-          width: "fit-content",
-        }}
-      >
-        <h1 style={{ marginBottom: 16 }}>Login page {isNewUser && '(Yeni istifadəçi)'}</h1>
-        {isConnected ? (
-          <div>
-            <button onClick={() => signMessage()}>Sign</button>
-          </div>
-        ) : <ConnectButton />}
-      </div> */}
-      <DatingUser/>
+      {!isConnected ? <LoginWallet {...props} /> : <LoginWallet {...props} />}
     </>
   );
 }

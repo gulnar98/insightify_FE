@@ -1,5 +1,4 @@
 .header {
-  position: relative;
   background-color: #fff;
   padding: 22px 0;
 
@@ -8,7 +7,6 @@
 }
 
 .stepItems {
-  flex: 3;
   display: flex;
   align-items: center;
   gap: 22px;
@@ -26,6 +24,12 @@
   text-decoration: none;
 }
 
-.logo {
-  flex: 4;
+.doItLater {
+  padding-right: 72px;
+}
+
+.doItLater a {
+  color: #303742;
+  text-decoration: none;
+  font-weight: 600;
 }
