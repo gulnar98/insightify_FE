@@ -1,4 +1,6 @@
 import DashboardLayout from "@/components/dashboardLayout";
+import CreateAccount from "@/components/createAccount";
+import AccountProvider from "@/context/AccountProvider";
 import "../assets/css/reset.css";
 import { Inter } from "next/font/google";
 import "@rainbow-me/rainbowkit/styles.css";
@@ -7,7 +9,13 @@ import {
   RainbowKitProvider,
   lightTheme,
 } from "@rainbow-me/rainbowkit";
-import { configureChains, createClient, useAccount, useSignMessage, WagmiConfig } from "wagmi";
+import {
+  configureChains,
+  createClient,
+  useAccount,
+  useSignMessage,
+  WagmiConfig,
+} from "wagmi";
 import { arbitrum, goerli, mainnet, optimism, polygon } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 import "../assets/css/global.css";
@@ -50,14 +58,17 @@ export default function App({ Component, pageProps }) {
     isNewUser,
     error,
     callRefreshToken,
-    callLogOut
+    callLogOut,
   } = useRefreshToken();
 
   useEffect(() => {
     callRefreshToken();
 
     clearInterval(interval);
-    interval = setInterval(callRefreshToken, parseInt(process.env.NEXT_PUBLIC_REFRESH_ACCESS_TOKEN_TIME_DELAY));
+    interval = setInterval(
+      callRefreshToken,
+      parseInt(process.env.NEXT_PUBLIC_REFRESH_ACCESS_TOKEN_TIME_DELAY)
+    );
 
     return () => clearInterval(interval);
   });
@@ -73,37 +84,46 @@ export default function App({ Component, pageProps }) {
           overlayBlur: "small",
         })}
       >
-        {(() => {
-          const { isConnected, isDisconnected } = useAccount();
+        <AccountProvider>
+          {(() => {
+            const { isConnected, isDisconnected } = useAccount();
 
-          useEffect(() => {
-            document.body.className = !isConnected || !accessToken ? "login" : "dashboard";
-          }, [isConnected, accessToken]);
+            useEffect(() => {
+              document.body.className =
+                !isConnected || !accessToken || isNewUser
+                  ? "login"
+                  : "dashboard";
+            }, [isConnected, accessToken]);
 
-          useEffect(() => {
-            if (isDisconnected) {
-              callLogOut().then(callRefreshToken);
-            }
-          }, [isDisconnected]);
+            useEffect(() => {
+              if (isDisconnected) {
+                callLogOut().then(callRefreshToken);
+              }
+            }, [isDisconnected]);
 
-          const props = {...pageProps, isNewUser};
+            const props = { ...pageProps, isNewUser };
 
-          return (
-            <>
-              <main className={inter.className}>
-                {!isConnected || !accessToken ? (
-                  <LoginLayout>
-                    <Component {...props} />
-                  </LoginLayout>
-                ) : (
-                  <DashboardLayout>
-                    <Component {...props} />
-                  </DashboardLayout>
-                )}
-              </main>
-            </>
-          );
-        })()}
+            return (
+              <>
+                <main className={inter.className}>
+                  {!isConnected || !accessToken ? (
+                    <LoginLayout>
+                      <Component {...props} />
+                    </LoginLayout>
+                  ) : isNewUser ? (
+                    <LoginLayout>
+                      <CreateAccount />
+                    </LoginLayout>
+                  ) : (
+                    <DashboardLayout>
+                      <Component {...props} />
+                    </DashboardLayout>
+                  )}
+                </main>
+              </>
+            );
+          })()}
+        </AccountProvider>
       </RainbowKitProvider>
     </WagmiConfig>
   );
