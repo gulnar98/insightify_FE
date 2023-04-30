@@ -2,6 +2,7 @@ import Head from "next/head";
 import style from "./assets/css/style.module.css";
 import { useAccount, useSignMessage } from "wagmi";
 import { useEffect } from "react";
+
 import LoginWallet from "../../components/LoginWallet";
 
 export default function Login() {
