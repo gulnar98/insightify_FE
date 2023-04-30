@@ -3,6 +3,7 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount, useSignMessage } from "wagmi";
 import { useEffect } from "react";
 import DatingUser from "@/components/datingUser";
+import Script from "next/script";
 
 export default function Login({isNewUser}) {
 
