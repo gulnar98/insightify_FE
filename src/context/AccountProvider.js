@@ -4,6 +4,8 @@ export const MyContext = createContext();
 
 const initialState = {
   isInstalledStep: false,
+  daoName: "",
+  role: "",
 };
 
 const reducer = (state, action) => {
@@ -14,7 +16,18 @@ const reducer = (state, action) => {
         ...state,
         isInstalledStep,
       };
-
+    case "setDaoName":
+      var daoName = action.payload;
+      return {
+        ...state,
+        daoName,
+      };
+    case "setRole":
+      var role = action.payload;
+      return {
+        ...state,
+        role,
+      };
     default:
       return state;
   }

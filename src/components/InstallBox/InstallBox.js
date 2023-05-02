@@ -12,9 +12,10 @@ export default function InstallBox(props) {
         </div>
         <div className={style.divTwo}>
           <div className={style.short}>
-            Paste this code into the <p className={style.phead}>{`<head>`}</p>{" "}
-            of every page where you want to track user behavior or collect
-            feedback
+            <p className={style.phead}>
+              Paste this code into the <span>&lt;head&gt;</span> of every page
+              where you want to track user behavior or collect feedback.
+            </p>
           </div>
           <div className={style.code}>{props.children}</div>
           <div className={style.down}>
@@ -24,7 +25,7 @@ export default function InstallBox(props) {
             </div>
             <div className={style.rightbottom}>
               <Link href="#" className={style.link}>
-                Site ID: {props.rightBottom1}
+                Site ID: <strong>{props.rightBottom1}</strong>
               </Link>
             </div>
           </div>

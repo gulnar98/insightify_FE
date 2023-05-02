@@ -19,6 +19,7 @@ function CreateAccount() {
   const [isVerifyInst, setIsVerifyInst] = useState(false);
   const [isVerSucc, setIsVerSucc] = useState(false);
   const [isVerExit, setIsVerExit] = useState(false);
+  const [state, dispatch] = useContext(MyContext);
 
   const codeText = `(num) => num + 1
   (num) => num + 1
@@ -26,7 +27,7 @@ function CreateAccount() {
       const count = 78;
       4544555
   }`;
-
+  console.log(state);
   useEffect(() => {
     if (isSuccess) {
       fetch("/api/auth", {
@@ -79,7 +80,7 @@ function CreateAccount() {
             leftBottom2={
               <Button
                 padding="4px 9px"
-                btncolor="#F4F7FF"
+                btncolor="inherit"
                 text="Other ways to install"
                 textColor="black"
                 border="none"

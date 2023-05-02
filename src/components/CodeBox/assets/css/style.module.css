@@ -1,27 +1,27 @@
 .main {
-    display: flex;
-    padding: 13px 0px;
+  display: flex;
+  justify-content: space-between;
+  padding: 13px 0px;
 }
-.code {
-    flex: 11;
-    
-}
+
 .copy {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    padding: 15px;
-    background-color: rgb(255, 255, 255);
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(255, 255, 255);
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 .btnCopy {
-    height: 1.8em;
-    background-color: white;
-    border: solid 1px #418EFD;
-    color: #418EFD;
-    font-weight: bold;
-    border-radius: 4px;
-    padding: 0px 10px;
-    cursor: pointer;
+  height: 1.8em;
+  background-color: white;
+  border: solid 1px #418efd;
+  color: #418efd;
+  font-weight: 600;
+  border-radius: 4px;
+  padding: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
 }

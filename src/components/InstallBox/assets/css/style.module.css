@@ -2,10 +2,11 @@
   border-radius: 8px;
   border: solid 1px #e1e1e1;
   background-color: #fff;
-  padding: 25px;
+  padding: 24px 36px;
   width: 60%;
   font-family: Arial, Helvetica, sans-serif;
   margin: 80px auto;
+  box-sizing: border-box;
 }
 
 .divOne {
@@ -14,14 +15,10 @@
   align-items: center;
 }
 
-.icon {
-  height: 20px;
-}
-
 .h1 {
   margin-left: 15px;
   font-weight: 600;
-  font-size: 25px;
+  font-size: 22px;
 }
 
 .divTwo {
@@ -33,9 +30,14 @@
   margin: 25px 0px;
   font-weight: 500;
 }
+
 .phead {
+  font-size: 14px;
+}
+
+.phead span {
   color: #418efd;
-  margin: 0px 4px;
+  font-weight: 700;
 }
 
 .code {
@@ -75,5 +77,10 @@
 
 .link {
   text-decoration: none;
-  color: black;
+  color: #303742;
+  font-size: 14px;
+}
+
+.link strong {
+  font-weight: 600;
 }

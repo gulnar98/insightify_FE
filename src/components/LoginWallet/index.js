@@ -16,9 +16,7 @@ export default function LoginWallet({ isConnected, signMessage }) {
         <div className={style.bottomDiv}>
           {isConnected ? (
             <div>
-              <button className={style.signBtn} onClick={() => signMessage()}>
-                Sign in
-              </button>
+              <button onClick={() => signMessage()}>Sign in</button>
             </div>
           ) : (
             <ConnectButton />
