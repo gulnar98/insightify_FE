@@ -24,7 +24,6 @@ export default function Verification({
   const onClick = () => {
     setIsVerExit(true);
     setIsVerSucc(false);
-    setIsVerifyInst(false);
   };
 
   return (

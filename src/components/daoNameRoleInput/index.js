@@ -3,16 +3,24 @@ import Button from "@/UI/button/Button";
 import Input from "@/UI/input";
 import { useContext, useRef, useState } from "react";
 import { MyContext } from "../../context/AccountProvider";
+import { buttonProps, errMessage, inputProps } from "./constant";
 
 export default function DaoNameRoleInput({ setIsInstallBox }) {
   const [state, dispatch] = useContext(MyContext);
   const inpRef = useRef();
 
   const [isRoleStep, setIsRoleStep] = useState(false);
-  const [isRequiredInput, setIsRequiredInput] = useState(false);
   const [isOnChange, setIsOnchange] = useState(true);
+  const [onChangeEvent, setOnChangeEvent] = useState("");
 
   const onClick = () => {
+    if (onChangeEvent === "") {
+      setIsOnchange(false);
+      return;
+    } else {
+      setIsOnchange(true);
+    }
+
     if (!isRoleStep) {
       if (isOnChange) {
         dispatch({
@@ -22,6 +30,7 @@ export default function DaoNameRoleInput({ setIsInstallBox }) {
         setIsRoleStep(true);
 
         inpRef.current.value = "";
+        setOnChangeEvent("");
       }
     } else {
       if (isOnChange) {
@@ -41,11 +50,11 @@ export default function DaoNameRoleInput({ setIsInstallBox }) {
   return (
     <>
       <div className={style.main}>
-        <div style={{ marginBottom: 18 }}>
+        <div className={style.header}>
           {!isRoleStep && (
-            <p className={style.welcome}>
+            <h1 className={style.welcome}>
               Welcome, 0xe7A21..... Let’s get you all set up
-            </p>
+            </h1>
           )}
           <p className={style.question}>
             {!isRoleStep ? "What’s your DAO name?" : "What’s your role?"}
@@ -54,35 +63,18 @@ export default function DaoNameRoleInput({ setIsInstallBox }) {
 
         <div className={style.inputWrapper}>
           <Input
+            setOnChangeEvent={setOnChangeEvent}
             setIsOnchange={setIsOnchange}
             inpRef={inpRef}
-            padding="20px 24px"
-            borderRadius="12px"
-            color="#F8F9FC"
-            text="Next"
             border={`${
               !isOnChange ? "1px solid #dc3545" : "1px solid #c8c8c8"
             }`}
-            width="100%"
-            textColor="black"
-            fontSize="1em"
-            margin="0 0 6px 0"
+            {...inputProps}
           />
-          {!isOnChange && (
-            <p className={style.errMessage}>This field is required</p>
-          )}
+          {!isOnChange && <p className={style.errMessage}>{errMessage}</p>}
         </div>
         <div>
-          <Button
-            padding="10px 16px"
-            borderRadius="12px"
-            color="#F8F9FC"
-            text="Next"
-            textColor="#303742"
-            border="solid 1px #C8C8C8"
-            fontSize="24px"
-            onClick={onClick}
-          />
+          <Button onClick={onClick} {...buttonProps} />
         </div>
       </div>
     </>
