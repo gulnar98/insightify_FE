@@ -2,7 +2,6 @@ import { useContext, useState } from "react";
 import { useAccount, useSignMessage } from "wagmi";
 import { MyContext } from "../../context/AccountProvider";
 import InstallBox from "../InstallBox/InstallBox";
-import DatingUser from "../datingUser";
 import { useEffect } from "react";
 import CodeBox from "../CodeBox/CodeBox";
 import Button from "../../UI/button/Button";
@@ -10,6 +9,7 @@ import VerifyPopUp from "../verifyPopUp";
 import Verification from "../verification";
 import style from "./assets/css/style.module.css";
 import VerifySucces from "../verifySucces";
+import DaoNameRoleInput from "../daoNameRoleInput";
 
 function CreateAccount() {
   const message = process.env.NEXT_PUBLIC_WEB3_SIGN_MESSAGE;
@@ -27,7 +27,6 @@ function CreateAccount() {
       const count = 78;
       4544555
   }`;
-  console.log(state);
   useEffect(() => {
     if (isSuccess) {
       fetch("/api/auth", {
@@ -58,7 +57,7 @@ function CreateAccount() {
   return (
     <div>
       {!isInstallBox ? (
-        <DatingUser setIsInstallBox={setIsInstallBox} />
+        <DaoNameRoleInput setIsInstallBox={setIsInstallBox} />
       ) : (
         <>
           <InstallBox

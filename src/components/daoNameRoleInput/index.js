@@ -4,15 +4,13 @@ import Input from "@/UI/input";
 import { useContext, useRef, useState } from "react";
 import { MyContext } from "../../context/AccountProvider";
 
-export default function DatingUser({ setIsInstallBox }) {
+export default function DaoNameRoleInput({ setIsInstallBox }) {
   const [state, dispatch] = useContext(MyContext);
   const inpRef = useRef();
 
   const [isRoleStep, setIsRoleStep] = useState(false);
   const [isRequiredInput, setIsRequiredInput] = useState(false);
-  const [isOnChange, setIsOnchange] = useState(false);
-
-  // !isOnChange ? setIsRequiredInput(true) : setIsRequiredInput(false);
+  const [isOnChange, setIsOnchange] = useState(true);
 
   const onClick = () => {
     if (!isRoleStep) {
