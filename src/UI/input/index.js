@@ -8,10 +8,21 @@ export default function Input(props) {
   let width = props.width;
   let backgroundColor = props.color;
   let placeholder = "Usersnap";
+  let inpRef = props.inpRef;
+
+  const onChange = (e) => {
+    if (!e.target.value) {
+      props.setIsOnchange(false);
+    } else {
+      props.setIsOnchange(true);
+    }
+  };
 
   return (
     <>
       <input
+        onChange={onChange}
+        ref={inpRef}
         style={{
           borderRadius,
           color: textColor,
@@ -21,6 +32,7 @@ export default function Input(props) {
           fontSize,
           width,
           backgroundColor,
+          outline: "none",
         }}
         placeholder={placeholder}
       />

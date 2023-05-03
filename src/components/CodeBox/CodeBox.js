@@ -2,6 +2,7 @@ import style from "./assets/css/style.module.css";
 import React from "react";
 import { useState } from "react";
 import SyntaxHighlighter from "react-syntax-highlighter";
+import copy from "./assets/images/copy.svg";
 
 export default function CodeBox({ code }) {
   const [isCopy, setIsCopy] = useState(false);
@@ -39,7 +40,13 @@ export default function CodeBox({ code }) {
 
         <div className={style.copy}>
           <button onClick={handleCopyCode} className={style.btnCopy}>
-            {isCopy ? "Copied" : "❐Copy"}
+            {isCopy ? (
+              "Copied"
+            ) : (
+              <>
+                <img src={copy.src} /> Copy
+              </>
+            )}
           </button>
         </div>
       </div>
