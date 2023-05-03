@@ -1,17 +1,15 @@
+import { getDatabase } from "@/lib/mongodb";
 import jwt from "jsonwebtoken";
-import { getDatabase } from "../../../lib/mongodb";
 
 const JWT_SECRET = process.env.JWT_SECRET || "your_jwt_secret_here";
-const CDN_URL = process.env.CDN_URL || "http://localhost:3001";
 
 
 export default async function handler (req, res) {
-    
     try {
         const { accessToken } = req.cookies;
         const { _id: user_id } = jwt.verify(accessToken, JWT_SECRET);
         const db = getDatabase();
-        const data = await db.collection('users_apps').findOne({
+        const user = await db.collection('users_apps').findOne({
             user_id
         }, {
             projection: {
@@ -19,14 +17,24 @@ export default async function handler (req, res) {
             }
         });
 
-        const appId = data?._id?.toString?.();
+        const appid = user?._id?.toString?.();
 
-        if (!appId) {
+        if (!appid) {
             throw 'Was not found';
         }
 
-        res.setHeader('Content-Type', 'text/plain')
-        res.end(`<script src="${CDN_URL}/${appId}/record.js"></script>`);
+        const records = await db.collection('records').find({
+            appid
+        }, {
+            limit: 1000,
+            projection: {
+                _id: 0
+            }
+        }).toArray();
+
+        res.json({
+            records
+        });
     } catch (err) {
         res.status(404).end('');
     }
