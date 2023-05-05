@@ -129,7 +129,7 @@ const handleSignup = async (req, res) => {
     const { accessToken } = req.cookies;
     const { _id } = jwt.verify(accessToken, JWT_SECRET);
 
-    const { dao_name, role } = req.body;
+    const { dao_name, role, url } = req.body;
 
     const db = getDatabase();
     db.collection(USERS_APPS_COLLECTION).updateOne(
@@ -140,6 +140,7 @@ const handleSignup = async (req, res) => {
         $set: {
           dao_name,
           role,
+          url
         },
       },
       {
