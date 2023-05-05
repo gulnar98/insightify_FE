@@ -1,6 +1,6 @@
 import VerifyPopUp from "../verifyPopUp";
 import style from "./assets/css/style.module.css";
-import succes from "./assets/images/succes.svg";
+import success from "./assets/images/success.svg";
 import succesB from "./assets/images/succesB.svg";
 import exit from "./assets/images/exit.svg";
 import exclamation from "./assets/images/exclamation.svg";
@@ -10,34 +10,60 @@ import VerifyInProgress from "../verifyInProgress";
 
 export default function Verification({
   children,
-  imgName,
-  setIsVerExit,
-  setIsVerifyInst,
-  setIsVerSucc,
+  installBoxStatus,
+  isSuccStatus,
+  setIsVerifyModal,
+  setIsVerifySucc,
+  setInstallBoxStatus,
 }) {
-  let backgroundColor = "#418EFD";
-  let color = "#418EFD";
-  let borderBottom = "2px solid #418EFD";
+  let img;
+  let message;
+  let isSuccess = true;
 
-  const img = imgName == "success" ? succes : exclamation;
-
-  const onClick = () => {
-    setIsVerExit(true);
-    setIsVerSucc(false);
+  const clickExit = () => {
+    setIsVerifyModal(false);
+    setIsVerifySucc(false);
+    setInstallBoxStatus("verifyPopup");
   };
+
+  switch (installBoxStatus) {
+    case "verifyPopup":
+      img = success;
+      message = "Your website has not reported any data in the past 24 hours.";
+      break;
+    case "verifyProgress":
+      img = exclamation;
+      message = "Your website has not reported any data in the past 24 hours.";
+      break;
+    case "verifySuccess":
+      if (isSuccStatus) {
+        img = success;
+        message =
+          "https://learning.usersnap.io reported data within the past 1h.";
+      } else {
+        isSuccess = false;
+        img = exclamation;
+        message =
+          "Your website has not reported any data in the past 24 hours.";
+      }
+      break;
+
+    default:
+      img = success;
+      message = "Your website has not reported any data in the past 24 hours.";
+      break;
+  }
 
   return (
     <>
       <div className={style.main}>
-        <header className={style.header} style={{ backgroundColor }}>
+        <header className={`${style.header} ${!isSuccess && style.headerErr}`}>
           <div>
             <img src={img.src} />
-            <p>
-              https://learning.usersnap.io reported data within the past 1h.
-            </p>
+            <h1>{message}</h1>
           </div>
           <div>
-            <button onClick={onClick} className={style.btn}>
+            <button onClick={clickExit} className={style.btn}>
               <img src={exit.src} alt="exit" />
             </button>
           </div>
@@ -45,7 +71,7 @@ export default function Verification({
 
         <div className={style.oneDiv}>
           <p>Tracking code</p>
-          <p className={style.verify} style={{ color, borderBottom }}>
+          <p className={`${style.verify} ${!isSuccess && style.verifyErr}`}>
             Verify installation
           </p>
         </div>

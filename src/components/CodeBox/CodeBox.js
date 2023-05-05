@@ -8,12 +8,10 @@ export default function CodeBox({ code }) {
   const [isCopy, setIsCopy] = useState(false);
 
   const customStyle = {
-    backgroundColor: "white",
-    padding: 15,
+    backgroundColor: "inherit",
     flex: 1,
     lineHeight: 1.5,
-    borderTopLeftRadius: 5,
-    borderBottomLeftRadius: 5,
+    marginLeft: "-32px",
   };
 
   const handleCopyCode = () => {
@@ -32,6 +30,7 @@ export default function CodeBox({ code }) {
           <SyntaxHighlighter
             language="javascript"
             customStyle={customStyle}
+            wrapLines={true}
             showLineNumbers
           >
             {code}

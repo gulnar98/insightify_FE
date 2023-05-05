@@ -7,9 +7,22 @@
   padding: 24px;
   width: 70%;
 }
-.p {
+
+.status {
+  font-size: 22px;
+  color: #64817a;
+  font-weight: 600;
+}
+
+.statusErr {
+  color: #c47070;
+}
+
+.message {
   color: #707070;
   font-weight: 500;
   margin-top: 8px;
   margin-bottom: 6px;
+  line-height: 1.3;
+  font-size: 14px;
 }

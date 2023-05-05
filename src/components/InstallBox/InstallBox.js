@@ -8,7 +8,7 @@ export default function InstallBox(props) {
       <div className={style.main}>
         <div className={style.divOne}>
           <img src={icon.src} className={style.icon} />
-          <h1 className={style.h1}>{props.title}</h1>
+          <h1 className={style.h1}>Install UserSnap</h1>
         </div>
         <div className={style.divTwo}>
           <div className={style.short}>
@@ -25,7 +25,7 @@ export default function InstallBox(props) {
             </div>
             <div className={style.rightbottom}>
               <Link href="#" className={style.link}>
-                Site ID: <strong>{props.rightBottom1}</strong>
+                Site ID: <strong>3342123</strong>
               </Link>
             </div>
           </div>

@@ -1,33 +1,21 @@
-export const leftBottom1Props = {
-  padding: "7px 15px",
-  borderRadius: "5px",
-  btncolor: "#418EFD",
-  text: "Verify installation",
-  textColor: "white",
-  border: "solid 2px #418EFD",
-};
-
-export const leftBottom2Props = {
-  padding: "4px 9px",
-  btncolor: "inherit",
-  text: "Other ways to install",
+export const inputProps = {
+  borderRadius: "12px",
+  color: "#F8F9FC",
+  text: "Next",
+  width: "100%",
   textColor: "black",
-  border: "none",
-  margin: "0px 0px 0px 40px",
+  fontSize: "1em",
+  placeholder: "e.g https://example.com",
 };
 
-export const verifyButtonProps = {
-  padding: "7px 15px",
-  borderRadius: "5px",
-  btncolor: "#418EFD",
-  text: "Verify installation",
-  textColor: "white",
-  border: "solid 2px #418EFD",
+export const buttonProps = {
+  padding: "10px 16px",
+  borderRadius: "12px",
+  color: "#C8C8C8",
+  text: "Next",
+  textColor: "#303742",
+  border: "solid 1px #C8C8C8",
+  fontSize: "24px",
 };
 
-export const verifyPopUpProps = {
-  title: "Verify your installation",
-  about:
-    "Enter the URL of the site you installed Usersnap into the field below.",
-  address: "e.g. https://wwyoursite.com or https://localhost:1905",
-};
+export const errMessage = "This field is required";

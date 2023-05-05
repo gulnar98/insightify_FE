@@ -9,6 +9,8 @@
 .h1 {
   color: #303742;
   margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .h1 {
@@ -17,6 +19,10 @@
 
 .address {
   color: #707070;
-  font-size: 0.9em;
+  font-size: 12px;
   margin-bottom: 12px;
+}
+
+.content {
+  margin-bottom: 24px;
 }

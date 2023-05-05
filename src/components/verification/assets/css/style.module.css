@@ -19,6 +19,11 @@
   align-items: center;
   gap: 10px;
 }
+
+.headerErr {
+  background: #f23e3e;
+}
+
 .btn {
   background: none;
   border: none;
@@ -35,6 +40,11 @@
   color: #418efd;
   border-bottom: #418efd 2px solid;
   padding-bottom: 10px;
+}
+
+.verifyErr {
+  color: #c47070;
+  border-bottom: #c47070 2px solid;
 }
 
 .twoDiv {
