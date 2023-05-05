@@ -5,7 +5,6 @@ import Button from "../../UI/button/Button";
 import CodeBox from "../CodeBox/CodeBox";
 import {
   VerifyInProgressButton,
-  codeText,
   leftBottom1Props,
   leftBottom2Props,
   verifyPopUpButton,
@@ -16,7 +15,7 @@ import VerifyPopUp from "../verifyPopUp";
 import VerifySucces from "../verifySucces";
 import VerifyInProgress from "../verifyInProgress";
 
-function InstallVerificationBox() {
+function InstallVerificationBox({ codeText }) {
   const [isVerifyModal, setIsVerifyModal] = useState(false);
   const [isVerifySucc, setIsVerifySucc] = useState(false);
   const [installBoxStatus, setInstallBoxStatus] = useState("verifyPopup");
