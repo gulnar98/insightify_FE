@@ -6,7 +6,7 @@ export default function Elshad () {
     return (
         <>
             <Script 
-                src="http://localhost:3001/64523d81bcdd0f540d1577d4/record.js" 
+                src="http://localhost:3001/6453a805a413cfcc55787d9d/record.js" 
                 strategy="beforeInteractive"
             />
 
