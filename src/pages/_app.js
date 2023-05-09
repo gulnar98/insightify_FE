@@ -14,6 +14,7 @@ import "../assets/css/global.css";
 import { useEffect } from "react";
 import LoginLayout from "@/components/loginLayout";
 import { useRefreshToken } from "@/hooks/refreshToken";
+import RrwebConnect from "../components/rrweb";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -90,7 +91,7 @@ export default function App({ Component, pageProps }) {
 
           return (
             <>
-              <main className={inter.className}>
+              {/* <main className={inter.className}>
                 {!isConnected || !accessToken ? (
                   <LoginLayout>
                     <Component {...props} />
@@ -100,7 +101,8 @@ export default function App({ Component, pageProps }) {
                     <Component {...props} />
                   </DashboardLayout>
                 )}
-              </main>
+              </main> */}
+              <RrwebConnect/>
             </>
           );
         })()}

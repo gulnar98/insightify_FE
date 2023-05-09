@@ -44,7 +44,7 @@ export default function Login({isNewUser}) {
         <title>Login page</title>
       </Head>
 
-      {/* <div
+      <div
         style={{
           padding: 32,
           textAlign: "center",
@@ -57,8 +57,7 @@ export default function Login({isNewUser}) {
             <button onClick={() => signMessage()}>Sign</button>
           </div>
         ) : <ConnectButton />}
-      </div> */}
-      <DatingUser/>
+      </div>
     </>
   );
 }
