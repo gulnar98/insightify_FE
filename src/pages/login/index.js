@@ -1,43 +1,24 @@
 import Head from "next/head";
 import style from "./assets/css/style.module.css";
+import { useRouter } from 'next/navigation';
 import { useAccount, useSignMessage } from "wagmi";
 import { useEffect } from "react";
 
 import LoginWallet from "../../components/LoginWallet";
 
+
+
 export default function Login() {
-  const message = process.env.NEXT_PUBLIC_WEB3_SIGN_MESSAGE;
-  const { address, isConnected } = useAccount();
-  const { data: sign, isSuccess, signMessage } = useSignMessage({ message });
 
-  useEffect(() => {
-    if (isSuccess) {
-      fetch("/api/auth", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          action: "login",
-          address,
-          sign,
-        }),
-      })
-        .then((result) => {
-          if (result.status !== 200) {
-            // error
-          } else {
-            return result.json();
-          }
-        })
-        .then((result) => {
-          window.location.reload();
-        });
+  const router = useRouter();
+
+  const onSuccess = ({isNewUser}) => {
+    if (isNewUser) {
+      router.push('/account/create');
+    } else {
+      router.push('/');
     }
-  }, [isSuccess]);
-
-  const props = { isConnected, signMessage };
+  }
 
   return (
     <>
@@ -48,7 +29,12 @@ export default function Login() {
         <title>Login page</title>
       </Head>
 
-      {!isConnected ? <LoginWallet {...props} /> : <LoginWallet {...props} />}
+      <LoginWallet
+        onSuccess={onSuccess}
+        onFailure={error => {
+          alert("Something went wrong. Try again!");
+        }}
+      />
     </>
   );
 }

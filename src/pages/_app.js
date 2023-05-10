@@ -63,6 +63,7 @@ export default function App({ Component, pageProps }) {
     callLogOut,
   } = useRefreshToken();
 
+  // jwt tokeni qoyulan muddetden bir refresh edir
   useEffect(() => {
     callRefreshToken();
 
@@ -74,6 +75,30 @@ export default function App({ Component, pageProps }) {
 
     return () => clearInterval(interval);
   });
+
+  let componentWithLayout = null;
+
+  switch (Component.name) {
+    case 'Login':
+    case 'Signup':
+    case 'CreateAccount':
+      componentWithLayout = (
+        <>
+          <LoginLayout>
+            <Component {...pageProps} />
+          </LoginLayout>
+        </>
+      );
+      break;
+    default:
+        componentWithLayout = (
+          <>
+            <DashboardLayout>
+              <Component {...pageProps} />
+            </DashboardLayout>
+          </>
+        );
+  }
 
   return (
     <WagmiConfig client={wagmiClient}>
@@ -102,24 +127,10 @@ export default function App({ Component, pageProps }) {
                 callLogOut().then(callRefreshToken);
               }
             }, [isDisconnected]);
-
-            const props = { ...pageProps, isNewUser };
             return (
               <>
                 <main className={inter.className}>
-                  {!isConnected || !accessToken ? (
-                    <LoginLayout>
-                      <Component {...props} />
-                    </LoginLayout>
-                  ) : isNewUser ? (
-                    <LoginLayout>
-                      <CreateAccountVerifyInst />
-                    </LoginLayout>
-                  ) : (
-                    <DashboardLayout>
-                      <Component {...props} />
-                    </DashboardLayout>
-                  )}
+                  {componentWithLayout}
                 </main>
               </>
             );

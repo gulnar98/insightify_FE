@@ -54,9 +54,10 @@ async function handleLogin(req, res) {
     });
   }
 
-  const user = (await db.collection(USERS_COLLECTION).findOne({ address })) || {
+  const user = await db.collection(USERS_COLLECTION).findOne({ address }) || {
     _id: null,
   };
+
   if (!user._id) {
     const result = await db.collection(USERS_COLLECTION).insertOne({
       address,
@@ -64,6 +65,9 @@ async function handleLogin(req, res) {
 
     user._id = result.insertedId;
     isNewUser = true;
+  } else {
+    const userApp = await db.collection(USERS_APPS_COLLECTION).findOne({ user_id: user._id?.toString?.() });
+    isNewUser = !userApp?.dao_name || !userApp?.role || !userApp?.url;
   }
   // const isPasswordValid = await bcrypt.compare(password, user.password);
   // if (!isPasswordValid) {
@@ -193,11 +197,9 @@ const handleRefreshToken = async (req, res) => {
 
     const db = getDatabase();
 
-    const isNewUser = (await db
-      .collection(USERS_APPS_COLLECTION)
-      .findOne({ user_id: _id }))
-      ? false
-      : true;
+    const userApp = await db.collection(USERS_APPS_COLLECTION).findOne({ user_id: _id });
+
+    const isNewUser = !userApp.dao_name || !userApp.role || !userApp.url;
 
     res.status(200).json({
       accessToken,
