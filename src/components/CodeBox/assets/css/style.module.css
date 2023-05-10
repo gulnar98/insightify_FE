@@ -1,16 +1,14 @@
 .main {
   display: flex;
   justify-content: space-between;
-  padding: 13px 0px;
 }
 
 .copy {
   display: flex;
   justify-content: center;
   background-color: rgb(255, 255, 255);
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
 }
+
 .btnCopy {
   height: 1.8em;
   background-color: white;

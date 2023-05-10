@@ -7,15 +7,13 @@ export default function Input(props) {
   let fontSize = props.fontSize;
   let width = props.width;
   let backgroundColor = props.color;
-  let placeholder = "Usersnap";
+  let placeholder = props.placeholder;
   let inpRef = props.inpRef;
 
   const onChange = (e) => {
-    if (!e.target.value) {
-      props.setIsOnchange(false);
-    } else {
-      props.setIsOnchange(true);
-    }
+    let text = e.target.value;
+    props.setOnChangeEvent(e.target.value);
+    !text ? props.setIsOnchange(false) : props.setIsOnchange(true);
   };
 
   return (
@@ -33,6 +31,7 @@ export default function Input(props) {
           width,
           backgroundColor,
           outline: "none",
+          boxSizing: "border-box",
         }}
         placeholder={placeholder}
       />

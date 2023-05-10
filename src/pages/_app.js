@@ -22,6 +22,8 @@ import "../assets/css/global.css";
 import { useEffect } from "react";
 import LoginLayout from "@/components/loginLayout";
 import { useRefreshToken } from "@/hooks/refreshToken";
+import InstallVerificationBox from "../components/installVerificationBox";
+import CreateAccountVerifyInst from "../components/createAccountVerifyInst";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -111,7 +113,7 @@ export default function App({ Component, pageProps }) {
                     </LoginLayout>
                   ) : isNewUser ? (
                     <LoginLayout>
-                      <CreateAccount />
+                      <CreateAccountVerifyInst />
                     </LoginLayout>
                   ) : (
                     <DashboardLayout>

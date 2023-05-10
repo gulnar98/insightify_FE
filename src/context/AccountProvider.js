@@ -6,6 +6,7 @@ const initialState = {
   isInstalledStep: false,
   daoName: "",
   role: "",
+  enterUrl: "",
 };
 
 const reducer = (state, action) => {
@@ -27,6 +28,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         role,
+      };
+    case "setEnterUrl":
+      var enterUrl = action.payload;
+      return {
+        ...state,
+        enterUrl,
       };
     default:
       return state;
