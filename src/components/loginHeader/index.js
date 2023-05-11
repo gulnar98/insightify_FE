@@ -3,18 +3,16 @@ import { MyContext } from "@/context/AccountProvider";
 import style from "./style.module.css";
 import logo from "@//assets/images/login/login-logo.svg";
 import Link from "next/link";
-import { useDisconnect } from "wagmi";
 
 function LoginHeader() {
   const [state, dispatch] = useContext(MyContext);
-  const { disconnect } = useDisconnect({
-    onSuccess(data) {
-      router.push("/login");
-    },
-    onError(error) {
-      console.log("Error", error);
-    },
-  });
+
+  const onClick = () => {
+    dispatch({
+      type: "setIsInstalledStep",
+    });
+  };
+
   return (
     <header className={style.header}>
       <ul
@@ -44,13 +42,11 @@ function LoginHeader() {
         <img src={logo.src} alt="logo" />
       </div>
 
-      <div>
-        <button onClick={() => disconnect()}>test logout</button>
-      </div>
-
       {state?.isInstalledStep && (
         <div className={style.doItLater}>
-          <Link href={"/login"}>Do it later</Link>
+          <Link onClick={onClick} href={"/overview"}>
+            Do it later
+          </Link>
         </div>
       )}
     </header>

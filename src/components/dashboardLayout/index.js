@@ -11,7 +11,6 @@ import DropDownProfile from "../dropDownProfile";
 
 function DashboardLayout({ children }) {
   const [isCollapseOpen, setIsCollapseOpen] = useState(true);
-
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
 
   return (
@@ -19,7 +18,10 @@ function DashboardLayout({ children }) {
       <DashboardHeader setIsOpen={setIsDropDownOpen} isOpen={isDropDownOpen} />
 
       <div className={style.dropDown}>
-        <DropDownProfile isOpen={isDropDownOpen} />
+        <DropDownProfile
+          setIsOpen={setIsDropDownOpen}
+          isOpen={isDropDownOpen}
+        />
       </div>
 
       <nav>

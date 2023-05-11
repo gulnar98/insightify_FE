@@ -5,9 +5,9 @@ import { useAccount, useSignMessage } from "wagmi";
 import { useEffect } from "react";
 
 type LoginWappetProps = {
-  onSuccess: Function,
-  onFailure: Function
-}
+  onSuccess: Function;
+  onFailure: Function;
+};
 
 export default function LoginWallet(props: LoginWappetProps): any {
   const message = process.env.NEXT_PUBLIC_WEB3_SIGN_MESSAGE;
@@ -31,7 +31,7 @@ export default function LoginWallet(props: LoginWappetProps): any {
         .then((result) => {
           if (result.status !== 200) {
             props.onFailure({
-              status: result.status
+              status: result.status,
             });
           } else {
             return result.json();
