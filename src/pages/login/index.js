@@ -1,8 +1,5 @@
 import Head from "next/head";
-import style from "./assets/css/style.module.css";
 import { useRouter } from 'next/navigation';
-import { useAccount, useSignMessage } from "wagmi";
-import { useEffect } from "react";
 
 import LoginWallet from "../../components/LoginWallet";
 

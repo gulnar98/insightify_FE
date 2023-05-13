@@ -77,6 +77,6 @@ export const config = {
   matcher: [
     "/api/record/play",
     "/api/record/heatmap",
-    "/((?!api|_next/static|_next/image|favicon.ico|record).*)"
+    "/((?!api|_next/static|_next/image|favicon.ico|record|test).*)"
   ]
 };
