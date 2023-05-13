@@ -31,9 +31,6 @@ export default function VerifySucces({ isStatus }) {
 
   const onClick = () => {
     router.push("/");
-    dispatch({
-      type: "setIsInstalledStep",
-    });
   };
 
   return (

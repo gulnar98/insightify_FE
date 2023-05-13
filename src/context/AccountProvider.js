@@ -2,22 +2,10 @@ import { createContext, useReducer } from "react";
 
 export const MyContext = createContext();
 
-const initialState = {
-  isInstalledStep: false,
-};
+const initialState = {};
 
 const reducer = (state, action) => {
-  switch (action.type) {
-    case "setIsInstalledStep":
-      var isInstalledStep = !state.isInstalledStep;
-      return {
-        ...state,
-        isInstalledStep,
-      };
-
-    default:
-      return state;
-  }
+  return state;
 };
 
 function AccountProvider({ children }) {
