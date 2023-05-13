@@ -23,7 +23,6 @@ import { useEffect } from "react";
 import LoginLayout from "@/components/loginLayout";
 import { useRefreshToken } from "@/hooks/refreshToken";
 import InstallVerificationBox from "../components/installVerificationBox";
-import CreateAccountVerifyInst from "../components/createAccountVerifyInst";
 import { useContext } from "react";
 import { MyContext } from "../context/AccountProvider";
 

@@ -15,7 +15,7 @@ import VerifyPopUp from "../verifyPopUp";
 import VerifySucces from "../verifySucces";
 import VerifyInProgress from "../verifyInProgress";
 
-function InstallVerificationBox({ codeText }) {
+function InstallVerificationBox({ codeText, overview }) {
   const [isVerifyModal, setIsVerifyModal] = useState(false);
   const [isVerifySucc, setIsVerifySucc] = useState(false);
   const [installBoxStatus, setInstallBoxStatus] = useState("verifyPopup");
@@ -74,6 +74,7 @@ function InstallVerificationBox({ codeText }) {
   return (
     <>
       <InstallBox
+        overview={overview}
         leftBottom1={<Button onClick={installBoxClick} {...leftBottom1Props} />}
         leftBottom2={<Button {...leftBottom2Props} />}
       >

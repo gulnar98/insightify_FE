@@ -120,9 +120,6 @@ function CreateAccount() {
       }
 
       if (currentStepNumber === 3) {
-        dispatch({
-          type: "setIsInstalledStep",
-        });
         fetchData();
       }
     }

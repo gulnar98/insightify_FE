@@ -3,6 +3,7 @@ import React from "react";
 import { useState } from "react";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import copy from "./assets/images/copy.svg";
+import { docco } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 
 export default function CodeBox({ code }) {
   const [isCopy, setIsCopy] = useState(false);
@@ -11,7 +12,6 @@ export default function CodeBox({ code }) {
     backgroundColor: "inherit",
     flex: 1,
     lineHeight: 1.5,
-    marginLeft: "-32px",
   };
 
   const handleCopyCode = () => {
@@ -26,12 +26,14 @@ export default function CodeBox({ code }) {
   return (
     <>
       <div className={style.main}>
-        <div className={style.code}>
+        <div className={style.codeWrapper}>
           <SyntaxHighlighter
+            style={docco}
             language="javascript"
             customStyle={customStyle}
             wrapLines={true}
             showLineNumbers
+            className={style.code}
           >
             {code}
           </SyntaxHighlighter>

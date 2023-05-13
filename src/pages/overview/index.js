@@ -1,16 +1,21 @@
 import Head from "next/head";
 import style from "./assets/css/style.module.css";
-import Button from "@/UI/button/Button";
-import InstallBox from "@/components/InstallBox/InstallBox";
-import CodeBox from "@/components/CodeBox/CodeBox";
+import InstallVerificationBox from "../../components/installVerificationBox";
+import { useState } from "react";
+import { useEffect } from "react";
 
 export default function Overview() {
-  const codeText = `(num) => num + 1
-  (num) => num + 1
-  for(let i = 0; i<5;i++) {
-      const count = 78;
-      4544555
-  }`;
+  const [codeText, setCodeText] = useState("");
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await fetch("/api/code");
+        const codeText = await response.text();
+        setCodeText(codeText);
+      } catch {}
+    })();
+  }, []);
 
   return (
     <>
@@ -22,32 +27,11 @@ export default function Overview() {
       </Head>
 
       <div className={style.container}>
-        <InstallBox
-          title="Install UserSnap"
-          leftBottom1={
-            <Button
-              padding="7px 15px"
-              borderRadius="5px"
-              color="#418EFD"
-              text="Verify installation"
-              textColor="white"
-              border="solid 2px #418EFD"
-            />
-          }
-          leftBottom2={
-            <Button
-              padding="4px 9px"
-              color="#F4F7FF"
-              text="Other ways to install"
-              textColor="black"
-              border="none"
-              margin="0px 0px 0px 40px"
-            />
-          }
-          rightBottom1={"3342123"}
-        >
-          <CodeBox code={codeText} />
-        </InstallBox>
+        <header className={style.header}>
+          <h1 className={style.title}>Overview</h1>
+          <button className={style.shareBtn}>Share</button>
+        </header>
+        <InstallVerificationBox overview={true} codeText={codeText} />
       </div>
     </>
   );

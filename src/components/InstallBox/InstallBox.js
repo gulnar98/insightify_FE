@@ -5,7 +5,14 @@ import Link from "next/link";
 export default function InstallBox(props) {
   return (
     <>
-      <div className={style.main}>
+      <div
+        className={style.main}
+        style={
+          props.overview
+            ? { margin: 0, width: "100%", backgroundColor: "#E1E1E1" }
+            : null
+        }
+      >
         <div className={style.divOne}>
           <img src={icon.src} className={style.icon} />
           <h1 className={style.h1}>Install UserSnap</h1>
@@ -17,7 +24,7 @@ export default function InstallBox(props) {
               where you want to track user behavior or collect feedback.
             </p>
           </div>
-          <div className={style.code}>{props.children}</div>
+          <div>{props.children}</div>
           <div className={style.down}>
             <div className={style.leftbtn}>
               {props.leftBottom1}
