@@ -24,6 +24,8 @@ import LoginLayout from "@/components/loginLayout";
 import { useRefreshToken } from "@/hooks/refreshToken";
 import InstallVerificationBox from "../components/installVerificationBox";
 import CreateAccountVerifyInst from "../components/createAccountVerifyInst";
+import { useContext } from "react";
+import { MyContext } from "../context/AccountProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -79,9 +81,9 @@ export default function App({ Component, pageProps }) {
   let componentWithLayout = null;
 
   switch (Component.name) {
-    case 'Login':
-    case 'Signup':
-    case 'CreateAccount':
+    case "Login":
+    case "CreateAccountPage":
+    case "CodeInstallPage":
       componentWithLayout = (
         <>
           <LoginLayout>
@@ -91,13 +93,13 @@ export default function App({ Component, pageProps }) {
       );
       break;
     default:
-        componentWithLayout = (
-          <>
-            <DashboardLayout>
-              <Component {...pageProps} />
-            </DashboardLayout>
-          </>
-        );
+      componentWithLayout = (
+        <>
+          <DashboardLayout>
+            <Component {...pageProps} />
+          </DashboardLayout>
+        </>
+      );
   }
 
   return (
@@ -114,13 +116,17 @@ export default function App({ Component, pageProps }) {
         <AccountProvider>
           {(() => {
             const { isConnected, isDisconnected } = useAccount();
-
             useEffect(() => {
-              document.body.className =
-                !isConnected || !accessToken || isNewUser
-                  ? "login"
-                  : "dashboard";
-            }, [isConnected, accessToken]);
+              switch (Component.name) {
+                case "Login":
+                case "CreateAccountPage":
+                case "CodeInstallPage":
+                  document.body.className = "login";
+                  break;
+                default:
+                  document.body.className = "dashboard";
+              }
+            }, [Component.name]);
 
             useEffect(() => {
               if (isDisconnected) {
@@ -129,9 +135,7 @@ export default function App({ Component, pageProps }) {
             }, [isDisconnected]);
             return (
               <>
-                <main className={inter.className}>
-                  {componentWithLayout}
-                </main>
+                <main className={inter.className}>{componentWithLayout}</main>
               </>
             );
           })()}

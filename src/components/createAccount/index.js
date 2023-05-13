@@ -1,5 +1,5 @@
 import style from "./assets/css/style.module.css";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import globe from "./assets/images/globe.svg";
 import Button from "../../UI/button/Button";
 import Input from "../../UI/input";
@@ -8,6 +8,7 @@ import { useRef } from "react";
 
 import { buttonProps, errMessage, inputProps } from "./constants";
 import { useAccount } from "wagmi";
+import { useRouter } from "next/router";
 
 function CreateAccount() {
   const { address } = useAccount();
@@ -39,6 +40,8 @@ function CreateAccount() {
 
   const [isOnChange, setIsOnchange] = useState(true);
   const [onChangeEvent, setOnChangeEvent] = useState("");
+  const [userInfo, setUserInfo] = useState({ dao_name: "", role: "", url: "" });
+  const router = useRouter();
 
   const checkIsOnChange = () => {
     if (onChangeEvent === "") {
@@ -49,47 +52,79 @@ function CreateAccount() {
       return onChangeEvent !== "";
     }
   };
-  const writeInputState = () => {
+
+  const fetchData = () => {
+    fetch("/api/auth", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        action: "signup",
+        dao_name: userInfo["dao_name"],
+        role: userInfo["role"],
+        url: userInfo["url"],
+      }),
+    })
+      .then((result) => {
+        if (result.status !== 200) {
+          alert("Something went wrong. Try again!");
+        } else {
+          return result.json();
+        }
+      })
+      .then((result) => {
+        router.push("/code/install");
+      });
+  };
+
+  useEffect(() => {
     switch (activeStep) {
       case "step1":
-        dispatch({
-          type: "setDaoName",
-          payload: inpRef.current.value,
+        const dao_name = onChangeEvent;
+        setUserInfo({
+          ...userInfo,
+          dao_name,
         });
         return;
       case "step2":
-        dispatch({
-          type: "setRole",
-          payload: inpRef.current.value,
+        const role = onChangeEvent;
+        setUserInfo({
+          ...userInfo,
+          role,
         });
         return;
       case "step3":
-        dispatch({
-          type: "setEnterUrl",
-          payload: inpRef.current.value,
-        });
-        dispatch({
-          type: "setIsInstalledStep",
+        const url = onChangeEvent;
+        setUserInfo({
+          ...userInfo,
+          url,
         });
         return;
-      default:
-        break;
     }
-  };
+  }, [onChangeEvent]);
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (!checkIsOnChange()) {
       return;
     }
 
     if (isOnChange) {
-      writeInputState();
+      let currentStepNumber = Number(activeStep.slice(-1));
 
-      const currentStepNumber = Number(activeStep.slice(-1));
-      setActiveStep(`step${currentStepNumber + 1}`);
+      if (currentStepNumber < 3) {
+        setActiveStep(`step${currentStepNumber + 1}`);
+        inpRef.current.value = "";
+        setOnChangeEvent("");
+      }
 
-      inpRef.current.value = "";
-      setOnChangeEvent("");
+      if (currentStepNumber === 3) {
+        dispatch({
+          type: "setIsInstalledStep",
+        });
+        fetchData();
+      }
     }
   };
 
