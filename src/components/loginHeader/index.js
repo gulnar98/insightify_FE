@@ -1,19 +1,48 @@
+import { useContext } from "react";
+import { MyContext } from "@/context/AccountProvider";
 import style from "./style.module.css";
 import logo from "@//assets/images/login/login-logo.svg";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 function LoginHeader() {
+  const [state, dispatch] = useContext(MyContext);
+  const { pathname } = useRouter();
+
   return (
     <header className={style.header}>
-      <ul className={style.stepItems}>
-        <li className={`${style.stepItem} ${style.isActive}`}>
+      <ul
+        className={style.stepItems}
+        style={pathname === "/code/install" ? { flex: 14 } : { flex: 3 }}
+      >
+        <li
+          className={`${style.stepItem} ${
+            pathname !== "/code/install" && style.isActive
+          }`}
+        >
           1.Create account
         </li>
-        <li className={`${style.stepItem}`}>2.Install Usersnap</li>
+        <li
+          className={`${style.stepItem} ${
+            pathname === "/code/install" && style.isActive
+          }`}
+        >
+          2.Install Usersnap
+        </li>
       </ul>
 
-      <div className={style.logo}>
+      <div
+        className={style.logo}
+        style={pathname === "/code/install" ? { flex: 15 } : { flex: 4 }}
+      >
         <img src={logo.src} alt="logo" />
       </div>
+
+      {pathname === "/code/install" && (
+        <div className={style.doItLater}>
+          <Link href={"/overview"}>Do it later</Link>
+        </div>
+      )}
     </header>
   );
 }

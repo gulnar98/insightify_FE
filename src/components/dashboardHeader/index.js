@@ -14,8 +14,12 @@ function DashboardHeader({ setIsOpen, isOpen }) {
         <img src={logo.src} alt="logo" />
       </Link>
 
-      <button onClick={setDropDown} className={style.profile}>
-        <img src={profile.src} alt="profile" />
+      <button
+        onClick={setDropDown}
+        className={style.profile}
+        data-login="login"
+      >
+        <img src={profile.src} alt="profile" data-login="login" />
       </button>
     </header>
   );

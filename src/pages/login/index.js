@@ -1,39 +1,21 @@
 import Head from "next/head";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { useAccount, useSignMessage } from "wagmi";
-import { useEffect } from "react";
-import DatingUser from "@/components/datingUser";
+import { useRouter } from 'next/navigation';
 
-export default function Login({isNewUser}) {
+import LoginWallet from "../../components/LoginWallet";
 
-  const message = process.env.NEXT_PUBLIC_WEB3_SIGN_MESSAGE;
-  const {address, isConnected} = useAccount();
-  const {data: sign, isSuccess, signMessage} = useSignMessage({message});
 
-  useEffect(() => {
-    if (isSuccess) {
-      fetch('/api/auth', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          action: 'login',
-          address,
-          sign
-        })
-      }).then(result => {
-        if (result.status !== 200) {
-          // error
-        } else {
-          return result.json();
-        }
-      }).then(result => {
-        window.location.reload();
-      });
+
+export default function Login() {
+
+  const router = useRouter();
+
+  const onSuccess = ({isNewUser}) => {
+    if (isNewUser) {
+      router.push('/account/create');
+    } else {
+      router.push('/');
     }
-  }, [isSuccess]);
+  }
 
   return (
     <>
@@ -44,20 +26,12 @@ export default function Login({isNewUser}) {
         <title>Login page</title>
       </Head>
 
-      <div
-        style={{
-          padding: 32,
-          textAlign: "center",
-          width: "fit-content",
+      <LoginWallet
+        onSuccess={onSuccess}
+        onFailure={error => {
+          alert("Something went wrong. Try again!");
         }}
-      >
-        <h1 style={{ marginBottom: 16 }}>Login page {isNewUser && '(Yeni istifadəçi)'}</h1>
-        {isConnected ? (
-          <div>
-            <button onClick={() => signMessage()}>Sign</button>
-          </div>
-        ) : <ConnectButton />}
-      </div>
+      />
     </>
   );
 }

@@ -1,6 +1,7 @@
+
 import React from 'react'
 
-//Bu dropdown buttondur
+// This is a dropdown button
 
 export default function Drop_down(props) {
   let color = props.color 
@@ -9,11 +10,8 @@ export default function Drop_down(props) {
   let borderRadius = props.borderRadius 
   let padding = props.padding 
   let margin = props.margin 
-  
   let value = props.value;
-  let fontFamily=props.fontFamily;
-  let fontSize=props.fontSize;
-  let fontWeight=props.fontWeight;
+ 
 
   const { name = "All pages", options = [
     { value: "page1", label: "Page 1" },
@@ -21,11 +19,13 @@ export default function Drop_down(props) {
   ] } = props;
 
   return (
-    <select name={name} style={{backgroundColor:color, borderRadius, color: textColor, border, padding, margin, value,fontFamily,fontSize,fontWeight}}>
-      <option value="">All pages</option>
+   <div style={{backgroundColor:color, borderRadius, color: textColor, border, padding, margin, value}}>
+     <select name={name} style={{ fontFamily: "Inter",fontWeight: "500",fontSize: "14px", border: "none",columnGap:'5px',textColor:"#303742",outline: "none",  paddingRight: "8px"}} >
+      <option value="">{name}</option>
       {options.map(option => (
         <option key={option.value} value={option.value}>{option.label}</option>
       ))}
     </select>
+   </div>
   )
 }

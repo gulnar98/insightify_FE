@@ -1,4 +1,6 @@
 import DashboardLayout from "@/components/dashboardLayout";
+import CreateAccount from "@/components/createAccount";
+import AccountProvider from "@/context/AccountProvider";
 import "../assets/css/reset.css";
 import { Inter } from "next/font/google";
 import "@rainbow-me/rainbowkit/styles.css";
@@ -7,14 +9,22 @@ import {
   RainbowKitProvider,
   lightTheme,
 } from "@rainbow-me/rainbowkit";
-import { configureChains, createClient, useAccount, useSignMessage, WagmiConfig } from "wagmi";
+import {
+  configureChains,
+  createClient,
+  useAccount,
+  useSignMessage,
+  WagmiConfig,
+} from "wagmi";
 import { arbitrum, goerli, mainnet, optimism, polygon } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 import "../assets/css/global.css";
 import { useEffect } from "react";
 import LoginLayout from "@/components/loginLayout";
 import { useRefreshToken } from "@/hooks/refreshToken";
-import RrwebConnect from "../components/rrweb";
+import InstallVerificationBox from "../components/installVerificationBox";
+import { useContext } from "react";
+import { MyContext } from "../context/AccountProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -51,17 +61,45 @@ export default function App({ Component, pageProps }) {
     isNewUser,
     error,
     callRefreshToken,
-    callLogOut
+    callLogOut,
   } = useRefreshToken();
 
+  // jwt tokeni qoyulan muddetden bir refresh edir
   useEffect(() => {
     callRefreshToken();
 
     clearInterval(interval);
-    interval = setInterval(callRefreshToken, parseInt(process.env.NEXT_PUBLIC_REFRESH_ACCESS_TOKEN_TIME_DELAY));
+    interval = setInterval(
+      callRefreshToken,
+      parseInt(process.env.NEXT_PUBLIC_REFRESH_ACCESS_TOKEN_TIME_DELAY)
+    );
 
     return () => clearInterval(interval);
   });
+
+  let componentWithLayout = null;
+
+  switch (Component.name) {
+    case "Login":
+    case "CreateAccountPage":
+    case "CodeInstallPage":
+      componentWithLayout = (
+        <>
+          <LoginLayout>
+            <Component {...pageProps} />
+          </LoginLayout>
+        </>
+      );
+      break;
+    default:
+      componentWithLayout = (
+        <>
+          <DashboardLayout>
+            <Component {...pageProps} />
+          </DashboardLayout>
+        </>
+      );
+  }
 
   return (
     <WagmiConfig client={wagmiClient}>
@@ -74,38 +112,33 @@ export default function App({ Component, pageProps }) {
           overlayBlur: "small",
         })}
       >
-        {(() => {
-          const { isConnected, isDisconnected } = useAccount();
+        <AccountProvider>
+          {(() => {
+            const { isConnected, isDisconnected } = useAccount();
+            useEffect(() => {
+              switch (Component.name) {
+                case "Login":
+                case "CreateAccountPage":
+                case "CodeInstallPage":
+                  document.body.className = "login";
+                  break;
+                default:
+                  document.body.className = "dashboard";
+              }
+            }, [Component.name]);
 
-          useEffect(() => {
-            document.body.className = !isConnected || !accessToken ? "login" : "dashboard";
-          }, [isConnected, accessToken]);
-
-          useEffect(() => {
-            if (isDisconnected) {
-              callLogOut().then(callRefreshToken);
-            }
-          }, [isDisconnected]);
-
-          const props = {...pageProps, isNewUser};
-
-          return (
-            <>
-              {/* <main className={inter.className}>
-                {!isConnected || !accessToken ? (
-                  <LoginLayout>
-                    <Component {...props} />
-                  </LoginLayout>
-                ) : (
-                  <DashboardLayout>
-                    <Component {...props} />
-                  </DashboardLayout>
-                )}
-              </main> */}
-              <RrwebConnect/>
-            </>
-          );
-        })()}
+            useEffect(() => {
+              if (isDisconnected) {
+                callLogOut().then(callRefreshToken);
+              }
+            }, [isDisconnected]);
+            return (
+              <>
+                <main className={inter.className}>{componentWithLayout}</main>
+              </>
+            );
+          })()}
+        </AccountProvider>
       </RainbowKitProvider>
     </WagmiConfig>
   );
