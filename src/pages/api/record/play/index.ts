@@ -8,6 +8,8 @@ export default async function handler (req, res) {
     try {
         const { accessToken } = req.cookies;
         const { _id: user_id } = jwt.verify(accessToken, JWT_SECRET);
+        const {sessid: sessionId} = req.query;
+
         const db = getDatabase();
         const user = await db.collection('users_apps').findOne({
             user_id
@@ -23,18 +25,18 @@ export default async function handler (req, res) {
             throw 'Was not found';
         }
 
-        const records = await db.collection('records').find({
-            appid
+        const {records} = await db.collection('records').findOne({
+            appid,
+            sessionId
         }, {
             limit: 1000,
             projection: {
+                records: 1,
                 _id: 0
             }
-        }).toArray();
+        })
 
-        res.json({
-            records
-        });
+        res.json(records);
     } catch (err) {
         res.status(404).end('');
     }
