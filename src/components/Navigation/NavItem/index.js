@@ -26,8 +26,10 @@ import surveysActive from "@//assets/images/nav-icons/surveys-active.svg";
 import engageActive from "@//assets/images/nav-icons/engage-active.svg";
 
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 function NavItem({ children, path, iconName, soon, isOpen }) {
+  const [isHover, setIsHover] = useState(false);
   const { pathname } = useRouter();
 
   let isActive = pathname == path ? true : false;
@@ -35,25 +37,25 @@ function NavItem({ children, path, iconName, soon, isOpen }) {
   function getIcon() {
     switch (iconName) {
       case "overview":
-        return isActive ? overviewActive : overview;
+        return isActive || isHover ? overviewActive : overview;
       case "dashboard":
-        return isActive ? dashboardActive : dashboard;
+        return isActive || isHover ? dashboardActive : dashboard;
       case "highlights":
-        return isActive ? highlightsActive : highlights;
+        return isActive || isHover ? highlightsActive : highlights;
       case "trends":
-        return isActive ? trendsActive : trends;
+        return isActive || isHover ? trendsActive : trends;
       case "funnels":
-        return isActive ? funnelsActive : funnels;
+        return isActive || isHover ? funnelsActive : funnels;
       case "recording":
-        return isActive ? recordingActive : recording;
+        return isActive || isHover ? recordingActive : recording;
       case "heatmaps":
-        return isActive ? heatmapsActive : heatmaps;
+        return isActive || isHover ? heatmapsActive : heatmaps;
       case "feedback":
-        return isActive ? feedbackActive : feedback;
+        return isActive || isHover ? feedbackActive : feedback;
       case "surveys":
-        return isActive ? surveysActive : surveys;
+        return isActive || isHover ? surveysActive : surveys;
       case "engage":
-        return isActive ? engageActive : engage;
+        return isActive || isHover ? engageActive : engage;
 
       default:
         return null;
@@ -63,7 +65,11 @@ function NavItem({ children, path, iconName, soon, isOpen }) {
   const icon = getIcon();
 
   return (
-    <li className={`${style.itemWrapper} ${isActive && style.isActive}`}>
+    <li
+      onMouseEnter={() => setIsHover(true)}
+      onMouseLeave={() => setIsHover(false)}
+      className={`${style.itemWrapper} ${isActive && style.isActive}`}
+    >
       <Link
         href={path}
         className={`${style.item} ${isActive && style.isActive}`}

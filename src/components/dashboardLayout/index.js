@@ -15,14 +15,12 @@ function DashboardLayout({ children }) {
 
   return (
     <div className={style.container}>
-      <DashboardHeader setIsOpen={setIsDropDownOpen} isOpen={isDropDownOpen} />
-
-      <div className={style.dropDown}>
+      <DashboardHeader setIsOpen={setIsDropDownOpen} isOpen={isDropDownOpen}>
         <DropDownProfile
           setIsOpen={setIsDropDownOpen}
           isOpen={isDropDownOpen}
         />
-      </div>
+      </DashboardHeader>
 
       <nav>
         <NavList direction={"vertical"} isOpen={isCollapseOpen}>
