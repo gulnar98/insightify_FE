@@ -1,33 +1,86 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getDatabase } from "@/lib/mongodb";
+import { ObjectId } from "mongodb";
+import {parseDomain, ParseResultType} from 'parse-domain';
 
 export default async function handle (req, res) {
     try {
         const userAgent = req.headers['user-agent'];
         const referer = req.headers['referer'];
-        const {
+
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        res.setHeader('Access-Control-Allow-Methods', 'POST');
+        res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+        res.setHeader('Access-Control-Max-Age', '31536000'); // 1 year
+
+        if (req.method !== 'POST') {
+            return res.json({});
+        }
+
+        let {
             e: records, 
             r: jsReferer,
             u: jsUserAgent,
             l: lang,
             w: wallets,
-            a: appid
+            a: appid,
+            s: sessionId
         } = req.body;
 
         const db = getDatabase();
-        await db.collection('records').insertOne({
-            records,
-            jsReferer,
-            jsUserAgent,
-            lang,
-            wallets,
-            appid,
-            userAgent,
-            referer
+        const {url: appURL} = await db.collection('users_apps').findOne({
+            _id: new ObjectId(appid)
+        }, {
+            projection: {
+                url: 1,
+                _id: 0
+            }
         });
+
+        try {
+        
+            const appURLParsed = parseDomain(new URL(appURL).hostname);
+            const refererURL = parseDomain(new URL(referer).hostname);
+            const jsRefererURL = parseDomain(new URL(jsReferer).hostname);
+        
+            if (![refererURL.hostname,jsRefererURL.hostname].every(val => val?.toString?.()?.toLowerCase?.() === appURLParsed.hostname?.toString?.().toLowerCase?.())) {
+                return res.json({});
+            }
+        } catch (err) {}
+
+        const result = await db.collection('records').findOne({
+            sessionId
+        }, {
+            projection: {
+                records: 1,
+                _id: 0
+            }
+        });
+
+        if (result?.records?.length) {
+            records = records.concat(result.records);
+            await db.collection('records').updateOne({
+                sessionId
+            }, {
+                $set: {
+                    records
+                }
+            });
+        } else {
+            await db.collection('records').insertOne({
+                records,
+                jsReferer,
+                jsUserAgent,
+                lang,
+                wallets,
+                appid,
+                userAgent,
+                referer,
+                sessionId
+            });
+        }
 
     } catch (err) {}
 
-    res.setHeader('Access-Control-Allow-Origin', '*');
     res.json({});
 }
