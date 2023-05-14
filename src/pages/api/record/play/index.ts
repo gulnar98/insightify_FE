@@ -25,19 +25,29 @@ export default async function handler (req, res) {
             throw 'Was not found';
         }
 
-        const {records} = await db.collection('records').findOne({
-            appid,
+        const app = await db.collection('records_sessions').findOne({
             sessionId
         }, {
-            limit: 1000,
+            projection: {
+                _id: 1
+            }
+        });
+
+        if (!app) {
+            return res.status(404).end('');
+        }
+
+        const records = await db.collection('records').find({
+            sessionId
+        }, {
             projection: {
                 records: 1,
                 _id: 0
             }
-        })
+        }).toArray();
 
-        res.json(records);
+        res.json([].concat(...records.map(({records}) => records)));
     } catch (err) {
-        res.status(404).end('');
+        res.status(404).json({});
     }
 }

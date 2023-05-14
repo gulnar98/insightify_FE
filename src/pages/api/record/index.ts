@@ -17,14 +17,16 @@ export default async function handle (req, res) {
             return res.json({});
         }
 
-        let {
+        const {
             e: records, 
             r: jsReferer,
             u: jsUserAgent,
             l: lang,
             w: wallets,
             a: appid,
-            s: sessionId
+            s: sessionId,
+            p: platform,
+            m: isMobile
         } = req.body;
 
         const db = getDatabase();
@@ -42,33 +44,29 @@ export default async function handle (req, res) {
             const appURLParsed = parseDomain(new URL(appURL).hostname);
             const refererURL = parseDomain(new URL(referer).hostname);
             const jsRefererURL = parseDomain(new URL(jsReferer).hostname);
+
+            const urlArr = [
+                refererURL.hostname,
+                jsRefererURL.hostname
+            ];
+
+            const isAllEqual = val => val?.toString?.()?.toLowerCase?.() === appURLParsed.hostname?.toString?.().toLowerCase?.();
         
-            if (![refererURL.hostname,jsRefererURL.hostname].every(val => val?.toString?.()?.toLowerCase?.() === appURLParsed.hostname?.toString?.().toLowerCase?.())) {
+            if (!urlArr.every(isAllEqual)) {
                 return res.json({});
             }
         } catch (err) {}
 
-        const result = await db.collection('records').findOne({
+        const result = await db.collection('records_sessions').findOne({
             sessionId
         }, {
             projection: {
-                records: 1,
-                _id: 0
+                _id: 1
             }
         });
 
-        if (result?.records?.length) {
-            records = records.concat(result.records);
-            await db.collection('records').updateOne({
-                sessionId
-            }, {
-                $set: {
-                    records
-                }
-            });
-        } else {
-            await db.collection('records').insertOne({
-                records,
+        if (!result) {
+            await db.collection('records_sessions').insertOne({
                 jsReferer,
                 jsUserAgent,
                 lang,
@@ -76,9 +74,17 @@ export default async function handle (req, res) {
                 appid,
                 userAgent,
                 referer,
-                sessionId
+                sessionId,
+                platform,
+                isMobile
             });
         }
+
+        await db.collection('records').insertOne({
+            sessionId,
+            records,
+            page: jsReferer
+        });
 
     } catch (err) {}
 
