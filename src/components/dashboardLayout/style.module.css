@@ -5,10 +5,3 @@
   grid-auto-flow: column;
   height: 100%;
 }
-
-.dropDown {
-  position: absolute;
-  top: 11%;
-  right: 3%;
-  background-color: #fff;
-}

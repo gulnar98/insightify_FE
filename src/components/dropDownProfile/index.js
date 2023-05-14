@@ -1,6 +1,6 @@
-import style from "./style.module.css";
-import logo from "@//assets/images/header/logo-icon.svg";
-import logout from "@//assets/images/header/logout.svg";
+import style from "./assets/css/style.module.css";
+import grayLogin from "./assets/images/gray-login.svg";
+import logout from "./assets/images/logout.svg";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useRef } from "react";
@@ -41,18 +41,21 @@ function DropDownProfile({ setIsOpen, isOpen }) {
 
   return (
     <>
-      {isOpen && (
-        <div ref={dropDownRef} className={style.dropDownProfile}>
-          <div className={style.profileInfo}>
-            <img src={logo.src} alt="logo" />
-            {address && <p>{shortAddress}</p>}
-          </div>
-          <div>
-            <img className={style.logoutImg} src={logout.src} alt="logout" />
-            <button onClick={() => disconnect()}>Logout</button>
-          </div>
+      <div
+        ref={dropDownRef}
+        className={`${style.dropDownProfile} ${isOpen && style.open}`}
+      >
+        <div className={style.profileInfo}>
+          <img className={style.grayLogin} src={grayLogin.src} alt="logo" />
+          {address ? <p>{shortAddress}</p> : <p>Disconnecting...</p>}
         </div>
-      )}
+        <div className={style.logoutWrapper}>
+          <button className={style.logoutBtn} onClick={() => disconnect()}>
+            <img className={style.logoutImg} src={logout.src} alt="logout" />
+            Logout
+          </button>
+        </div>
+      </div>
     </>
   );
 }

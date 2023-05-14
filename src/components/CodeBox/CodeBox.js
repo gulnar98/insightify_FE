@@ -3,10 +3,12 @@ import React from "react";
 import { useState } from "react";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import copy from "./assets/images/copy.svg";
+import copyHover from "./assets/images/copy-hover.svg";
 import { docco } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 
 export default function CodeBox({ code }) {
   const [isCopy, setIsCopy] = useState(false);
+  const [isHover, setIsHover] = useState(false);
 
   const customStyle = {
     backgroundColor: "inherit",
@@ -40,12 +42,22 @@ export default function CodeBox({ code }) {
         </div>
 
         <div className={style.copy}>
-          <button onClick={handleCopyCode} className={style.btnCopy}>
+          <button
+            onClick={handleCopyCode}
+            className={style.btnCopy}
+            onMouseEnter={() => setIsHover(true)}
+            onMouseLeave={() => setIsHover(false)}
+          >
             {isCopy ? (
               "Copied"
             ) : (
               <>
-                <img src={copy.src} /> Copy
+                {!isHover ? (
+                  <img src={copy.src} />
+                ) : (
+                  <img src={copyHover.src} />
+                )}{" "}
+                Copy
               </>
             )}
           </button>

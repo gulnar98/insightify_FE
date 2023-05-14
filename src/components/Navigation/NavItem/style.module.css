@@ -7,8 +7,11 @@
 
 .itemWrapper:hover {
   background-color: #f4f7ff;
-  color: #418efd;
   border-radius: 8px;
+}
+
+.itemWrapper:hover a {
+  color: #418efd;
 }
 
 .item {

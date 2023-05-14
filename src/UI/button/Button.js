@@ -1,9 +1,15 @@
+import { useState } from "react";
+
 export default function Button(props) {
+  const [isHover, setIsHover] = useState(false);
+
   const {
     btncolor,
+    btncolorHover,
     text,
     border,
     textColor,
+    textColorHover,
     borderRadius,
     padding,
     margin,
@@ -11,21 +17,32 @@ export default function Button(props) {
     onClick,
   } = props;
 
+  const handleMouseEnter = () => {
+    setIsHover(true);
+  };
+  const handleMouseLeave = () => {
+    setIsHover(false);
+  };
+
+  const buttonStyle = {
+    backgroundColor: isHover ? btncolorHover : btncolor,
+    borderRadius,
+    color: isHover ? textColorHover : textColor,
+    border,
+    padding,
+    margin,
+    fontSize,
+    cursor: "pointer",
+    fontFamily: "inherit",
+  };
+
   return (
     <>
       <button
         onClick={() => onClick()}
-        style={{
-          backgroundColor: btncolor,
-          borderRadius,
-          color: textColor,
-          border,
-          padding,
-          margin,
-          fontSize,
-          cursor: "pointer",
-          fontFamily: "inherit",
-        }}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        style={buttonStyle}
       >
         {text}
       </button>

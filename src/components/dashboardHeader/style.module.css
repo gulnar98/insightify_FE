@@ -10,7 +10,11 @@
   grid-column: 1/-1;
 }
 
-.profile {
+.profileWrapper {
+  position: relative;
+}
+
+.profileBtn {
   cursor: pointer;
   background-color: inherit;
   border: none;
