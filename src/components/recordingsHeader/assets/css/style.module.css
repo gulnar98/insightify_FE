@@ -1,0 +1,41 @@
+.container {
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+    background-color: #F4F7FF;
+    border-radius: 5px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    margin: 15px;
+}
+.children {
+    width: 2480px; 
+    margin: 0 auto;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+}
+
+.children div {
+    color: #303742;
+}
+
+ .inputClick, .walletAge,  .totalAssets, .date,.country, .landingPage, .userID, .label, .exitPage {
+    flex: 2
+}
+.sourceOfFunds {
+    flex: 3;
+}
+.topAssets {
+    flex: 3;
+}
+
+.os { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.wallet, .os, .avatar, .duration, .browser, .action, .pages{
+    flex: 1
+}
