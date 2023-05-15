@@ -1,0 +1,63 @@
+.chart_container {
+  width: 300px;
+  height: 300px;
+}
+
+.text_container{
+  display: flex;
+  width:300px ;
+  column-gap:24px ;
+  margin-top:12px ;
+  margin-left:24px ;
+  align-items: baseline;
+
+
+}
+
+.blueLabel{
+ display:flex;
+ column-gap:4px;
+ align-items: baseline;
+}
+
+.redLabel{
+  display: flex;
+  column-gap:4px;
+  align-items: baseline;
+}
+
+.blueLabel p{
+font-family:Inter ;
+font-weight:500 ;
+font-size:12px ;
+color:#333333
+}
+
+
+
+.redLabel p{
+  font-family:Inter ;
+  font-weight:500 ;
+  font-size:12px ;
+  color:#333333
+ }
+
+
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  width:20% ;
+}
+
+
+.red{
+  width: 25px;
+  height:14px ;
+}
+
+.blue{
+  width: 25px;
+  height:14px ;
+}
+
+  
