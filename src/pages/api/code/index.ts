@@ -29,6 +29,6 @@ export default async function handler(req, res) {
     res.setHeader("Content-Type", "text/plain");
     res.end(`<script \n\tdata-appid="${appId}" \n\tsrc="${CDN_URL}/${appId}/record.js">\n</script>`);
   } catch (err) {
-    res.status(404).end("");
+    res.status(404).json({});
   }
 }
