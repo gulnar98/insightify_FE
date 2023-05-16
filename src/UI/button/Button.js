@@ -15,6 +15,7 @@ export default function Button(props) {
     margin,
     fontSize,
     onClick,
+    fontWeight,
   } = props;
 
   const handleMouseEnter = () => {
