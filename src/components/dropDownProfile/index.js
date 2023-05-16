@@ -28,7 +28,6 @@ function DropDownProfile({ setIsOpen, isOpen }) {
       document.removeEventListener("click", handleClickOutside);
     };
   }, []);
-
   const handleClickOutside = (event) => {
     if (
       dropDownRef.current &&
@@ -47,7 +46,7 @@ function DropDownProfile({ setIsOpen, isOpen }) {
       >
         <div className={style.profileInfo}>
           <img className={style.grayLogin} src={grayLogin.src} alt="logo" />
-          {address ? <p>{shortAddress}</p> : <p>Disconnecting...</p>}
+          <p>{address ? shortAddress : "Disconnecting..."}</p>
         </div>
         <div className={style.logoutWrapper}>
           <button className={style.logoutBtn} onClick={() => disconnect()}>

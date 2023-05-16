@@ -5,3 +5,7 @@
   grid-auto-flow: column;
   height: 100%;
 }
+
+.childrenContainer {
+  padding: 32px 72px 32px 28px;
+}

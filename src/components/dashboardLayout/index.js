@@ -22,7 +22,7 @@ function DashboardLayout({ children }) {
         />
       </DashboardHeader>
 
-      <nav>
+      <nav className={style.navigationBar}>
         <NavList direction={"vertical"} isOpen={isCollapseOpen}>
           {navItems.map((item, index) => (
             <NavItem key={`item-${index}`} {...item} isOpen={isCollapseOpen}>
@@ -35,7 +35,7 @@ function DashboardLayout({ children }) {
         </NavList>
       </nav>
 
-      <main>{children}</main>
+      <main className={style.childrenContainer}>{children}</main>
     </div>
   );
 }

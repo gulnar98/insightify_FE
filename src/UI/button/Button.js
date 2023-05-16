@@ -32,8 +32,8 @@ export default function Button(props) {
     padding,
     margin,
     fontSize,
-    cursor: "pointer",
     fontFamily: "inherit",
+    transition: "transition: all 0.2 ease",
   };
 
   return (

@@ -1,54 +1,32 @@
-import React from 'react';
+import React from "react";
 import styles from "./asset/css/style.module.css";
 import graph from "./asset/images/graph.svg";
 import box from "./asset/images/box.svg";
 
-//Bu dasboradda olan total session, total connected wallet ve s. bildiren balaca divlerdir 
+//Bu dasboradda olan total session, total connected wallet ve s. bildiren balaca divlerdir
 
-
-export default function Metric_box(props) {
-  const count = props.count || 0;
-  const noResultsText = props.noResultsText || 'Not result found';
-  const metricBoxText = props.metricBoxText || 'Total Reviews: ';
- 
-
+export default function Metric_box({ title, count = 0 }) {
+  const noResultsText = "Not result found";
 
   return (
     <>
-      <div className={styles.wrapper}>
-        <p className={styles.title}>{metricBoxText}</p>
-        {
-          count ? (
-            <div className={styles.true_case}>
-              <p className={styles.n}>{count}</p>
-             <img  className={styles.ImageWrapper} src={graph.src} alt='graph' />
-            </div>
-
-
-          )
-
-
-            : (
-
-              <div className={styles.false_case}>
-                <img src={box.src} alt='box' />
-                <p className={styles.noResultsText}>{noResultsText}</p>
-
-              </div>
-
-
-            )
-        }
-
-      </div>
-
+      {count ? (
+        <div className={styles.wrapperWitdhInfo}>
+          <div className={styles.leftSide}>
+            <h1 className={styles.title}>{title}</h1>
+            <p className={styles.count}>{count}</p>
+          </div>
+          <img src={graph.src} alt="graph" />
+        </div>
+      ) : (
+        <div className={styles.wrapperWithNotResutl}>
+          <h1 className={styles.title}>{title}</h1>
+          <div className={styles.false_case}>
+            <img src={box.src} alt="box" />
+            <p className={styles.noResultsText}>{noResultsText}</p>
+          </div>
+        </div>
+      )}
     </>
-
-  )
+  );
 }
-
-
-
-
-
-

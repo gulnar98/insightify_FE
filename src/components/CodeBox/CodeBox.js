@@ -11,7 +11,6 @@ export default function CodeBox({ code }) {
   const [isHover, setIsHover] = useState(false);
 
   const customStyle = {
-    backgroundColor: "inherit",
     flex: 1,
     lineHeight: 1.5,
   };

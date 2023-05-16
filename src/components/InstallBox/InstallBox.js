@@ -1,14 +1,30 @@
 import icon from "./assets/images/Icon.png";
 import style from "./assets/css/style.module.css";
 import Link from "next/link";
+import {
+  useAccount,
+  useConnect,
+  useDisconnect,
+  useEnsAvatar,
+  useEnsName,
+} from "wagmi";
 
 export default function InstallBox(props) {
+  const { address, connector, isConnected } = useAccount();
+  const { data: ensAvatar } = useEnsAvatar({ address });
+  const { data: ensName } = useEnsName({ address });
+  const { connect, connectors, error, isLoading, pendingConnector } =
+    useConnect();
+  const { disconnect } = useDisconnect();
+
+  console.log(connector);
+
   return (
     <>
       <div
         className={style.main}
         style={
-          props.overview
+          props.forOverview
             ? { margin: 0, width: "100%", backgroundColor: "#E1E1E1" }
             : null
         }

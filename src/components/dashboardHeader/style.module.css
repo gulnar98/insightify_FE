@@ -13,9 +13,3 @@
 .profileWrapper {
   position: relative;
 }
-
-.profileBtn {
-  cursor: pointer;
-  background-color: inherit;
-  border: none;
-}
