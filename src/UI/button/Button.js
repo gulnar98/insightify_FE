@@ -15,6 +15,7 @@ export default function Button(props) {
     margin,
     fontSize,
     onClick,
+    fontWeight
   } = props;
 
   const handleMouseEnter = () => {
@@ -34,6 +35,7 @@ export default function Button(props) {
     fontSize,
     cursor: "pointer",
     fontFamily: "inherit",
+    fontWeight
   };
 
   return (
