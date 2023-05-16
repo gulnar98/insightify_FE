@@ -9,6 +9,7 @@ import os from './assets/images/os.png'
 import estonia from "./assets/images/estonia.png"
 import coinbase from './assets/images/coinbase.png'
 import other from './assets/images/other.png'
+import Avatar from '../avatar';
 
 export default function RecordingsInformation(
     { labelBtn, 
@@ -39,7 +40,10 @@ export default function RecordingsInformation(
                         </button>
                     </div>
                     <div className={style.avatar}>
-                        <img src={avatar.src}/>
+                        <Avatar
+                            imgProps={""}
+                            nameProps={"Ali"}
+                            surnameProps={"Sadygov"}/>
                     </div>
                     <div className={style.userID}>
                         <p className={style.nameID}>tural.eth</p>
