@@ -1,5 +1,6 @@
 import Head from "next/head";
 import style from "./assets/css/style.module.css";
+import Emptydataview from "../../components/emptydataview";
 
 export default function Recording() {
   return (
@@ -11,7 +12,10 @@ export default function Recording() {
         <title>Recordings page</title>
       </Head>
 
-      <h1>Recordings page</h1>
+      <div className={style.main}>
+        <h1 className={style.title}>Recordings</h1>
+        <Emptydataview/>
+      </div>
     </>
   );
 }

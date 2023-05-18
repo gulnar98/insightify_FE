@@ -10,6 +10,7 @@ export default function Alert(props) {
   let borderRadius = props.borderRadius;
   let padding = props.padding;
   let margin = props.margin;
+  let width = props.width
   const { text } = props;
   const displayText = text || "This is Alert";
 
@@ -26,6 +27,7 @@ export default function Alert(props) {
         justifyContent: "center",
         alignItems: "center",
         textAlign: "center",
+        width,
       }}
     >
       <img src={alert.src} alt="alert" style={{ marginRight: "4px" }} />
