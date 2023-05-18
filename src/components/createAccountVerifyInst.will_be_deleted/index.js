@@ -10,21 +10,6 @@ function CreateAccountVerifyInst() {
   const message = process.env.NEXT_PUBLIC_WEB3_SIGN_MESSAGE;
   const { address, isConnected } = useAccount();
   const { data: sign, isSuccess, signMessage } = useSignMessage({ message });
-  const [codeText, setCodeText] = useState("");
-
-  useEffect(() => {
-    (async () => {
-      if (!state.isInstalledStep) {
-        return;
-      }
-
-      try {
-        const response = await fetch("/api/code");
-        const codeText = await response.text();
-        setCodeText(codeText);
-      } catch {}
-    })();
-  }, [state.isInstalledStep]);
 
   useEffect(() => {
     if (isSuccess) {
@@ -55,11 +40,7 @@ function CreateAccountVerifyInst() {
 
   return (
     <>
-      {!state.isInstalledStep ? (
-        <CreateAccount />
-      ) : (
-        <InstallVerificationBox codeText={codeText} />
-      )}
+      {!state.isInstalledStep ? <CreateAccount /> : <InstallVerificationBox />}
     </>
   );
 }

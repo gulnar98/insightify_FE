@@ -12,6 +12,7 @@ function DropDownProfile({ setIsOpen, isOpen }) {
   const shortAddress = `${address?.slice(0, 6)}...${address?.slice(-4)}`;
   const dropDownRef = useRef(null);
   const router = useRouter();
+  const disconnectText = "Disconnecting...";
 
   const { disconnect } = useDisconnect({
     onSuccess(data) {
@@ -28,6 +29,7 @@ function DropDownProfile({ setIsOpen, isOpen }) {
       document.removeEventListener("click", handleClickOutside);
     };
   }, []);
+
   const handleClickOutside = (event) => {
     if (
       dropDownRef.current &&
@@ -46,7 +48,7 @@ function DropDownProfile({ setIsOpen, isOpen }) {
       >
         <div className={style.profileInfo}>
           <img className={style.grayLogin} src={grayLogin.src} alt="logo" />
-          <p>{address ? shortAddress : "Disconnecting..."}</p>
+          <p>{address ? shortAddress : disconnectText}</p>
         </div>
         <div className={style.logoutWrapper}>
           <button className={style.logoutBtn} onClick={() => disconnect()}>

@@ -7,18 +7,6 @@ import Button from "../../UI/button/Button";
 import { shareBtnProps } from "./constants";
 
 export default function Overview() {
-  const [codeText, setCodeText] = useState("");
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const response = await fetch("/api/code");
-        const codeText = await response.text();
-        setCodeText(codeText);
-      } catch {}
-    })();
-  }, []);
-
   return (
     <>
       <Head>
@@ -33,7 +21,7 @@ export default function Overview() {
           <h1 className={style.title}>Overview</h1>
           <Button {...shareBtnProps} />
         </header>
-        <InstallVerificationBox forOverview={true} codeText={codeText} />
+        <InstallVerificationBox forOverview={true} />
       </div>
     </>
   );

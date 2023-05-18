@@ -10,7 +10,7 @@ import TechnologyContainer from "../../components/dashboardTechnologyContainer";
 import TopCountries from "../../components/dashboardTopCountries";
 import Button from "../../UI/button/Button";
 import { metricBoxData, saveBtnProps } from "./constants";
-import LastDayAddFilter from "../../components/lastDayAddFilter";
+import LastDayAddFilter from "../../components/lastDayAddFilter/lastDayAddFilterContainer";
 import AdsDonutChart from "../../components/AdsDonutChart";
 import WalletDonutChart from "../../components/WalletDonutChart";
 
@@ -49,30 +49,31 @@ function Dashboard() {
             <Metric_box {...item} />
           ))}
         </div>
+        <main className={style.mainWrapper}>
+          <div>
+            <TopClickedBtnandLink />
+          </div>
 
-        <div>
-          <TopClickedBtnandLink />
-        </div>
+          <div>
+            <TopPages />
+          </div>
 
-        {/* <div>
-          <TopPages />
-        </div>
+          <div>
+            <TechnologyContainer />
+          </div>
 
-        <div>
-          <TechnologyContainer />
-        </div>
+          <div>
+            <TopCountries />
+          </div>
 
-        <div>
-          <TopCountries />
-        </div>
+          <div>
+            <AdsDonutChart />
+          </div>
 
-        <div>
-          <AdsDonutChart />
-        </div>
-
-        <div>
-          <WalletDonutChart />
-        </div> */}
+          <div>
+            <WalletDonutChart />
+          </div>
+        </main>
       </div>
     </>
   );

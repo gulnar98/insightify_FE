@@ -14,7 +14,9 @@ function DashboardLayout({ children }) {
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
 
   return (
-    <div className={style.container}>
+    <div
+      className={`${style.container} ${isCollapseOpen && style.isCollapseOpen}`}
+    >
       <DashboardHeader setIsOpen={setIsDropDownOpen} isOpen={isDropDownOpen}>
         <DropDownProfile
           setIsOpen={setIsDropDownOpen}

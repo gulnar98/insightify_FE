@@ -23,6 +23,7 @@ export const chartDropdownItems = [
   {
     icon: line.src,
     text: "Line",
+    isSelected: false,
   },
   {
     icon: pie.src,

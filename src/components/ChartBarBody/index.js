@@ -1,4 +1,4 @@
-import React from "react";
+import style from "./asset/css/style.module.css";
 
 // Bu ise top clicked button ve top pages  technology ve top countries olan sehifelerin body hissesi ucundur
 
@@ -23,7 +23,7 @@ const ChartBarBody = ({
 }) => {
   return (
     <>
-      <div className="row" style={row}>
+      <div className={style.row} style={row}>
         <div className="first-column" style={firstColumn}>
           <div className="first-row" style={firstRow}>
             {iconSrc && (

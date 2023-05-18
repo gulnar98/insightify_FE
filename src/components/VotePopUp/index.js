@@ -34,7 +34,6 @@ function VotePopUp() {
             padding="10px 100px"
             border="none"
             borderRadius="4px"
-            fontFamily="Inter"
             fontSize="12px"
           />
         </div>

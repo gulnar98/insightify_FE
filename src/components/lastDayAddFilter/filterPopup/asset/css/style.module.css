@@ -9,14 +9,12 @@
   border-radius: 6px;
   box-shadow: 0px 0px 4px 0px #00000026;
   min-width: 600px;
-  opacity: 0;
-  transition: all 0.1s ease;
-  z-index: -1;
+  display: none;
 }
 
 .isOpen {
-  opacity: 1;
-  z-index: 99;
+  display: block;
+  z-index: 9999;
 }
 
 .title {
@@ -53,6 +51,7 @@
   display: flex;
   align-items: center;
   column-gap: 6px;
+  margin-bottom: 22px;
 }
 
 .imgIcon {

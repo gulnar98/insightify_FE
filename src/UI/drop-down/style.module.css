@@ -1,8 +1,25 @@
 .container {
-  opacity: 0;
-  transition: all 0.1s ease;
+  position: absolute;
+  overflow: hidden;
 }
 
-.isOpen {
-  opacity: 1;
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 16px;
+}
+
+.isActiveBtn {
+  background-color: #f4f7ff;
+}
+
+.button:hover {
+  background-color: #f4f7ff;
+}
+
+.button p {
+  margin-right: auto;
 }

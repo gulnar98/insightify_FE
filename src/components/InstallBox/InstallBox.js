@@ -1,23 +1,21 @@
 import icon from "./assets/images/Icon.png";
 import style from "./assets/css/style.module.css";
 import Link from "next/link";
-import {
-  useAccount,
-  useConnect,
-  useDisconnect,
-  useEnsAvatar,
-  useEnsName,
-} from "wagmi";
+import { useEffect, useState } from "react";
 
 export default function InstallBox(props) {
-  const { address, connector, isConnected } = useAccount();
-  const { data: ensAvatar } = useEnsAvatar({ address });
-  const { data: ensName } = useEnsName({ address });
-  const { connect, connectors, error, isLoading, pendingConnector } =
-    useConnect();
-  const { disconnect } = useDisconnect();
+  const [appId, setAppId] = useState("");
 
-  console.log(connector);
+  useEffect(() => {
+    (async () => {
+      try {
+        const data = await fetch("/api/code");
+        const jsonData = JSON.parse(await data.text());
+        const appId = jsonData.appId;
+        setAppId(appId);
+      } catch {}
+    })();
+  }, []);
 
   return (
     <>
@@ -25,7 +23,7 @@ export default function InstallBox(props) {
         className={style.main}
         style={
           props.forOverview
-            ? { margin: 0, width: "100%", backgroundColor: "#E1E1E1" }
+            ? { margin: 0, width: "100%", backgroundColor: "#F4F7FF" }
             : null
         }
       >
@@ -47,9 +45,9 @@ export default function InstallBox(props) {
               {props.leftBottom2}
             </div>
             <div className={style.rightbottom}>
-              <Link href="#" className={style.link}>
-                Site ID: <strong>3342123</strong>
-              </Link>
+              <p className={style.link}>
+                App ID: <strong>{appId}</strong>
+              </p>
             </div>
           </div>
         </div>
