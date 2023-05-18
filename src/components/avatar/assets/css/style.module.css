@@ -1,0 +1,15 @@
+.avatarImg {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+.avatarNS {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #D6D6D6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+}

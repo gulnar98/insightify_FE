@@ -1,0 +1,38 @@
+.container {
+    display: flex;
+    width: 408px;
+    align-items: center;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    padding: 17px 10px;
+}
+
+.text {
+    flex: 8;
+    font-weight: 600;
+    padding-left: 35px;
+    font-size: 1.1em;
+}
+.btn {
+    flex: 3;
+    padding-right: 10px;
+}
+.btn button {
+    font-weight: 600;
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #9A3530;
+    background-color: white;
+    border: solid 1px #9A3530;
+    border-radius: 6px;
+    padding: 7px 13px;
+    cursor: pointer;
+}
+.exit {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}

@@ -31,7 +31,8 @@ export default async function handle (req, res) {
 
         const db = getDatabase();
         const {url: appURL} = await db.collection('users_apps').findOne({
-            _id: new ObjectId(appid)
+            _id: new ObjectId(appid),
+            verified: true
         }, {
             projection: {
                 url: 1,
@@ -55,7 +56,9 @@ export default async function handle (req, res) {
             if (!urlArr.every(isAllEqual)) {
                 return res.json({});
             }
-        } catch (err) {}
+        } catch (err) {
+            return res.json({});
+        }
 
         const result = await db.collection('records_sessions').findOne({
             sessionId
