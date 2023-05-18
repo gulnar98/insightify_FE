@@ -1,11 +1,11 @@
 .container {
     font-weight: 600;
-    margin: 0;
-    padding: 0;
+    width: 2480px;
     background-color: #F4F7FF;
     border-radius: 5px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     margin: 15px;
+    box-sizing: border-box;
 }
 .children {
     width: 2480px; 
@@ -14,7 +14,7 @@
     display: flex;
     align-items: center;
     gap: 20px;
-
+    box-sizing: border-box;
 }
 
 .children div {
@@ -24,10 +24,7 @@
  .inputClick, .walletAge,  .totalAssets, .date,.country, .landingPage, .userID, .label, .exitPage {
     flex: 2
 }
-.sourceOfFunds {
-    flex: 3;
-}
-.topAssets {
+.topAssets, .sourceOfFunds{
     flex: 3;
 }
 

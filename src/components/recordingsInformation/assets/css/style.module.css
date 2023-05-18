@@ -1,18 +1,19 @@
 .container {
     font-weight: 600;
-    margin: 0;
-    padding: 0;
+    width: 2480px;
     background-color: white;
     border-radius: 5px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     margin: 15px;
+    box-sizing: border-box;
 }
 .children {
     width: 2480px; 
     margin: 0 auto;
-    padding: 25px;
+    padding: 15px;
     display: flex;
     gap: 20px;
+    box-sizing: border-box;
 }
 .children div {
     display: flex;

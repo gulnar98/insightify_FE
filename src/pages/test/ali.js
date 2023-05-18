@@ -2,6 +2,7 @@ import Button from "../../UI/button/Button";
 import ListViewDelete from "../../components/list-view-delete";
 import RecordingsHeader from "../../components/recordingsHeader";
 import RecordingsInformation from "../../components/recordingsInformation";
+import style from './style.module.css'
 
 
 export default function Ali() {
@@ -55,24 +56,43 @@ export default function Ali() {
   
     return (
       <>
-        {/* <RecordingsHeader />
-        <RecordingsInformation  
-            labelBtn={<Button {...buttonProps} />} 
-            topAssetsMirror={<Button {...btnMirrorProps}/>}
-            topAssetsEns={ <Button {...btnEnsProps}/>}
-            topAssetsApe={ <Button {...btnApeProps}/>}
-            // walletImage={}
-            walletAge={'300 days'}
-            totalAssets={"19.6 ETH"}
-            dateProps={"15 Mar, 19:06"}
-            countryProps={"Estonia"}
-            actionProps={"27"}
-            pagesProps={"2"}
-            durationProps={"0:49"}
-            landingPage={"/home"}
-            exitPage={"/wallet-connect"}
-            /> */}
-            <ListViewDelete/>
+        <div className={style.container}>
+          <div className={style.scrollableContent}>
+            <RecordingsHeader />
+            <RecordingsInformation  
+                labelBtn={<Button {...buttonProps} />} 
+                topAssetsMirror={<Button {...btnMirrorProps}/>}
+                topAssetsEns={ <Button {...btnEnsProps}/>}
+                topAssetsApe={ <Button {...btnApeProps}/>}
+                // walletImage={}
+                walletAge={'300 days'}
+                totalAssets={"19.6 ETH"}
+                dateProps={"15 Mar, 19:06"}
+                countryProps={"Estonia"}
+                actionProps={"27"}
+                pagesProps={"2"}
+                durationProps={"0:49"}
+                landingPage={"/home"}
+                exitPage={"/wallet-connect"}
+                />
+              <RecordingsInformation  
+              labelBtn={<Button {...buttonProps} />} 
+              topAssetsMirror={<Button {...btnMirrorProps}/>}
+              topAssetsEns={ <Button {...btnEnsProps}/>}
+              topAssetsApe={ <Button {...btnApeProps}/>}
+              // walletImage={}
+              walletAge={'300 days'}
+              totalAssets={"19.6 ETH"}
+              dateProps={"15 Mar, 19:06"}
+              countryProps={"Estonia"}
+              actionProps={"27"}
+              pagesProps={"2"}
+              durationProps={"0:49"}
+              landingPage={"/home"}
+              exitPage={"/wallet-connect"}
+              />
+          </div>
+        </div>
       </>
     );
   }
