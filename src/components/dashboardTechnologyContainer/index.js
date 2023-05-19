@@ -132,9 +132,7 @@ function TechnologyContainer() {
       chartComponent = <h1>Line chart is temporarily unavailable.</h1>;
       break;
     case "Pie":
-      chartComponent = (
-        <DonutChartBody data={[20, 10]} showPercentage={false} />
-      );
+      chartComponent = <DonutChartBody data={[20, 10]} showPercentage={true} />;
       break;
     default:
       chartComponent = (

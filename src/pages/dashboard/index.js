@@ -36,7 +36,7 @@ function Dashboard() {
             <button className={style.addTrendBtn}>
               <img src={plusIcon.src} alt="" /> Add new trend
             </button>
-            <Button {...saveBtnProps} />
+            <Button onClick={() => onClick()} {...saveBtnProps} />
           </div>
         </header>
 
@@ -49,6 +49,7 @@ function Dashboard() {
             <Metric_box {...item} />
           ))}
         </div>
+
         <main className={style.mainWrapper}>
           <div>
             <TopClickedBtnandLink />

@@ -40,7 +40,7 @@ export default function Button(props) {
   return (
     <>
       <button
-        onClick={() => onClick()}
+        onClick={onClick ? () => onClick : null}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         style={buttonStyle}

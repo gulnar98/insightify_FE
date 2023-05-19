@@ -11,7 +11,7 @@ function LastDaySelect({ lastDate, children, isOpen, setIsOpen }) {
     <div className={style.container}>
       <button
         onClick={lastDayClick}
-        className={style.lastDayWrapper}
+        className={style.lastDayBtn}
         data-dataname="lastDayDropDown"
       >
         <img
