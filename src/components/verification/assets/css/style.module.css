@@ -24,11 +24,6 @@
   background: #f23e3e;
 }
 
-.btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-}
 .oneDiv {
   border-bottom: solid #d6d6d6 1px;
   font-weight: 600;

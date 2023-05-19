@@ -1,31 +1,104 @@
+import { useState } from "react";
+import style from "./style.module.css";
+import { useEffect } from "react";
+import { useRef } from "react";
 
-import React from 'react'
+function DropDown(props) {
+  const dropDownRef = useRef(null);
 
-// This is a dropdown button
+  const {
+    items,
+    isOpen,
+    setIsOpen,
+    lastDate,
+    setLastDate,
+    chartType,
+    setChartType,
+    hashType,
+    setHashType,
+    pagesType,
+    setPagesType,
+    data,
+    width,
+    top,
+    right,
+    selectedIconSrc,
+    backgroundColor,
+    boxShadow,
+    borderRadius,
+  } = props;
 
-export default function Drop_down(props) {
-  let color = props.color 
-  let border = props.border 
-  let textColor = props.textColor 
-  let borderRadius = props.borderRadius 
-  let padding = props.padding 
-  let margin = props.margin 
-  let value = props.value;
- 
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
-  const { name = "All pages", options = [
-    { value: "page1", label: "Page 1" },
-    { value: "page2", label: "Page 2" }
-  ] } = props;
+  const handleClickOutside = (event) => {
+    if (
+      dropDownRef.current &&
+      !dropDownRef.current.contains(event.target) &&
+      event.target.dataset.dataname !== data
+    ) {
+      setIsOpen(false);
+    }
+  };
+
+  const onClick = (item) => {
+    if (item === "Bar" || item === "Line" || item === "Pie") {
+      setChartType(item);
+    } else if (item === "Numbers" || item === "Percents") {
+      setHashType(item);
+    } else if (
+      item === "All pages" ||
+      item === "Landing pages" ||
+      item === "Exit pages"
+    ) {
+      setPagesType(item);
+    } else {
+      setLastDate(item);
+    }
+
+    setIsOpen(false);
+  };
+
+  const containerStyles = {
+    width,
+    boxShadow,
+    borderRadius,
+    backgroundColor,
+    top,
+    right,
+    display: isOpen ? "block" : "none",
+  };
 
   return (
-   <div style={{backgroundColor:color, borderRadius, color: textColor, border, padding, margin, value}}>
-     <select name={name} style={{ fontFamily: "Inter",fontWeight: "500",fontSize: "14px", border: "none",columnGap:'5px',textColor:"#303742",outline: "none",  paddingRight: "8px"}} >
-      <option value="">{name}</option>
-      {options.map(option => (
-        <option key={option.value} value={option.value}>{option.label}</option>
+    <div ref={dropDownRef} className={style.container} style={containerStyles}>
+      {items.map((item, index) => (
+        <button
+          onClick={() => onClick(item.text)}
+          className={`${style.button} ${
+            (item.text === chartType ||
+              item.text === hashType ||
+              item.text === pagesType ||
+              item.text === lastDate) &&
+            style.isActiveBtn
+          }`}
+          key={`${item}-${index}`}
+        >
+          {item.icon && <img src={item.icon} alt={item.text} />}
+          <p>{item.text}</p>
+          {(item.text === chartType ||
+            item.text === hashType ||
+            item.text === pagesType ||
+            item.text === lastDate) && (
+            <img src={selectedIconSrc} alt="selected-icon" />
+          )}
+        </button>
       ))}
-    </select>
-   </div>
-  )
+    </div>
+  );
 }
+
+export default DropDown;

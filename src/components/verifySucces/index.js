@@ -7,7 +7,11 @@ import { useRouter } from "next/router";
 import { useContext } from "react";
 import { MyContext } from "../../context/AccountProvider";
 
-export default function VerifySucces({ isStatus }) {
+export default function VerifySucces({
+  isStatus,
+  setIsVerifyModal,
+  setInstallBoxStatus,
+}) {
   let img;
   let status;
   let message;
@@ -30,7 +34,12 @@ export default function VerifySucces({ isStatus }) {
   }
 
   const onClick = () => {
-    router.push("/");
+    if (isStatus) {
+      router.push("/");
+    } else {
+      setIsVerifyModal(false);
+      setInstallBoxStatus("verifyPopup");
+    }
   };
 
   return (

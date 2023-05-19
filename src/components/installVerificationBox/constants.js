@@ -27,15 +27,6 @@ export const verifyPopUpProps = {
   address: "e.g. https://wwyoursite.com or https://localhost:1905",
 };
 
-export const codeText = `
-(num) => num + 1
-(num) => num + 1
-for(let i = 0; i < 5; i++) {
-    const count = 78;
-    4544555
-}
-`;
-
 export const verifyPopUpButton = {
   padding: "7px 15px",
   borderRadius: "5px",
@@ -52,7 +43,7 @@ export const VerifyInProgressButton = {
   borderRadius: "5px",
   btncolor: "#418EFD",
   btncolorHover: "#fff",
-  text: "Try again",
+
   textColor: "white",
   textColorHover: "#418EFD",
   border: "solid 2px #418EFD",

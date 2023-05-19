@@ -26,8 +26,14 @@ export default async function handler(req, res) {
       throw "Was not found";
     }
 
+    const resData = {
+      appId,
+      codeText: `<script \n\tdata-appid="${appId}" \n\tsrc="${CDN_URL}/${appId}/record.js">\n</script>`,
+    };
+    const jsonData = JSON.stringify(resData);
+
     res.setHeader("Content-Type", "text/plain");
-    res.end(`<script \n\tdata-appid="${appId}" \n\tsrc="${CDN_URL}/${appId}/record.js">\n</script>`);
+    res.end(jsonData);
   } catch (err) {
     res.status(404).json({});
   }

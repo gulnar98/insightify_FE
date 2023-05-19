@@ -14,7 +14,9 @@ function DashboardLayout({ children }) {
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
 
   return (
-    <div className={style.container}>
+    <div
+      className={`${style.container} ${isCollapseOpen && style.isCollapseOpen}`}
+    >
       <DashboardHeader setIsOpen={setIsDropDownOpen} isOpen={isDropDownOpen}>
         <DropDownProfile
           setIsOpen={setIsDropDownOpen}
@@ -22,7 +24,7 @@ function DashboardLayout({ children }) {
         />
       </DashboardHeader>
 
-      <nav>
+      <nav className={style.navigationBar}>
         <NavList direction={"vertical"} isOpen={isCollapseOpen}>
           {navItems.map((item, index) => (
             <NavItem key={`item-${index}`} {...item} isOpen={isCollapseOpen}>
@@ -35,7 +37,7 @@ function DashboardLayout({ children }) {
         </NavList>
       </nav>
 
-      <main>{children}</main>
+      <main className={style.childrenContainer}>{children}</main>
     </div>
   );
 }
