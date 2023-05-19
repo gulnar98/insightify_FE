@@ -20,7 +20,7 @@ export default function CodeBox({ codeText }) {
   };
 
   const handleCopyCode = () => {
-    navigator.clipboard.writeText(code);
+    navigator.clipboard.writeText(codeText);
     setIsCopy(true);
 
     setTimeout(() => {

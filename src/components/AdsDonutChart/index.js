@@ -22,7 +22,7 @@ function AdsDonutChart() {
           />
         </div>
         <div className={styles.body}>
-          <DonutChartBody data={[20, 10]} showPercentage={false} />
+          <DonutChartBody data={[20, 10]} showPercentage={true} />
         </div>
       </div>
     </>

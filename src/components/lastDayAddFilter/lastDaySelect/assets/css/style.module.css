@@ -2,7 +2,7 @@
   position: relative;
 }
 
-.lastDayWrapper {
+.lastDayBtn {
   display: flex;
   align-items: center;
   padding: 8px 30px 8px 12px;
@@ -11,12 +11,12 @@
   width: fit-content;
 }
 
-.lastDayWrapper img:first-child {
+.lastDayBtn img:first-child {
   margin-right: 8px;
   margin-bottom: 2px;
 }
 
-.lastDayWrapper h2 {
+.lastDayBtn h2 {
   margin-right: 16px;
   color: #303742;
   font-size: 14px;
