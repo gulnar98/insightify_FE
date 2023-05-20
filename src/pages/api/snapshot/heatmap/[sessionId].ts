@@ -35,7 +35,10 @@ export default async function handle (req, res) {
 
 
         const records = await db.collection('records').find({
-            "records.data.type": 2,
+            "records.data.type": {
+                $in: [1,2]
+            },
+            "records.type": 3,
             sessionId,
             page: location
         }, {
@@ -50,7 +53,7 @@ export default async function handle (req, res) {
         
         for(let record of records) {
             recordsResponse.push(
-                ...record.records
+                ...record?.records
                     .filter(record => record?.data?.type == 2)
                     .map(record => ({
                         x: record?.data?.x,
