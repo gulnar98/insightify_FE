@@ -19,7 +19,7 @@ export default function Input(props) {
   return (
     <>
       <input
-        onChange={onChange}
+        onChange={props.setOnChangeEvent ? onChange : null}
         ref={inpRef}
         style={{
           borderRadius,

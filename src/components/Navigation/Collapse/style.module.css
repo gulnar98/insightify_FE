@@ -2,13 +2,9 @@
   padding: 12px;
   margin-top: 28px;
   color: #303742;
-  font-family: inherit;
   font-size: 16px;
   font-weight: 600;
   text-align: start;
-  background: transparent;
-  border: none;
-  cursor: pointer;
 }
 
 .collapseBtn img {

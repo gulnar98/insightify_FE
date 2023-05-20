@@ -1,99 +1,71 @@
-.container{
-   
-    width:25% ;
-    height:25%;
-    border-radius:6px ;
-    box-shadow: 0px 0px 4px 0px #00000026;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color:#ffff ;
-    position: relative;
-
+.container {
+  width: 25%;
+  height: 25%;
+  border-radius: 6px;
+  box-shadow: 0px 0px 4px 0px #00000026;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffff;
+  position: relative;
 }
 
-
-.imgContainer img{
-     width:150px ;
-    }
-
-.imgContainer{
-    width:40% ;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom:12px ;
-    margin-top:12px ;
-    /* border: solid 2px purple; */
-    padding:5%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.imgContainer img {
+  width: 150px;
 }
 
-
-.title{
-    font-family: Inter;
-    font-weight: 700;
-    font-size: 12px;
-    color: #BA4C55;
-    /* border: solid 2px red; */
-    text-align: center;
-    word-spacing: 1px;
-
-    
-
+.imgContainer {
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 12px;
+  margin-top: 12px;
+  padding: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.textContainer{
-    /* border:solid 2px black; */
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-
-
+.title {
+  font-weight: 700;
+  font-size: 12px;
+  color: #ba4c55;
+  text-align: center;
+  word-spacing: 1px;
 }
 
-.text{
-    font-family: Inter;
-    font-size: 10px;
-    font-weight:600 ;
-    text-align: center;
-    color:#707070;
-    word-spacing: 2px;
-    width:90% ;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top:12px ;
-    margin-bottom:12px ;
-    line-height:1.2 ;
+.textContainer {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-
-.btn{
-   
-    padding:12px ;
-    
+.text {
+  font-size: 10px;
+  font-weight: 600;
+  text-align: center;
+  color: #707070;
+  word-spacing: 2px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  line-height: 1.2;
 }
 
-
-.Xicon{
-    width: 16px;
-    height:16px ;
-   
+.btn {
+  padding: 12px;
 }
 
-.closeBtn{
-   
-    position: absolute;
-    top:10px;
-    right:5px;
-
-
+.Xicon {
+  width: 16px;
+  height: 16px;
 }
 
-
-
-
-
-
+.closeBtn {
+  position: absolute;
+  top: 10px;
+  right: 5px;
+}

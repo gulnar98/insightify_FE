@@ -6,18 +6,21 @@ import copy from "./assets/images/copy.svg";
 import copyHover from "./assets/images/copy-hover.svg";
 import { docco } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 
-export default function CodeBox({ code }) {
+export default function CodeBox({ codeText }) {
   const [isCopy, setIsCopy] = useState(false);
   const [isHover, setIsHover] = useState(false);
 
   const customStyle = {
-    backgroundColor: "inherit",
     flex: 1,
     lineHeight: 1.5,
+    background: "#eee",
+    borderRadius: 6,
+    padding: 12,
+    paddingRight: 18,
   };
 
   const handleCopyCode = () => {
-    navigator.clipboard.writeText(code);
+    navigator.clipboard.writeText(codeText);
     setIsCopy(true);
 
     setTimeout(() => {
@@ -37,7 +40,7 @@ export default function CodeBox({ code }) {
             showLineNumbers
             className={style.code}
           >
-            {code}
+            {codeText}
           </SyntaxHighlighter>
         </div>
 

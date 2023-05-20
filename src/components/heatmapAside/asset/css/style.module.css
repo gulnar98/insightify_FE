@@ -1,100 +1,67 @@
-.container{
-    background-color:#fff ;
-    width:20% ;
-    padding:16px 10px;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0px 0px 4px 0px #00000026;
-   
-
-
-
+.container {
+  background-color: #fff;
+  width: 20%;
+  padding: 16px 10px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 0px 4px 0px #00000026;
 }
 
-
-
-
-.inputContainer{
-    border-radius: 6px;
-    padding: 8px;
-    border: solid 1px #d6d6d6;
-    align-items: baseline;
-    display:flex;
-    column-gap:2px ;
-    align-items: baseline;
+.inputContainer {
+  border-radius: 6px;
+  padding: 8px;
+  border: solid 1px #d6d6d6;
+  align-items: baseline;
+  display: flex;
+  column-gap: 2px;
+  align-items: baseline;
 }
 
-
-.imgIcon{
-    width:20px;
-    height:20px;
+.imgIcon {
+  width: 20px;
+  height: 20px;
 }
 
-
-.btnContainer{
-   display: flex;
-   margin-bottom:20px ;
-  
+.btnContainer {
+  display: flex;
+  margin-bottom: 20px;
 }
 
-.btnText{
-    font-family: Inter;
-    font-weight:600 ;
-    font-size:15px ;
-    color:#1F75CC;
-    margin-top:3px ;
-
-
+.btnText {
+  font-weight: 600;
+  font-size: 15px;
+  color: #1f75cc;
+  margin-top: 3px;
 }
 
-
-.btnIcon{
-    width: 18px;
-    height:18px ;
+.btnIcon {
+  width: 18px;
+  height: 18px;
 }
 
-
-.head{
+.head {
   display: grid;
-  row-gap:20px ;
-  border-bottom:solid 1px #D6D6D6 ;
+  row-gap: 20px;
+  border-bottom: solid 1px #d6d6d6;
 }
 
-
-
-.body{
-    margin-top:24px;
-    display: flex;
-    flex-direction: column;
-    row-gap:28px ;
-    padding:0 8px ;
+.body {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 28px;
+  padding: 0 8px;
 }
 
-.text{
-    text-decoration: none;
-    font-family: Inter;
-    color:#303742;
-    background-color: transparent;
-    display: inline-block;
-    padding: 12px;
-    
-  
-    
+.text {
+  text-decoration: none;
+  color: #303742;
+  background-color: transparent;
+  display: inline-block;
+  padding: 12px;
 }
 
-
-
- .text:hover{
-    background-color: #f4f7ff;
-    border-radius: 6px;
-   
+.text:hover {
+  background-color: #f4f7ff;
+  border-radius: 6px;
 }
-
-
-
-  
-
-
-
-
- 

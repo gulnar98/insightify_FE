@@ -13,11 +13,13 @@ export const navItems = [
     label: "Highlights",
     iconName: "highlights",
     path: "/highlights",
+    soon: true,
   },
   {
     label: "Trends",
     iconName: "trends",
     path: "/trends",
+    soon: true,
   },
   {
     label: "Funnels",
@@ -34,17 +36,18 @@ export const navItems = [
     label: "Heatmaps",
     iconName: "heatmaps",
     path: "/heatmaps",
-    soon: true,
   },
   {
     label: "Feedback",
     iconName: "feedback",
     path: "/feedback",
+    soon: true,
   },
   {
     label: "Surveys",
     iconName: "surveys",
     path: "/surveys",
+    soon: true,
   },
   {
     label: "Engage",

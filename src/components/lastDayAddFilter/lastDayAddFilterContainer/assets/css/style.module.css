@@ -1,0 +1,31 @@
+.lastDayWrapper {
+  display: flex;
+  align-items: center;
+  padding: 8px 30px 8px 12px;
+  width: fit-content;
+  cursor: pointer;
+  background-color: #f4f7ff;
+  border-radius: 6px;
+}
+
+.lastDayWrapper img:first-child {
+  margin-right: 8px;
+  margin-bottom: 2px;
+}
+
+.lastDayWrapper h2 {
+  margin-right: 16px;
+  color: #303742;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.addFilterBtn {
+  background-color: #1f75cc;
+  color: #fff;
+  padding: 6px 24px 6px 14px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

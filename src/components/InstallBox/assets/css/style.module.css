@@ -55,15 +55,11 @@
   border-radius: 5px;
   color: white;
   padding: 7px 15px;
-  cursor: pointer;
 }
 
 .other {
-  background: none;
-  border: none;
   padding: 4px 9px;
   margin-left: 40px;
-  cursor: pointer;
 }
 
 .rightbottom {

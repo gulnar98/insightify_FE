@@ -1,5 +1,6 @@
 .header {
-  padding: 20px 29px;
+  padding: 0 29px;
+  height: 62px;
 
   display: flex;
   align-items: center;
@@ -8,14 +9,15 @@
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
 
   grid-column: 1/-1;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  z-index: 99;
 }
 
 .profileWrapper {
   position: relative;
-}
-
-.profileBtn {
-  cursor: pointer;
-  background-color: inherit;
-  border: none;
 }

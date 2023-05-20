@@ -1,21 +1,18 @@
 import Head from "next/head";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 
 import LoginWallet from "../../components/LoginWallet";
 
-
-
 export default function Login() {
-
   const router = useRouter();
 
-  const onSuccess = ({isNewUser}) => {
+  const onSuccess = ({ isNewUser }) => {
     if (isNewUser) {
-      router.push('/account/create');
+      router.push("/account/create");
     } else {
-      router.push('/');
+      router.push("/");
     }
-  }
+  };
 
   return (
     <>
@@ -28,7 +25,7 @@ export default function Login() {
 
       <LoginWallet
         onSuccess={onSuccess}
-        onFailure={error => {
+        onFailure={(error) => {
           alert("Something went wrong. Try again!");
         }}
       />
