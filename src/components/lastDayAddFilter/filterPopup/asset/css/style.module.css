@@ -21,10 +21,12 @@
   font-size: 16px;
   font-weight: 600;
   color: #707070;
+  margin-bottom: 10px;
 }
 
 .box {
   display: grid;
+  grid-template-columns: repeat(2, 60%);
   row-gap: 20px;
 }
 
@@ -57,4 +59,10 @@
 .imgIcon {
   width: 20px;
   height: 20px;
+}
+
+.groupWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }

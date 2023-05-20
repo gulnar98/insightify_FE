@@ -13,7 +13,7 @@ export default function Input(props) {
   const onChange = (e) => {
     let text = e.target.value;
     props.setOnChangeEvent(e.target.value);
-    !text ? props.setIsOnchange(false) : props.setIsOnchange(true);
+    !text ? props?.setIsOnchange(false) : props?.setIsOnchange(true);
   };
 
   return (
