@@ -1,5 +1,6 @@
 import Head from "next/head";
 import style from "./assets/css/style.module.css";
+import VotePopup from "../../components/VotePopUp";
 
 export default function Trends() {
   return (
@@ -11,7 +12,9 @@ export default function Trends() {
         <title>Trends page</title>
       </Head>
 
-      <h1>Trends page</h1>
+      <div className={style.container}>
+        <VotePopup />
+      </div>
     </>
   );
 }

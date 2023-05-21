@@ -117,10 +117,10 @@ export default function _App({ Component, pageProps }) {
         })}
       >
         <AccountProvider>
-          <App 
-            Component={Component} 
-            callLogOut={callLogOut} 
-            callRefreshToken={callRefreshToken} 
+          <App
+            Component={Component}
+            callLogOut={callLogOut}
+            callRefreshToken={callRefreshToken}
             componentWithLayout={componentWithLayout}
             inter={inter}
           />
