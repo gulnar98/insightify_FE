@@ -2,21 +2,26 @@ import Head from "next/head";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import h337 from 'heatmap.js';
+import { useRouter } from "next/router";
 
 
-export default function HeatmapSession ({
-    location,
-    sessionId
-}) {
+export default function HeatmapSession () {
 
     const divRef = useRef();
+    const router = useRouter();
 
     const [snapshot, setSnapshot] = useState();
     const [records, setRecords] = useState([]);
     const [error, setError] = useState('');
 
+    const {snapshotId, sessionId} = router.query;
+
     useEffect(() => {
-        fetch(`/api/snapshot/heatmap/${sessionId}?l=${location}`)
+        if (!snapshotId || !sessionId) {
+            return;
+        }
+        
+        fetch(`/api/snapshot/heatmap/${snapshotId}/${sessionId}`)
             .then(result => result.json())
             .then(({
                 records,
@@ -30,7 +35,7 @@ export default function HeatmapSession ({
             }).catch(err => {
 
             });
-    }, []);
+    }, [snapshotId, sessionId]);
 
     useEffect(() => {
         if (!divRef?.current) {
@@ -41,12 +46,14 @@ export default function HeatmapSession ({
             container: divRef.current
         });
 
-        heatmap.setData({
-            max: 5,
-            data: records
-        });
+        setTimeout(() => {
+            heatmap.setData({
+                max: 5,
+                data: records
+            });
+        }, 1000);
 
-    }, [divRef?.current]);
+    }, [divRef?.current, records]);
 
     const header = (
         <Head>
@@ -82,26 +89,12 @@ export default function HeatmapSession ({
             {header}
 
             <div ref={divRef} style={{
-                width: 760,
-                height: '100vh',
+                // width: 760,
+                // height: '100vh',
                 margin: '0 auto'
             }}>
                 <img src={snapshot} style={{width: '100%', maxWidth: '100%'}} />
             </div>
         </>
     );
-}
-
-export const getServerSideProps = async ({params}) => {
-    const {
-        sessionId,
-        location
-    } = params;
-
-    return {
-        props: {
-            sessionId,
-            location: Buffer.from(location, 'base64').toString('utf-8')
-        }
-    }
 }

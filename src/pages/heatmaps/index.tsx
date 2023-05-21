@@ -3,6 +3,7 @@ import style from "./assets/css/style.module.css";
 import { useCallback, useEffect, useState } from "react";
 import Emptydataview from "../../components/emptydataview";
 import { useRouter } from "next/router";
+import HeatmapList from "@/components/Heatmap/HeatmapList";
 
 export default function Heatmaps() {
 
@@ -41,7 +42,7 @@ export default function Heatmaps() {
       </div>
     );
   } else {
-    content = <h2>Verified</h2>
+    content = <HeatmapList />
   }
 
 
