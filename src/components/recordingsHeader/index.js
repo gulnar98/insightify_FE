@@ -1,13 +1,18 @@
 import * as React from 'react';
 import style from './assets/css/style.module.css'
 import Checkbox from '@mui/joy/Checkbox';
+import { useState } from 'react';
 
 export default function RecordingsHeader() {
+
+    const [inputbutton, setInputbutton] = useState(true)
+    console.log("AAA",inputbutton)
+
     return (
         <>
             <div className={style.container}>
                 <div className={style.children}>
-                    <div className={style.inputClick}>
+                    <div className={style.inputClick} onClick={() => {setInputbutton(!inputbutton)}}>
                         <Checkbox/>
                     </div>
                     <div className={style.avatar}>Avatar</div>

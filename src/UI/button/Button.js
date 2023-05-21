@@ -15,12 +15,14 @@ export default function Button(props) {
     margin,
     fontSize,
     onClick,
+    imgprops,
     fontWeight,
   } = props;
 
   const handleMouseEnter = () => {
     setIsHover(true);
   };
+
   const handleMouseLeave = () => {
     setIsHover(false);
   };
@@ -33,20 +35,20 @@ export default function Button(props) {
     padding,
     margin,
     fontSize,
+    fontWeight,
     fontFamily: "inherit",
-    transition: "transition: all 0.2 ease",
+    transition: "all 0.2s ease",
   };
 
   return (
-    <>
-      <button
-        onClick={() => onClick()}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        style={buttonStyle}
-      >
-        {text}
-      </button>
-    </>
+    <button
+      onClick={onClick}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      style={buttonStyle}
+    >
+      <img src={imgprops}/>
+      {text}
+    </button>
   );
 }

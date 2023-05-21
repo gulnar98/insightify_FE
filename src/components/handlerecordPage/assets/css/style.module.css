@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+    width: fit-content;
+    position: relative;
+}
+
+.title {
+    font-weight: 600;
+    font-size: 1.5em;
+}
+
+.leftDiv {
+    width: 230px;
+}
+
+.rightDiv {
+    padding: 31px 20px;
+}
+.divv {
+    display: flex;
+    gap: 15px;
+    margin: 25px 0px 40px 0px;
+}

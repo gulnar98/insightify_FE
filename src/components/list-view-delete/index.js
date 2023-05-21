@@ -1,9 +1,10 @@
 import Button from '../../UI/button/Button'
 import style from './assets/css/style.module.css'
-import deletee from './assets/images/delete.png'
+
 import exit from './assets/images/exit.png'
 
-export default function ListViewDelete() {
+export default function ListViewDelete({btn}) {
+
     return (
         <>
             <div className={style.container}>
@@ -11,10 +12,7 @@ export default function ListViewDelete() {
                     <p>1 recording selected</p>
                 </div>
                 <div className={style.btn}>
-                    <button>
-                        <img src={deletee.src}/>
-                        &nbsp;&nbsp;Delete
-                    </button>
+                    {btn}
                 </div>
                 <div className={style.exit}>
                     <img src={exit.src}/>
