@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useAccount } from "wagmi";
 
@@ -10,17 +11,23 @@ export default function App ({
     inter
 }) {
     const { isConnected, isDisconnected } = useAccount();
+    const router = useRouter();
+
     useEffect(() => {
-        switch (Component.name) {
-        case "Login":
-        case "CreateAccountPage":
-        case "CodeInstallPage":
+        if (!router?.pathname) {
+            return;
+        }
+
+        switch (router.pathname) {
+        case "/login":
+        case "/account/create":
+        case "/code/install":
             document.body.className = "login";
             break;
         default:
             document.body.className = "dashboard";
         }
-    }, [Component.name]);
+    }, [router?.pathname]);
 
     useEffect(() => {
         if (isDisconnected) {

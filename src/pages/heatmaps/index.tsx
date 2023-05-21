@@ -13,7 +13,7 @@ export default function Heatmaps() {
 
   useEffect(() => {
     try {
-      fetch("/api/code/verify")
+      fetch("/api/code/verify?ro=1")
         .then(result => result.json())
         .then(({verified}) => {
           setVerified(state => verified);
@@ -37,7 +37,7 @@ export default function Heatmaps() {
   } else if (!isLoading && !verified) {
     content = (
       <div className={style.main}>
-        <h1 className={style.title}>Recordings</h1>
+        <h1 className={style.title}>Heatmaps</h1>
         <Emptydataview buttonOnClick={installCodeClick} />
       </div>
     );

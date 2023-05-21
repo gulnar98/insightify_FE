@@ -9,6 +9,8 @@ export default async function handler(req, res) {
     const { _id: user_id } = jwt.verify(accessToken, JWT_SECRET);
     const db = getDatabase();
 
+    const { ro } = req.query;
+
     const { url, verified, _id } = await db.collection("users_apps").findOne(
       {
         user_id,
@@ -21,6 +23,14 @@ export default async function handler(req, res) {
         },
       }
     );
+
+
+    // yalnizca check edirik, deyishiklik etmirik
+    if (ro == 1) {
+      return res.json({
+        verified
+      });
+    }
 
     if (verified) {
       return res.json({

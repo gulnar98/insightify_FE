@@ -199,7 +199,7 @@ const handleRefreshToken = async (req, res) => {
 
     const userApp = await db.collection(USERS_APPS_COLLECTION).findOne({ user_id: _id });
 
-    const isNewUser = !userApp.dao_name || !userApp.role || !userApp.url;
+    const isNewUser = !userApp?.dao_name || !userApp?.role || !userApp?.url;
 
     res.status(200).json({
       accessToken,

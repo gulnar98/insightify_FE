@@ -14,7 +14,7 @@ export default function Recording() {
 
   useEffect(() => {
     try {
-      fetch("/api/code/verify")
+      fetch("/api/code/verify?ro=1")
         .then(result => result.json())
         .then(({verified}) => {
           setVerified(state => verified);

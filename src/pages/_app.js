@@ -26,6 +26,7 @@ import InstallVerificationBox from "../components/installVerificationBox";
 import { useContext } from "react";
 import { MyContext } from "../context/AccountProvider";
 import App from "../components/App";
+import { useRouter } from "next/router";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -65,6 +66,8 @@ export default function _App({ Component, pageProps }) {
     callLogOut,
   } = useRefreshToken();
 
+  const router = useRouter();
+
   // jwt tokeni qoyulan muddetden bir refresh edir
   useEffect(() => {
     callRefreshToken();
@@ -80,10 +83,10 @@ export default function _App({ Component, pageProps }) {
 
   let componentWithLayout = null;
 
-  switch (Component.name) {
-    case "Login":
-    case "CreateAccountPage":
-    case "CodeInstallPage":
+  switch (router?.pathname) {
+    case "/login":
+    case "/account/create":
+    case "/code/install":
       componentWithLayout = (
         <>
           <LoginLayout>
