@@ -3,11 +3,22 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import h337 from 'heatmap.js';
 import { getDatabase } from "@/lib/mongodb";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 
-export default function HeatmapLocation ({
-    _id
-}) {
+export default function HeatmapLocation () {
+
+    const [sessions, setSessions] = useState([]);
+    const {query} = useRouter();
+    const {_id} = query;
+
+    useEffect(() => {
+        fetch(`/api/snapshot/heatmap/location/${_id}`)
+            .then(result => result.json())
+            .then(({sessions}) => setSessions(state => sessions))
+            .catch(err => {});
+    }, [_id]);
 
     const header = (
         <Head>
@@ -22,19 +33,13 @@ export default function HeatmapLocation ({
         <>
             {header}
 
-            <h1>{_id}</h1>
+            <ul>
+                {sessions?.map((session, index) => (
+                    <li style={{marginBottom: 20}} key={`heatmap-location-${index}`}>
+                        Session: <Link href={`/heatmaps/${_id}/${session}`}>{session}</Link>
+                    </li>
+                ))}
+            </ul>
         </>
     );
-}
-
-export const getServerSideProps = async ({params}) => {
-    const {
-        _id
-    } = params;
-
-    return {
-        props: {
-            _id
-        }
-    }
 }

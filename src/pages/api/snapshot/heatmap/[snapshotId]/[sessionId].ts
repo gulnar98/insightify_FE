@@ -1,5 +1,6 @@
 import { getDatabase } from "@/lib/mongodb";
 import jwt from "jsonwebtoken";
+import { ObjectId } from "mongodb";
 
 const JWT_SECRET = process.env.JWT_SECRET || "your_jwt_secret_here";
 
@@ -7,7 +8,7 @@ export default async function handle (req, res) {
     try {
         const { accessToken } = req.cookies;
         const { _id: user_id } = jwt.verify(accessToken, JWT_SECRET);
-        const {sessionId, l: location} = req.query;
+        const {sessionId, snapshotId} = req.query;
 
         const db = getDatabase();
 
@@ -26,7 +27,7 @@ export default async function handle (req, res) {
 
         const snapshot = await db.collection('snapshots').findOne({
             appid: appid.toString(),
-            location
+            _id: new ObjectId(snapshotId)
         }, {
             projection: {
                 _id: 0,
@@ -41,7 +42,7 @@ export default async function handle (req, res) {
             },
             "records.type": 3,
             sessionId,
-            page: location
+            page: snapshot.location
         }, {
             projection: {
                 records: 1,

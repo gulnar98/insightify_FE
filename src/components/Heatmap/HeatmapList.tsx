@@ -20,8 +20,8 @@ export default function HeatmapList () {
 
     return (
         <ul>
-            {snapshots?.map(({_id, appid, location, timestamp}) => (
-                <li style={{display: 'flex', justifyContent: 'space-between', marginBottom: 20}}>
+            {snapshots?.map(({_id, appid, location, timestamp}, index) => (
+                <li key={`heatmap-snapshots-${index}`} style={{display: 'flex', justifyContent: 'space-between', marginBottom: 20}}>
                     <div>
                         <Link href={`/heatmaps/location/${_id}`}>Snapshot for page {location}</Link>
                     </div>
