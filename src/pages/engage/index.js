@@ -1,5 +1,6 @@
-import Head from "next/head";
 import style from "./assets/css/style.module.css";
+import Head from "next/head";
+import VotePopup from "../../components/VotePopUp";
 
 export default function Engage() {
   return (
@@ -11,7 +12,9 @@ export default function Engage() {
         <title>Engage page</title>
       </Head>
 
-      <h1>Engage page</h1>
+      <div className={style.container}>
+        <VotePopup />
+      </div>
     </>
   );
 }

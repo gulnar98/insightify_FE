@@ -16,6 +16,7 @@ export default function Button(props) {
     fontSize,
     onClick,
     fontWeight,
+    children,
   } = props;
 
   const handleMouseEnter = () => {
@@ -34,7 +35,7 @@ export default function Button(props) {
     margin,
     fontSize,
     fontFamily: "inherit",
-    transition: "transition: all 0.2 ease",
+    transition: "all .1s ease",
   };
 
   return (
@@ -45,6 +46,7 @@ export default function Button(props) {
         onMouseLeave={handleMouseLeave}
         style={buttonStyle}
       >
+        {children}
         {text}
       </button>
     </>

@@ -1,3 +1,7 @@
+.container {
+  padding: 44px 72px 32px 26px;
+}
+
 .header {
   display: flex;
   justify-content: space-between;

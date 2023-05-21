@@ -1,5 +1,6 @@
 import Head from "next/head";
 import style from "./assets/css/style.module.css";
+import VotePopup from "../../components/VotePopUp";
 
 export default function Surveys() {
   return (
@@ -11,7 +12,9 @@ export default function Surveys() {
         <title>Surveys page</title>
       </Head>
 
-      <h1>Surveys page</h1>
+      <div className={style.container}>
+        <VotePopup />
+      </div>
     </>
   );
 }

@@ -8,11 +8,6 @@ function VotePopUp() {
   return (
     <>
       <div className={styles.container}>
-        <div className={styles.closeBtn}>
-          <Button border="none" btncolor="#ffff">
-            <img className={styles.Xicon} src={iconX.src} alt="iconX" />
-          </Button>
-        </div>
         <div className={styles.imgContainer}>
           <img src={notification.src} />
         </div>
@@ -30,11 +25,12 @@ function VotePopUp() {
           <Button
             btncolor="#1f75cc"
             textColor="#ffff"
+            textColorHover="#1F75CC"
             text="Vote"
-            padding="10px 100px"
-            border="none"
+            padding="12px 120px"
             borderRadius="4px"
-            fontSize="12px"
+            fontSize="16px"
+            border="1px solid #1F75CC"
           />
         </div>
       </div>

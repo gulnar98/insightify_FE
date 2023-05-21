@@ -1,5 +1,6 @@
 import Head from "next/head";
 import style from "./assets/css/style.module.css";
+import VotePopup from "../../components/VotePopUp";
 
 export default function Highlights() {
   return (
@@ -11,7 +12,9 @@ export default function Highlights() {
         <title>Highlights page</title>
       </Head>
 
-      <h1>Highlights page</h1>
+      <div className={style.container}>
+        <VotePopup />
+      </div>
     </>
   );
 }

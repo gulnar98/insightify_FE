@@ -1,9 +1,9 @@
 .childrenContainer {
-  padding: 100px 72px 32px 110px;
+  padding: 64px 72px 32px 82px;
 }
 
 .isCollapseOpen {
-  padding-left: 140px;
+  padding-left: 145px;
 }
 
 .navigationBar {

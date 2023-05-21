@@ -6,7 +6,6 @@ import { useRouter } from "next/router";
 import HeatmapList from "@/components/Heatmap/HeatmapList";
 
 export default function Heatmaps() {
-
   const [isLoading, setLoading] = useState(true);
   const [verified, setVerified] = useState(false);
   const router = useRouter();
@@ -14,26 +13,24 @@ export default function Heatmaps() {
   useEffect(() => {
     try {
       fetch("/api/code/verify?ro=1")
-        .then(result => result.json())
-        .then(({verified}) => {
-          setVerified(state => verified);
+        .then((result) => result.json())
+        .then(({ verified }) => {
+          setVerified((state) => verified);
         })
         .finally(() => {
-          setLoading(state => false);
+          setLoading((state) => false);
         });
-    } catch (err) {
-
-    }
+    } catch (err) {}
   }, []);
 
   const installCodeClick = useCallback(() => {
-    router.push('/overview');
+    router.push("/overview");
   }, [router]);
 
   let content = null;
 
   if (isLoading) {
-    content = <h2>Loading...</h2>
+    content = <h2>Loading...</h2>;
   } else if (!isLoading && !verified) {
     content = (
       <div className={style.main}>
@@ -42,9 +39,8 @@ export default function Heatmaps() {
       </div>
     );
   } else {
-    content = <HeatmapList />
+    content = <HeatmapList />;
   }
-
 
   return (
     <>
@@ -55,7 +51,7 @@ export default function Heatmaps() {
         <title>Heatmap</title>
       </Head>
 
-      {content}
+      <div className={style.container}>{content}</div>
     </>
   );
 }
