@@ -4,7 +4,7 @@ import InstallVerificationBox from "../../components/installVerificationBox";
 import { useState } from "react";
 import { useEffect } from "react";
 import Button from "../../UI/button/Button";
-import { shareBtnProps } from "./constants";
+import { shareBtnProps } from "../../components/constants";
 
 export default function Overview() {
   return (

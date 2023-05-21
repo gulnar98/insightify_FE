@@ -25,6 +25,7 @@ import { useRefreshToken } from "@/hooks/refreshToken";
 import InstallVerificationBox from "../components/installVerificationBox";
 import { useContext } from "react";
 import { MyContext } from "../context/AccountProvider";
+import App from "../components/App";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -54,7 +55,7 @@ const wagmiClient = createClient({
   webSocketProvider,
 });
 
-export default function App({ Component, pageProps }) {
+export default function _App({ Component, pageProps }) {
   const {
     accessToken,
     refreshToken,
@@ -113,31 +114,13 @@ export default function App({ Component, pageProps }) {
         })}
       >
         <AccountProvider>
-          {(() => {
-            const { isConnected, isDisconnected } = useAccount();
-            useEffect(() => {
-              switch (Component.name) {
-                case "Login":
-                case "CreateAccountPage":
-                case "CodeInstallPage":
-                  document.body.className = "login";
-                  break;
-                default:
-                  document.body.className = "dashboard";
-              }
-            }, [Component.name]);
-
-            useEffect(() => {
-              if (isDisconnected) {
-                callLogOut().then(callRefreshToken);
-              }
-            }, [isDisconnected]);
-            return (
-              <>
-                <main className={inter.className}>{componentWithLayout}</main>
-              </>
-            );
-          })()}
+          <App 
+            Component={Component} 
+            callLogOut={callLogOut} 
+            callRefreshToken={callRefreshToken} 
+            componentWithLayout={componentWithLayout}
+            inter={inter}
+          />
         </AccountProvider>
       </RainbowKitProvider>
     </WagmiConfig>

@@ -1,7 +1,9 @@
 import Alert from "../../UI/alert/Alert";
 import Button from "../../UI/button/Button";
 
-export default function Emptydataview() {
+export default function Emptydataview({
+    buttonOnClick
+}) {
     const alertProps = {
         color: "#FFF2DA",
         border: "solid 1px #FFC04D",
@@ -23,14 +25,14 @@ export default function Emptydataview() {
       borderRadius: "4px",
       padding: "7px 15px",
       fontSize: "1em",
-      margin: "18px 0px"
+      margin: "18px 0px",
     };
 
 
     return (
         <div>
             <Alert {...alertProps} />
-            <Button {...buttonProps} />
+            <Button {...buttonProps} onClick={buttonOnClick} />
         </div>
     );
 }

@@ -79,14 +79,16 @@ export default async function handle (req, res) {
                 referer,
                 sessionId,
                 platform,
-                isMobile
+                isMobile,
+                timestamp: Date.now()
             });
         }
 
         await db.collection('records').insertOne({
             sessionId,
             records,
-            page: jsReferer
+            page: jsReferer,
+            timestamp: Date.now()
         });
 
     } catch (err) {}

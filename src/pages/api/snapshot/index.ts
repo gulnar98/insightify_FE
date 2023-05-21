@@ -38,8 +38,8 @@ export default async function handle (req, res) {
         
             const appURLParsed = parseDomain(new URL(appURL).hostname);
             const refererURL = parseDomain(new URL(referer).hostname);
-        
-            if (appURLParsed.hostname?.toString?.().toLowerCase?.() != refererURL.hostname) {
+
+            if (appURLParsed.hostname?.toString?.().toLowerCase?.() != refererURL?.hostname?.toString?.().toLowerCase?.()) {
                 return res.json({});
             }
         } catch (err) {
@@ -51,7 +51,8 @@ export default async function handle (req, res) {
             location
         }, {
             $set: {
-                snapshot: data
+                snapshot: data,
+                timestamp: Date.now()
             }
         }, {
             upsert: true
@@ -62,4 +63,12 @@ export default async function handle (req, res) {
     } catch (err) {}
 
     res.json({});
+}
+
+export const config = {
+    api: {
+        bodyParser: {
+            sizeLimit: '200mb' // Set desired value here
+        }
+    }
 }

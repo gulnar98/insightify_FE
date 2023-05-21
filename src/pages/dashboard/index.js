@@ -9,7 +9,7 @@ import TopPages from "../../components/dashboard_topPages";
 import TechnologyContainer from "../../components/dashboardTechnologyContainer";
 import TopCountries from "../../components/dashboardTopCountries";
 import Button from "../../UI/button/Button";
-import { metricBoxData, saveBtnProps } from "./constants";
+import { metricBoxData, saveBtnProps } from "../../components/constants";
 import LastDayAddFilter from "../../components/lastDayAddFilter/lastDayAddFilterContainer";
 import AdsDonutChart from "../../components/AdsDonutChart";
 import WalletDonutChart from "../../components/WalletDonutChart";
@@ -45,8 +45,8 @@ function Dashboard() {
         </div>
 
         <div className={style.metricBoxesContainer}>
-          {metricBoxData.map((item) => (
-            <Metric_box {...item} />
+          {metricBoxData.map((item, index) => (
+            <Metric_box {...item} key={`metricBox_${index}`} />
           ))}
         </div>
 
