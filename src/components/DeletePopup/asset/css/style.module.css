@@ -1,25 +1,19 @@
 .wrapper{
     background: #fff;
-    position: relative;
-    width: 18%;
+    position: absolute;
+    width: 382px;
     padding: 20px;
     display: flex;
     flex-direction: column;
     row-gap:36px ;
     border-radius:6px ;
-    box-shadow: 0px 0px 4px 0px #00000026;
-  
-
-
-   
+    box-shadow: 0px 0px 4px 0px #00000026; 
 }
-
-
 
 .Xicon{
     width: 14px;
     height:14px;
-    }
+}
 
 .closeBtn{
     position: absolute;
@@ -28,7 +22,6 @@
 }
 
 .title{
-    font-family:Inter ;
     font-weight: 700;
     font-size:18px;
     color:#1c1c1c;
@@ -36,7 +29,6 @@
 }
 
 .text{
-    font-family:Inter ;
     font-weight: 600;
     font-size:14px;
     color:#3a3a3a;
