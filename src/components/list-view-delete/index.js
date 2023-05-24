@@ -3,7 +3,7 @@ import style from './assets/css/style.module.css'
 
 import exit from './assets/images/exit.png'
 
-export default function ListViewDelete({btn}) {
+export default function ListViewDelete({btn, exitBtn}) {
 
     return (
         <>
@@ -15,7 +15,7 @@ export default function ListViewDelete({btn}) {
                     {btn}
                 </div>
                 <div className={style.exit}>
-                    <img src={exit.src}/>
+                    {exitBtn}
                 </div>
             </div>
         </>
