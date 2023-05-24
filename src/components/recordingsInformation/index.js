@@ -1,6 +1,5 @@
 import * as React from 'react';
 import style from './assets/css/style.module.css'
-import Checkbox from '@mui/joy/Checkbox';
 import playBtn from './assets/images/playBtn.png';
 import avatar from './assets/images/avatar.png'
 import wallet from './assets/images/wallet.png'
@@ -12,8 +11,8 @@ import other from './assets/images/other.png'
 import Avatar from '../avatar';
 import { useState } from 'react';
 import ListViewDelete from '../list-view-delete';
-import deletee from './assets/images/deletee.png'
 import Button from '../../UI/button/Button';
+import deletee from './assets/images/deletee.png'
 import DeletePopUp from '../DeletePopup';
 
 export default function RecordingsInformation(
@@ -31,10 +30,11 @@ export default function RecordingsInformation(
         durationProps,
         landingPage,
         exitPage,
-        checbox
+        checkbox,
+        infoprops
     }) {
-
-    const buttonProps = {
+        
+    const listviewprops = {
         btncolor: "white",
         text: "Delete",
         border: "solid 1px #9A3530",
@@ -45,7 +45,7 @@ export default function RecordingsInformation(
         fontWeight: "700",
         imgprops: deletee
     };
-        
+
     const buttonCancel = {
         border: "none",
         btncolor: "#ffff",
@@ -56,15 +56,21 @@ export default function RecordingsInformation(
         fontSize: '14px',
         fontWeight: '600'
     }
-    const [inputButton, setInputButton] = useState(false)
-    const [showPopUp, setShowPopUp] = useState(false)
+
+    const buttonExit = {
+        border: "none",
+        padding: "12px 17px",
+        text: "X",
+        fontSize: '14px',
+        fontWeight: '600'
+    }
 
     return (
         <>
             <div className={style.container}>
                 <div className={style.children}>
                     <div className={style.inputClick}>
-                        <Checkbox onClick={() => {setInputButton(!inputButton)}}/>
+                        {checkbox}
                         <button className={style.playBtn}>
                             <img src={playBtn.src}/>&nbsp;
                             Play
@@ -87,7 +93,7 @@ export default function RecordingsInformation(
                         {topAssetsMirror}
                         {topAssetsEns}
                         {topAssetsApe}
-                        {
+                        {/* {
                             inputButton ? (
                                 <ListViewDelete
                                 btn={
@@ -99,6 +105,12 @@ export default function RecordingsInformation(
                                     }}
                                     />
                                 }
+                                exitBtn={
+                                    <Button
+                                    {...buttonExit}
+                                    onClick={() => {setInputButton(!inputButton)}}
+                                    />
+                                }
                                 />
                             ) : (
                                 <></>
@@ -107,11 +119,17 @@ export default function RecordingsInformation(
 
                         {
                         showPopUp ? (
-                            <DeletePopUp buttonCancel={<Button {...buttonCancel} />} />
+                            <DeletePopUp buttonCancel={<Button {...buttonCancel} 
+                                                                onClick={() => {setShowPopUp(!showPopUp);
+                                                                                setInputButton(!inputButton);
+                                                                    }}
+                                                        />} 
+                                />
                         ) : (
                             <></>
                         )
-                        }
+                        } */}
+                        {infoprops ? <ListViewDelete btn={<Button {...listviewprops}/>}/>:<></>}
                     </div>
                     <div className={style.wallet}>
                         <img src={wallet.src}/>

@@ -3,20 +3,18 @@ import Button from '../../UI/button/Button'
 import close from './asset/image/close.svg'
 import styles from './asset/css/style.module.css'
 
-
 function DeletePopUp({buttonCancel}) {
   return (
     <>
      <div className={styles.wrapper}>
-        <div className={styles.closeBtn}>
+        <div className={styles.divOne}>
+          <h1 className={styles.title}>Delete recordings?</h1>
           <Button
             border="none"
-            btncolor="#ffff">
-            <img  className={styles.Xicon} src={close.src} alt='iconX'/>
-          </Button>
+            btncolor="#ffff" 
+            imgprops={<img className={styles.Xicon} src={close.src} alt='iconX'/>}/>
         </div>
-        <h1 className={styles.title}>Delete recordings?</h1>
-        <p className={styles.text}>Deleting recordings is permanent and cannot be <br/>undone</p>
+        <p className={styles.text}>Deleting recordings is permanent and cannot be undone</p>
         <div className={styles.btnContainer}>
           {buttonCancel}
           <Button
