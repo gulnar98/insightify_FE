@@ -19,21 +19,21 @@ export default function Recording() {
     text: "Install the Usersnap to get started",
     margin: "22px 0px 0px 0px",
     width: "31%",
-    fontWeight: "600"
-};
+    fontWeight: "600",
+  };
 
-const buttonProps = {
-  btncolor: "#1F75CC",
-  btncolorHover: "#1F75CC",
-  text: "Install Usersnap",
-  textColorHover: "white",
-  border: "solid 1px #1F75CC",
-  textColor: "white",
-  borderRadius: "4px",
-  padding: "7px 15px",
-  fontSize: "1em",
-  margin: "18px 0px"
-};
+  const buttonProps = {
+    btncolor: "#1F75CC",
+    btncolorHover: "#1F75CC",
+    text: "Install Usersnap",
+    textColorHover: "white",
+    border: "solid 1px #1F75CC",
+    textColor: "white",
+    borderRadius: "4px",
+    padding: "7px 15px",
+    fontSize: "1em",
+    margin: "18px 0px",
+  };
 
   return (
     <>
@@ -47,9 +47,9 @@ const buttonProps = {
         {/* <Emptydataview
           alert={<Alert {...alertProps} />}
           button={<Button {...buttonProps} />}/> */}
-            <HandlerecordPage/>
-            {/* <DeletePopUp/> */}
-          {/* <LoadingRecording/> */}
+        <HandlerecordPage />
+        {/* <DeletePopUp/> */}
+        {/* <LoadingRecording/> */}
       </div>
     </>
   );
