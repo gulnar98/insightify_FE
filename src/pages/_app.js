@@ -70,15 +70,24 @@ export default function _App({ Component, pageProps }) {
 
   // jwt tokeni qoyulan muddetden bir refresh edir
   useEffect(() => {
-    callRefreshToken();
+    const handleBeforeUnload = (event) => {
+      event.preventDefault();
+      callRefreshToken();
 
-    clearInterval(interval);
-    interval = setInterval(
-      callRefreshToken,
-      parseInt(process.env.NEXT_PUBLIC_REFRESH_ACCESS_TOKEN_TIME_DELAY)
-    );
+      clearInterval(interval);
+      interval = setInterval(
+        callRefreshToken,
+        parseInt(process.env.NEXT_PUBLIC_REFRESH_ACCESS_TOKEN_TIME_DELAY)
+      );
 
-    return () => clearInterval(interval);
+      return () => clearInterval(interval);
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
   });
 
   let componentWithLayout = null;

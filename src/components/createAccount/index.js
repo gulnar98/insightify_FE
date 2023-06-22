@@ -1,3 +1,4 @@
+"use client"
 import style from "./assets/css/style.module.css";
 import { useContext, useEffect, useState } from "react";
 import globe from "./assets/images/globe.svg";

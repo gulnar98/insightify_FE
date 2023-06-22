@@ -91,7 +91,8 @@ export default async function handle (req, res) {
             timestamp: Date.now()
         });
 
-    } catch (err) {}
+    } catch (err) {console.log(err);
+    }
 
     res.json({});
 }

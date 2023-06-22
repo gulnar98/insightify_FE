@@ -1,3 +1,4 @@
+"use client"
 export default function Input(props) {
   let border = props.border;
   let textColor = props.textColor;

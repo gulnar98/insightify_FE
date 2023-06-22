@@ -54,7 +54,7 @@ async function handleLogin(req, res) {
     });
   }
 
-  const user = await db.collection(USERS_COLLECTION).findOne({ address }) || {
+  const user = (await db.collection(USERS_COLLECTION).findOne({ address })) || {
     _id: null,
   };
 
@@ -62,11 +62,12 @@ async function handleLogin(req, res) {
     const result = await db.collection(USERS_COLLECTION).insertOne({
       address,
     });
-
     user._id = result.insertedId;
     isNewUser = true;
   } else {
-    const userApp = await db.collection(USERS_APPS_COLLECTION).findOne({ user_id: user._id?.toString?.() });
+    const userApp = await db
+      .collection(USERS_APPS_COLLECTION)
+      .findOne({ user_id: user._id?.toString?.() });
     isNewUser = !userApp?.dao_name || !userApp?.role || !userApp?.url;
   }
   // const isPasswordValid = await bcrypt.compare(password, user.password);
@@ -144,7 +145,7 @@ const handleSignup = async (req, res) => {
         $set: {
           dao_name,
           role,
-          url
+          url,
         },
       },
       {
@@ -160,7 +161,6 @@ const handleSignup = async (req, res) => {
 
 const handleRefreshToken = async (req, res) => {
   const { refreshToken } = req.cookies;
-
   if (!refreshToken) {
     return res.status(401).json({ message: "Refresh token missing" });
   }
@@ -197,7 +197,9 @@ const handleRefreshToken = async (req, res) => {
 
     const db = getDatabase();
 
-    const userApp = await db.collection(USERS_APPS_COLLECTION).findOne({ user_id: _id });
+    const userApp = await db
+      .collection(USERS_APPS_COLLECTION)
+      .findOne({ user_id: _id });
 
     const isNewUser = !userApp?.dao_name || !userApp?.role || !userApp?.url;
 
@@ -207,7 +209,6 @@ const handleRefreshToken = async (req, res) => {
       isNewUser,
     });
   } catch (error) {
-    console.log(error);
     return res.status(401).json({ message: "Invalid refresh token" });
   }
 };

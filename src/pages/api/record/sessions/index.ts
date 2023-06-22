@@ -1,8 +1,8 @@
 import { getDatabase } from "@/lib/mongodb";
 import jwt from "jsonwebtoken";
+import { CustomErrorForHttp } from "../../utils";
 
 const JWT_SECRET = process.env.JWT_SECRET || "your_jwt_secret_here";
-
 
 export default async function handler (req, res) {
     try {
@@ -21,7 +21,7 @@ export default async function handler (req, res) {
         const appid = user?._id?.toString?.();
 
         if (!appid) {
-            throw 'Was not found';
+            throw new CustomErrorForHttp("appid Was not found",404);
         }
 
         const sessions = await db.collection('records_sessions').find({
@@ -31,9 +31,8 @@ export default async function handler (req, res) {
                 jsUserAgent: 0,
             }
         }).toArray();
-
         if (!sessions?.length) {
-            return res.status(404).end('');
+            throw new CustomErrorForHttp("Session not found",404);
         }
 
         res.json({

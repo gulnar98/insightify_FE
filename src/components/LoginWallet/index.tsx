@@ -1,3 +1,4 @@
+"use client"
 import style from "./style.module.css";
 import logo from "../../assets/images/header/logo.svg";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
