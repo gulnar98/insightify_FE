@@ -34,7 +34,7 @@ function CreateAccountVerifyInst() {
         })
         .then((result) => {
           window.location.reload();
-        });
+        }).catch(err => console.log(err));
     }
   }, [isSuccess]);
 

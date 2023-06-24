@@ -1,0 +1,77 @@
+.container {
+  flex: 2;
+  border-top: 1px solid #d6d6d6;
+  color: #303742;
+}
+
+.mainHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 12px;
+}
+
+.mainHeader h2 {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.pageSsWrapper {
+  padding: 16px 12px;
+  border-top: 1px solid #d6d6d6;
+  border-bottom: 1px solid #d6d6d6;
+}
+
+.overlaysWrapper {
+  padding: 16px 12px;
+}
+
+.pageSsHeader {
+  border-bottom: 1px solid #d6d6d6;
+  margin-bottom: 18px;
+}
+
+.pageSsHeader h3,
+.overlaysHeader h3 {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.pageSsHeader h4,
+.pageSsHeader p {
+  font-size: 12px;
+}
+
+.clickButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upDownPageSs,
+.upDownOverlays {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.dateOfPageSs {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.pageSsContent li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.pageSsContent li:last-child {
+  margin-bottom: 0;
+}

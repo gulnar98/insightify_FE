@@ -8,7 +8,7 @@ export default function Emptydataview({ buttonOnClick }) {
     textColor: "#000000",
     borderRadius: "4px",
     padding: "7px 15px",
-    text: "Install the Usersnap to get started",
+    text: "Install the Insightify to get started",
     margin: "22px 0px 0px 0px",
     width: "300px",
   };
@@ -16,7 +16,7 @@ export default function Emptydataview({ buttonOnClick }) {
   const buttonProps = {
     btncolor: "#1F75CC",
     btncolorHover: "#fff",
-    text: "Install Usersnap",
+    text: "Install Insightify",
     textColorHover: "white",
     border: "solid 1px #1F75CC",
     textColor: "white",

@@ -39,7 +39,7 @@ export default function Verification({
       if (isSuccStatus) {
         img = success;
         message =
-          "https://learning.usersnap.io reported data within the past 1h.";
+          "https://learning.Insightify.io reported data within the past 1h.";
       } else {
         isSuccess = false;
         img = exclamation;

@@ -1,15 +1,13 @@
 import Button from '../../UI/button/Button'
 import style from './assets/css/style.module.css'
 
-import exit from './assets/images/exit.png'
-
-export default function ListViewDelete({btn, exitBtn}) {
+export default function ListViewDelete({btn, exitBtn, children}) {
 
     return (
         <>
             <div className={style.container}>
                 <div className={style.text}>
-                    <p>1 recording selected</p>
+                    <p>{children}</p>
                 </div>
                 <div className={style.btn}>
                     {btn}

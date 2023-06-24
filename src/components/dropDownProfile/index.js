@@ -2,17 +2,18 @@ import style from "./assets/css/style.module.css";
 import grayLogin from "./assets/images/gray-login.svg";
 import logout from "./assets/images/logout.svg";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRef } from "react";
 
 import { useAccount, useDisconnect } from "wagmi";
 
 function DropDownProfile({ setIsOpen, isOpen }) {
   const { address } = useAccount();
-  const shortAddress = `${address?.slice(0, 6)}...${address?.slice(-4)}`;
+  // const shortAddress = `${address?.slice(0, 6)}...${address?.slice(-4)}`;
   const dropDownRef = useRef(null);
   const router = useRouter();
-  const disconnectText = "Disconnecting...";
+  // const disconnectText = "Disconnecting...";
+  const [connect_text, setConnect_text] = useState("")
 
   const { disconnect } = useDisconnect({
     onSuccess(data) {
@@ -24,11 +25,15 @@ function DropDownProfile({ setIsOpen, isOpen }) {
   });
 
   useEffect(() => {
+    const shortAddress = `${address?.slice(0, 6)}...${address?.slice(-4)}`;
+    const disconnectText = "Disconnecting...";
+
+    setConnect_text(address ? shortAddress : disconnectText)
     document.addEventListener("click", handleClickOutside);
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
-  }, []);
+  }, [address]);
 
   const handleClickOutside = (event) => {
     if (
@@ -48,7 +53,7 @@ function DropDownProfile({ setIsOpen, isOpen }) {
       >
         <div className={style.profileInfo}>
           <img className={style.grayLogin} src={grayLogin.src} alt="logo" />
-          <p>{address ? shortAddress : disconnectText}</p>
+          <p>{connect_text}</p>
         </div>
         <div className={style.logoutWrapper}>
           <button className={style.logoutBtn} onClick={() => disconnect()}>

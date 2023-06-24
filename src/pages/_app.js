@@ -1,6 +1,6 @@
 import DashboardLayout from "@/components/dashboardLayout";
 import CreateAccount from "@/components/createAccount";
-import AccountProvider from "@/context/AccountProvider";
+import HeatmapProvider from "@/context/HeatmapProvider";
 import "../assets/css/reset.css";
 import { Inter } from "next/font/google";
 import "@rainbow-me/rainbowkit/styles.css";
@@ -24,7 +24,7 @@ import LoginLayout from "@/components/loginLayout";
 import { useRefreshToken } from "@/hooks/refreshToken";
 import InstallVerificationBox from "../components/installVerificationBox";
 import { useContext } from "react";
-import { MyContext } from "../context/AccountProvider";
+import { MyContext } from "../context/HeatmapProvider";
 import App from "../components/App";
 import { useRouter } from "next/router";
 
@@ -70,15 +70,22 @@ export default function _App({ Component, pageProps }) {
 
   // jwt tokeni qoyulan muddetden bir refresh edir
   useEffect(() => {
-    callRefreshToken();
+    const handleBeforeUnload = (event) => {
+      event.preventDefault();
+      callRefreshToken();
+      clearInterval(interval);
+      interval = setInterval(
+        callRefreshToken,
+        parseInt(process.env.NEXT_PUBLIC_REFRESH_ACCESS_TOKEN_TIME_DELAY)
+      );
 
-    clearInterval(interval);
-    interval = setInterval(
-      callRefreshToken,
-      parseInt(process.env.NEXT_PUBLIC_REFRESH_ACCESS_TOKEN_TIME_DELAY)
-    );
+      return () => clearInterval(interval);
+    };
 
-    return () => clearInterval(interval);
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
   });
 
   let componentWithLayout = null;
@@ -116,7 +123,7 @@ export default function _App({ Component, pageProps }) {
           overlayBlur: "small",
         })}
       >
-        <AccountProvider>
+        <HeatmapProvider>
           <App
             Component={Component}
             callLogOut={callLogOut}
@@ -124,7 +131,7 @@ export default function _App({ Component, pageProps }) {
             componentWithLayout={componentWithLayout}
             inter={inter}
           />
-        </AccountProvider>
+        </HeatmapProvider>
       </RainbowKitProvider>
     </WagmiConfig>
   );

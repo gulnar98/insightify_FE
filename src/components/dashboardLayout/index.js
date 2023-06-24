@@ -10,7 +10,7 @@ import style from "./style.module.css";
 import DropDownProfile from "../dropDownProfile";
 
 function DashboardLayout({ children }) {
-  const [isCollapseOpen, setIsCollapseOpen] = useState(true);
+  const [isCollapseOpen, setIsCollapseOpen] = useState(false);
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
 
   return (

@@ -4,6 +4,12 @@
     position: relative;
 }
 
+.recordingSection {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
+
 .title {
     font-weight: 600;
     font-size: 1.5em;
@@ -20,4 +26,68 @@
     display: flex;
     gap: 15px;
     margin: 25px 0px 40px 0px;
+    position: relative;
+    z-index: 1;
+}
+
+.recordingSection thead th {
+    /* border: 1px solid red; */
+}
+
+.table {
+    border-collapse: separate;
+    border-spacing: 0px 20px;
+}
+
+.table tbody tr {
+    /* border: 1px solid blue; */
+    margin-bottom: 20px;
+    box-shadow: 0 0 15px #ccc;
+    border-radius: 5px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.table tbody td {
+    vertical-align: middle;
+}
+
+.table tbody td {
+    padding: 10px 10px 10px 0;
+}
+
+.table tbody td:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.table tbody td:first-child > div:nth-child(1) {
+    width: 42px;
+}
+
+.table tbody td:first-child > div:nth-child(2) a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
+}
+
+
+/* wallet address & ens cell */
+.table tbody tr td:nth-child(3) > p:first-child {
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+.table tbody tr td {
+    font-weight: bold;
+    font-size: 0.8em;
+}
+
+/* top 5 assets cell */
+.table tbody tr td:nth-child(5) {
+    display: flex;
+    flex-wrap: nowrap;
+    column-gap: 3px;
+    padding-left: 0px;
 }

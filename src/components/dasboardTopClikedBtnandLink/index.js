@@ -9,151 +9,65 @@ import line3 from "./asset/images/line3.svg";
 import line4 from "./asset/images/line4.svg";
 import line5 from "./asset/images/line5.svg";
 import faleft from "./asset/images/Left.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DonutChartBody from "../DonutChartBody";
 
 //TopClicked button and Link olan konteyner
 
-function TopClickedBtnandLink(count) {
+function TopClickedBtnandLink({count, buttonsAndLinks}) {
   const [chartType, setChartType] = useState("Bar");
   const [hashType, setHashType] = useState("Numbers");
+  const [maxSession, setMaxSession] = useState(0);
 
   let chartComponent;
+
+  useEffect(() => {
+    if (!buttonsAndLinks?.length) {
+      return;
+    }
+    const max = buttonsAndLinks.sort((a, b) => {
+      return parseInt(b?.count || 0) - parseInt(a?.count || 0)
+    })?.[0]?.count || 0;
+    setMaxSession(state => max);
+  }, [buttonsAndLinks]);
 
   switch (chartType) {
     case "Bar":
       chartComponent = (
         <>
-          <ChartBarBody
-            imageSrc={line1.src}
-            pTagText="Get started now"
-            anchorHref="#"
-            anchorText="4.8k sessions"
-            faLeftIconSrc={faleft.src}
-            row={{ display: "flex", justifyContent: "space-between" }}
-            aStyle={{
-              textDecoration: "none",
-              fontWeight: "500",
-              fontSize: "12px",
-              color: "#707070",
-            }}
-            pStyle={{
-              marginBottom: "4px",
-              color: "#303742",
-              fontWeight: "500",
-              fontSize: "14px",
-            }}
-            secondColumn={{
-              alignSelf: "end",
-              display: "flex",
-              justifyContent: "space-between",
-              columnGap: "5px",
-            }}
-          />
-          <ChartBarBody
-            imageSrc={line2.src}
-            pTagText="More details"
-            anchorHref="#"
-            anchorText="1.9k sessions"
-            faLeftIconSrc={faleft.src}
-            row={{ display: "flex", justifyContent: "space-between" }}
-            aStyle={{
-              textDecoration: "none",
-              fontWeight: "500",
-              fontSize: "12px",
-              color: "#707070",
-            }}
-            pStyle={{
-              marginBottom: "4px",
-              color: "#303742",
-              fontWeight: "500",
-              fontSize: "14px",
-            }}
-            secondColumn={{
-              alignSelf: "end",
-              display: "flex",
-              justifyContent: "space-between",
-              columnGap: "5px",
-            }}
-          />
-          <ChartBarBody
-            imageSrc={line3.src}
-            pTagText="Next"
-            anchorHref="#"
-            anchorText="29 sessions"
-            faLeftIconSrc={faleft.src}
-            row={{ display: "flex", justifyContent: "space-between" }}
-            aStyle={{
-              textDecoration: "none",
-              fontWeight: "500",
-              fontSize: "12px",
-              color: "#707070",
-            }}
-            pStyle={{
-              marginBottom: "4px",
-              color: "#303742",
-              fontWeight: "500",
-              fontSize: "14px",
-            }}
-            secondColumn={{
-              alignSelf: "end",
-              display: "flex",
-              justifyContent: "space-between",
-              columnGap: "5px",
-            }}
-          />
-          <ChartBarBody
-            imageSrc={line4.src}
-            pTagText="Sign up"
-            anchorHref="#"
-            anchorText="22 sessions"
-            faLeftIconSrc={faleft.src}
-            row={{ display: "flex", justifyContent: "space-between" }}
-            aStyle={{
-              textDecoration: "none",
-              fontWeight: "500",
-              fontSize: "12px",
-              color: "#707070",
-            }}
-            pStyle={{
-              marginBottom: "4px",
-              color: "#303742",
-              fontWeight: "500",
-              fontSize: "14px",
-            }}
-            secondColumn={{
-              alignSelf: "end",
-              display: "flex",
-              justifyContent: "space-between",
-              columnGap: "5px",
-            }}
-          />
-          <ChartBarBody
-            imageSrc={line5.src}
-            pTagText="Features"
-            anchorHref="#"
-            anchorText="19 sessions"
-            faLeftIconSrc={faleft.src}
-            row={{ display: "flex", justifyContent: "space-between" }}
-            aStyle={{
-              textDecoration: "none",
-              fontWeight: "500",
-              fontSize: "12px",
-              color: "#707070",
-            }}
-            pStyle={{
-              marginBottom: "4px",
-              color: "#303742",
-              fontWeight: "500",
-              fontSize: "14px",
-            }}
-            secondColumn={{
-              alignSelf: "end",
-              display: "flex",
-              justifyContent: "space-between",
-              columnGap: "5px",
-            }}
-          />
+          {buttonsAndLinks?.length && buttonsAndLinks.map(item => (
+            <ChartBarBody
+              key={`buttons-and-links-${item.text}`}
+              imageSrc={line1.src}
+              pTagText={item?.text}
+              anchorHref="#"
+              anchorText={`${item?.count} sessions`}
+              indicatorLevel={item?.count * 100 / maxSession}
+              faLeftIconSrc={faleft.src}
+              row={{ display: "flex", justifyContent: "space-between" }}
+              firstColumn={{
+                width: '80%'
+              }}
+              aStyle={{
+                textDecoration: "none",
+                fontWeight: "500",
+                fontSize: "12px",
+                color: "#707070",
+              }}
+              pStyle={{
+                marginBottom: "4px",
+                color: "#303742",
+                fontWeight: "500",
+                fontSize: "14px",
+              }}
+              secondColumn={{
+                alignSelf: "end",
+                display: "flex",
+                justifyContent: "space-between",
+                columnGap: "5px",
+              }}
+            />
+          ))}
         </>
       );
       break;
@@ -166,136 +80,35 @@ function TopClickedBtnandLink(count) {
     default:
       chartComponent = (
         <>
-          <ChartBarBody
-            imageSrc={line1.src}
-            pTagText="Get started now"
-            anchorHref="#"
-            anchorText="4.8k sessions"
-            faLeftIconSrc={faleft.src}
-            row={{ display: "flex", justifyContent: "space-between" }}
-            aStyle={{
-              textDecoration: "none",
-              fontWeight: "500",
-              fontSize: "12px",
-              color: "#707070",
-            }}
-            pStyle={{
-              marginBottom: "4px",
-              color: "#303742",
-              fontWeight: "500",
-              fontSize: "14px",
-            }}
-            secondColumn={{
-              alignSelf: "end",
-              display: "flex",
-              justifyContent: "space-between",
-              columnGap: "5px",
-            }}
-          />
-          <ChartBarBody
-            imageSrc={line2.src}
-            pTagText="More details"
-            anchorHref="#"
-            anchorText="1.9k sessions"
-            faLeftIconSrc={faleft.src}
-            row={{ display: "flex", justifyContent: "space-between" }}
-            aStyle={{
-              textDecoration: "none",
-              fontWeight: "500",
-              fontSize: "12px",
-              color: "#707070",
-            }}
-            pStyle={{
-              marginBottom: "4px",
-              color: "#303742",
-              fontWeight: "500",
-              fontSize: "14px",
-            }}
-            secondColumn={{
-              alignSelf: "end",
-              display: "flex",
-              justifyContent: "space-between",
-              columnGap: "5px",
-            }}
-          />
-          <ChartBarBody
-            imageSrc={line3.src}
-            pTagText="Next"
-            anchorHref="#"
-            anchorText="29 sessions"
-            faLeftIconSrc={faleft.src}
-            row={{ display: "flex", justifyContent: "space-between" }}
-            aStyle={{
-              textDecoration: "none",
-              fontWeight: "500",
-              fontSize: "12px",
-              color: "#707070",
-            }}
-            pStyle={{
-              marginBottom: "4px",
-              color: "#303742",
-              fontWeight: "500",
-              fontSize: "14px",
-            }}
-            secondColumn={{
-              alignSelf: "end",
-              display: "flex",
-              justifyContent: "space-between",
-              columnGap: "5px",
-            }}
-          />
-          <ChartBarBody
-            imageSrc={line4.src}
-            pTagText="Sign up"
-            anchorHref="#"
-            anchorText="22 sessions"
-            faLeftIconSrc={faleft.src}
-            row={{ display: "flex", justifyContent: "space-between" }}
-            aStyle={{
-              textDecoration: "none",
-              fontWeight: "500",
-              fontSize: "12px",
-              color: "#707070",
-            }}
-            pStyle={{
-              marginBottom: "4px",
-              color: "#303742",
-              fontWeight: "500",
-              fontSize: "14px",
-            }}
-            secondColumn={{
-              alignSelf: "end",
-              display: "flex",
-              justifyContent: "space-between",
-              columnGap: "5px",
-            }}
-          />
-          <ChartBarBody
-            imageSrc={line5.src}
-            pTagText="Features"
-            anchorHref="#"
-            anchorText="19 sessions"
-            faLeftIconSrc={faleft.src}
-            row={{ display: "flex", justifyContent: "space-between" }}
-            aStyle={{
-              textDecoration: "none",
-              fontWeight: "500",
-              fontSize: "12px",
-              color: "#707070",
-            }}
-            pStyle={{
-              marginBottom: "4px",
-              color: "#303742",
-              fontWeight: "500",
-              fontSize: "14px",
-            }}
-            secondColumn={{
-              alignSelf: "end",
-              display: "flex",
-              justifyContent: "space-between",
-              columnGap: "5px",
-            }}
-          />
+          {buttonsAndLinks?.length && buttonsAndLinks.map(item => (
+            <ChartBarBody
+              key={`buttons-and-links-${item.text}`}
+              imageSrc={line1.src}
+              pTagText={item.text}
+              anchorHref="#"
+              anchorText={`${item.count} sessions`}
+              faLeftIconSrc={faleft.src}
+              row={{ display: "flex", justifyContent: "space-between" }}
+              aStyle={{
+                textDecoration: "none",
+                fontWeight: "500",
+                fontSize: "12px",
+                color: "#707070",
+              }}
+              pStyle={{
+                marginBottom: "4px",
+                color: "#303742",
+                fontWeight: "500",
+                fontSize: "14px",
+              }}
+              secondColumn={{
+                alignSelf: "end",
+                display: "flex",
+                justifyContent: "space-between",
+                columnGap: "5px",
+              }}
+            />
+          ))}
         </>
       );
       break;
@@ -329,11 +142,11 @@ function TopClickedBtnandLink(count) {
                   borderRadius="5px"
                   padding="7px 15px"
                   margin="2px 0"
-                  text="Install the Usersnap tracking code to capture session data."
+                  text="Install the Insightify tracking code to capture session data."
                 />
                 <Button
                   color="white"
-                  text="Install Usersnap"
+                  text="Install Insightify"
                   border="1px solid #1f75cc "
                   textColor="#1f75cc"
                   borderRadius="3px"

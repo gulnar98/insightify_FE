@@ -6,8 +6,12 @@
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     padding: 17px 10px;
 
-    position: absolute;
+    position: fixed;
     background-color: #fff;
+    left: 50%;
+    top: 50%;
+    z-index: 9999999999;
+    margin-left: -100px;
     
 }
 
@@ -41,4 +45,5 @@
     display: flex;
     justify-content: center;
     cursor: pointer;
+    font-weight: bold;
 }

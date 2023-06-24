@@ -2,6 +2,7 @@ import { useState } from "react";
 import style from "./style.module.css";
 import { useEffect } from "react";
 import { useRef } from "react";
+import { useRouter } from "next/router";
 
 function DropDown(props) {
   const dropDownRef = useRef(null);
@@ -27,6 +28,8 @@ function DropDown(props) {
     boxShadow,
     borderRadius,
   } = props;
+
+  const router = useRouter();
 
   useEffect(() => {
     document.addEventListener("click", handleClickOutside);
@@ -57,7 +60,9 @@ function DropDown(props) {
     ) {
       setPagesType(item);
     } else {
-      setLastDate(item);
+      router.push(`${router.asPath?.replace?.(/\?.+$/gi, '')}?p=${item.value}`);
+
+      setLastDate(item.text);
     }
 
     setIsOpen(false);
@@ -77,7 +82,7 @@ function DropDown(props) {
     <div ref={dropDownRef} className={style.container} style={containerStyles}>
       {items.map((item, index) => (
         <button
-          onClick={() => onClick(item.text)}
+          onClick={() => onClick(item)}
           className={`${style.button} ${
             (item.text === chartType ||
               item.text === hashType ||

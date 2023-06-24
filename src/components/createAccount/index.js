@@ -3,7 +3,6 @@ import { useContext, useEffect, useState } from "react";
 import globe from "./assets/images/globe.svg";
 import Button from "../../UI/button/Button";
 import Input from "../../UI/input";
-import { MyContext } from "../../context/AccountProvider";
 import { useRef } from "react";
 
 import { buttonProps, errMessage, inputProps } from "./constants";
@@ -18,14 +17,14 @@ function CreateAccount() {
     step1: {
       welcome: `Welcome, ${shortAddress} Let’s get you all set up`,
       question: "What’s your DAO name?",
-      placeholder: "Usersnap",
+      placeholder: "Insightify",
     },
     step2: {
       question: "What’s your role?",
-      placeholder: "Usersnap",
+      placeholder: "Insightify",
     },
     step3: {
-      question: "Where do you want to install Usersnap?",
+      question: "Where do you want to install Insightify?",
       enterUrl: "Enter a valid URL or IP address",
       subtitle: "We'll use it to personalize your setup process",
       globeImg: globe.src,
@@ -33,7 +32,6 @@ function CreateAccount() {
     },
   };
 
-  const [state, dispatch] = useContext(MyContext);
   const inpRef = useRef();
   const [activeStep, setActiveStep] = useState("step1");
   const ActiveStep = Steps[activeStep];

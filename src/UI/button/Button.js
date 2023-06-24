@@ -17,6 +17,7 @@ export default function Button(props) {
     onClick,
     imgprops,
     fontWeight,
+    title,
     children,
   } = props;
 
@@ -37,6 +38,8 @@ export default function Button(props) {
     margin,
     fontSize,
     fontWeight,
+    display: "flex",
+    "align-items": "center",
     fontFamily: "inherit",
     transition: "all 0.2s ease",
   };
@@ -47,8 +50,10 @@ export default function Button(props) {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       style={buttonStyle}
+      title={title}
     >
-      <img src={imgprops}/>
+      <img src={imgprops} />
+      {children}
       {text}
     </button>
   );

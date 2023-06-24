@@ -1,0 +1,9 @@
+.container {
+  position: relative;
+  flex: 5;
+  width: 715px;
+}
+
+.imgWrapper img {
+  width: 100%;
+}

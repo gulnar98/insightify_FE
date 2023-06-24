@@ -1,10 +1,18 @@
 import Head from "next/head";
 import style from "./assets/css/style.module.css";
 import InstallVerificationBox from "../../components/installVerificationBox";
-import { useState } from "react";
-import { useEffect } from "react";
 import Button from "../../UI/button/Button";
-import { shareBtnProps } from "../../components/constants";
+
+export const shareBtnProps = {
+  padding: "6px 12px",
+  btncolor: "inherit",
+  btncolorHover: "#2e8def",
+  text: "Share",
+  textColor: "#2e8def",
+  textColorHover: "#fff",
+  borderRadius: "6px",
+  border: "1px solid #2e8def",
+};
 
 export default function Overview() {
   return (

@@ -1,14 +1,13 @@
 .container {
     font-weight: 600;
-    width: 2480px;
+    width: 2550px;
     background-color: white;
     border-radius: 5px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    margin: 15px 15px 15px 0px;
     box-sizing: border-box;
 }
 .children {
-    width: 2480px; 
+    width: 2550px; 
     margin: 0 auto;
     padding: 15px;
     display: flex;
@@ -20,11 +19,11 @@
     align-items: center;
     box-sizing: border-box;
     color: #303742;
-    box-sizing: border-box;
 }
 
 .inputClick {
     justify-content: space-between;
+    gap: 10px;
 }
 
 .userID {
@@ -50,12 +49,16 @@
     font-weight: 600;
     font-size: 1em;
     border: solid #1F75CC 1px;
+    /* width: 56px; */
     color: #1F75CC;
     padding: 7px 13px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
     cursor: pointer;
+    text-decoration: none;
+    
+}
+
+.playBtn img {
+    margin-top: 5px;
 }
 
 .avatar img {
@@ -85,7 +88,7 @@
 
 .topAssets {
     justify-content: space-between!important;
-    flex: 3;
+    flex: 6;
 }
 
 .os { 

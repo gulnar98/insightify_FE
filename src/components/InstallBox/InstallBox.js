@@ -29,7 +29,7 @@ export default function InstallBox(props) {
       >
         <div className={style.divOne}>
           <img src={icon.src} className={style.icon} />
-          <h1 className={style.h1}>Install UserSnap</h1>
+          <h1 className={style.h1}>Install Insightify</h1>
         </div>
         <div className={style.divTwo}>
           <div className={style.short}>

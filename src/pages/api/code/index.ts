@@ -16,11 +16,12 @@ export default async function handler(req, res) {
       {
         projection: {
           _id: 1,
+          dao_name: 1,
         },
       }
     );
-
     const appId = data?._id?.toString?.();
+    const dao_name = data.dao_name;
 
     if (!appId) {
       throw "Was not found";
@@ -28,6 +29,7 @@ export default async function handler(req, res) {
 
     const resData = {
       appId,
+      dao_name,
       codeText: `<script \n\tdata-appid="${appId}" \n\tsrc="${CDN_URL}/${appId}/record.js">\n</script>`,
     };
     const jsonData = JSON.stringify(resData);
