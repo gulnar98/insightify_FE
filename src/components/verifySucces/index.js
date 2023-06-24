@@ -5,7 +5,6 @@ import error from "./assets/images/verify-error.svg";
 import { buttonProps } from "./constants";
 import { useRouter } from "next/router";
 import { useContext } from "react";
-import { MyContext } from "../../context/AccountProvider";
 
 export default function VerifySucces({
   isStatus,
@@ -17,13 +16,12 @@ export default function VerifySucces({
   let message;
   let buttonText;
   const router = useRouter();
-  const [state, dispatch] = useContext(MyContext);
 
   if (isStatus) {
     img = success;
     status = "Installation successful!";
     message =
-      "Usersnap is capturing data on your site, adn you’re ready to get started with all of Usersnap’s tools.";
+      "Insightify is capturing data on your site, adn you’re ready to get started with all of Insightify’s tools.";
     buttonText = "Continue";
   } else {
     img = error;

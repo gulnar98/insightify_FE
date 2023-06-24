@@ -1,5 +1,5 @@
 .childrenContainer {
-  padding: 64px 72px 32px 82px;
+  padding: 64px 0 0 82px;
 }
 
 .isCollapseOpen {
@@ -13,6 +13,6 @@
   left: 0;
   bottom: 0;
   background-color: #fff;
-  z-index: 99999999;
+  z-index: 999;
   overflow-y: scroll;
 }

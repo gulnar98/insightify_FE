@@ -1,34 +1,32 @@
 import * as React from 'react';
 import style from './assets/css/style.module.css'
 
-export default function RecordingsHeader({checkbox}) {
+export default function RecordingsHeader({checkbox, chec}) {
 
     return (
-        <>
-            <div className={style.container}>
-                <div className={style.children}>
-                    <div className={style.inputClick}>
-                        {checkbox}
-                    </div>
-                    <div className={style.avatar}>Avatar</div>
-                    <div className={style.userID}>User ID</div>
-                    <div className={style.label}>Label</div>
-                    <div className={style.topAssets}>Top 5 Assets</div>
-                    <div className={style.wallet}>Wallet</div>
-                    <div className={style.walletAge}>Wallet Age</div>
-                    <div className={style.totalAssets}>Total Assets</div>
-                    <div className={style.sourceOfFunds}>Source of funds</div>
-                    <div className={style.date}>Date</div>
-                    <div className={style.country}>Country</div>
-                    <div className={style.action}>Action #</div>
-                    <div className={style.pages}>Pages #</div>
-                    <div className={style.duration}>Duration</div>
-                    <div className={style.browser}>Browser</div>
-                    <div className={style.os}>OS</div>
-                    <div className={style.landingPage}>Landing Page</div>
-                    <div className={style.exitPage}>Exit Page</div>
-                </div>
-            </div>
-        </>
+        <tr className={style.container}>
+            {/* <div className={style.children}> */}
+            {
+                chec ? <th className={style.rrweb}></th> : <th className={style.inputClick}>{checkbox}</th>
+            }
+            <th>Avatar</th>
+            <th>User ID</th>
+            <th>Label</th>
+            <th>Top 5 Assets</th>
+            <th>Wallet</th>
+            <th>Wallet Age</th>
+            <th>Total Assets</th>
+            {/* <th>Source of funds</th> */}
+            <th>Date</th>
+            <th>Country</th>
+            <th>Action #</th>
+            <th>Pages #</th>
+            <th>Duration</th>
+            <th>Browser</th>
+            <th>OS</th>
+            <th>Landing Page</th>
+            <th>Exit Page</th>
+            {/* </div> */}
+        </tr>
     )
 }

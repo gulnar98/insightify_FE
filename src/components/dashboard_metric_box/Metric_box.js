@@ -2,11 +2,12 @@ import React from "react";
 import styles from "./asset/css/style.module.css";
 import graph from "./asset/images/graph.svg";
 import box from "./asset/images/box.svg";
+import Image from "next/image";
 
 //Bu dasboradda olan total session, total connected wallet ve s. bildiren balaca divlerdir
 
 export default function Metric_box({ title, count = 0 }) {
-  const noResultsText = "Not result found";
+  const noResultsText = "No result found";
 
   return (
     <>
@@ -16,13 +17,13 @@ export default function Metric_box({ title, count = 0 }) {
             <h1 className={styles.title}>{title}</h1>
             <p className={styles.count}>{count}</p>
           </div>
-          <img src={graph.src} alt="graph" />
+          <Image src={graph.src} alt="graph" width={108} height={15} />
         </div>
       ) : (
         <div className={styles.wrapperWithNotResutl}>
           <h1 className={styles.title}>{title}</h1>
           <div className={styles.false_case}>
-            <img src={box.src} alt="box" />
+            <Image src={box.src} alt="box" width={20} height={18} />
             <p className={styles.noResultsText}>{noResultsText}</p>
           </div>
         </div>

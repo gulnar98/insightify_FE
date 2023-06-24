@@ -8,6 +8,7 @@ const ChartBarBody = ({
   pTagText,
   anchorHref,
   anchorText,
+  indicatorLevel,
   faLeftIconSrc,
   mapIconSrc,
   row,
@@ -31,9 +32,16 @@ const ChartBarBody = ({
             )}
             {pTagText && <p style={pStyle}>{pTagText}</p>}
           </div>
-          {imageSrc && (
+          <div style={{
+            width: `${indicatorLevel}%`,
+            backgroundColor: '#1F75CC',
+            padding: 5,
+            boxSizing: 'border-box',
+            borderRadius: 5
+          }}></div>
+          {/* {imageSrc && (
             <img src={imageSrc} style={imageStyle} alt="component image" />
-          )}
+          )} */}
         </div>
         <div className="second-column" style={secondColumn}>
           {anchorHref && anchorText && (

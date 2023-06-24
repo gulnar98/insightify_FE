@@ -17,13 +17,13 @@ export const leftBottom2Props = {
   textColor: "black",
 
   border: "none",
-  margin: "0px 0px 0px 40px",
+  margin: "0",
 };
 
 export const verifyPopUpProps = {
   title: "Verify your installation",
   about:
-    "Enter the URL of the site you installed Usersnap into the field below.",
+    "Enter the URL of the site you installed Insightify into the field below.",
   address: "e.g. https://wwyoursite.com or https://localhost:1905",
 };
 

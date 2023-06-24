@@ -1,0 +1,50 @@
+.container {
+  display: flex;
+  margin-top: 22px;
+  gap: 10px;
+}
+
+.selectUrl {
+  border: 1px solid #d6d6d6;
+  border-radius: 6px;
+  flex: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+}
+
+.selectUrl img {
+  margin-right: 8px;
+}
+
+.selectUrl h2 {
+  margin-right: auto;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.inputContainer {
+  position: relative;
+  flex: 6;
+  padding: 10px 14px;
+
+  border: 1px solid #d6d6d6;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.input {
+  width: 100%;
+  border: none;
+  background-color: inherit;
+  outline: none;
+  font-size: 14px;
+  color: #303742;
+}
+
+.viewBtnWrapper {
+  width: fit-content;
+}

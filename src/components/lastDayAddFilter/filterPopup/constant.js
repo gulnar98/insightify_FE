@@ -61,7 +61,7 @@ export const filters = [
   {
     title: "Technology",
     filters: [
-      { text: "Usersnap user ID", iconSrc: person.src },
+      { text: "Insightify user ID", iconSrc: person.src },
       { text: "Device", iconSrc: computer.src },
       { text: "Browser", iconSrc: browser.src },
       { text: "Operating system", iconSrc: chip.src },

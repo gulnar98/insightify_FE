@@ -1,8 +1,11 @@
 import style from "./assets/css/style.module.css";
 import Head from "next/head";
 import VotePopup from "../../components/VotePopUp";
+import { useState } from "react";
 
 export default function Engage() {
+  const [isVotePopup, setIsVotePopup] = useState(true);
+
   return (
     <>
       <Head>
@@ -13,7 +16,7 @@ export default function Engage() {
       </Head>
 
       <div className={style.container}>
-        <VotePopup />
+        {isVotePopup && <VotePopup setIsVotePopup={setIsVotePopup} />}
       </div>
     </>
   );

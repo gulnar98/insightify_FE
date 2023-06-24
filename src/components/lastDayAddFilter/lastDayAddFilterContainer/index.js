@@ -7,23 +7,24 @@ import DropDown from "../../../UI/drop-down/index";
 import FilterPopup from "../filterPopup";
 import { lastDayItems } from "../lastDaySelect/constants";
 
+const dropdownProps = {
+  width: "100%",
+  top: "110%",
+  right: 0,
+  boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+  borderRadius: 6,
+  backgroundColor: "#fff",
+  selectedIconSrc: selectedIcon.src,
+  isSelected: true,
+}
+
 function LastDayAddFilter() {
   const [lastDayDropdown, setLastDayDropdown] = useState(false);
   const [filterPopup, setFilterPopup] = useState(false);
   const [lastDate, setLastDate] = useState("Last 30 days");
 
-  const dropdownProps = {
-    width: "100%",
-    top: "110%",
-    right: 0,
-    boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-    borderRadius: 6,
-    backgroundColor: "#fff",
-    selectedIconSrc: selectedIcon.src,
-    isSelected: true,
-  };
   return (
-    <>
+    <div className={style.container}>
       <LastDaySelect
         lastDate={lastDate}
         isOpen={lastDayDropdown}
@@ -43,7 +44,7 @@ function LastDayAddFilter() {
       <AddFilterBtn isOpen={filterPopup} setIsOpen={setFilterPopup}>
         <FilterPopup isOpen={filterPopup} setIsOpen={setFilterPopup} />
       </AddFilterBtn>
-    </>
+    </div>
   );
 }
 

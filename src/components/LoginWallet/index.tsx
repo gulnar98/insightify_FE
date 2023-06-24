@@ -1,6 +1,5 @@
-"use client"
-import style from "./style.module.css";
-import logo from "../../assets/images/header/logo.svg";
+import style from "./assets/css/style.module.css";
+import logo from "./assets/images/logo.svg";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount, useSignMessage } from "wagmi";
 import { useEffect } from "react";
@@ -47,12 +46,14 @@ export default function LoginWallet(props: LoginWappetProps): any {
   return (
     <>
       <div className={style.main}>
-        <div className={style.topDiv}>
-          <img src={logo.src} />
-        </div>
-        <div className={style.centerDiv}>
-          <p>Install Usersnap to Get User’s on-chain / off-chain data,</p>
-          <p>Visualize user behavior , See and hear from your users</p>
+        <div className={style.header}>
+          <div className={style.topDiv}>
+            <img src={logo.src} />
+          </div>
+          <div className={style.centerDiv}>
+            <p>Install Insightify to Get User’s on-chain / off-chain data,</p>
+            <p>Visualize user behavior , See and hear from your users</p>
+          </div>
         </div>
         <div className={style.bottomDiv}>
           {isConnected ? (

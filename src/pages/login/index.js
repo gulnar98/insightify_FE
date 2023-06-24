@@ -7,7 +7,7 @@ export default function Login() {
   const router = useRouter();
 
   const onSuccess = ({ isNewUser }) => {
-    if (isNewUser !=null) {
+    if (isNewUser) {
       router.push("/account/create");
     } else {
       router.push("/");

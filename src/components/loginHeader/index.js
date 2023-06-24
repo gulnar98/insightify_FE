@@ -1,12 +1,10 @@
 import { useContext } from "react";
-import { MyContext } from "@/context/AccountProvider";
-import style from "./style.module.css";
-import logo from "@//assets/images/login/login-logo.svg";
+import style from "./assets/css/style.module.css";
+import logo from "./assets/images/logo.svg";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
 function LoginHeader() {
-  const [state, dispatch] = useContext(MyContext);
   const { pathname } = useRouter();
 
   return (
@@ -27,7 +25,7 @@ function LoginHeader() {
             pathname === "/code/install" && style.isActive
           }`}
         >
-          2.Install Usersnap
+          2.Install Insightify
         </li>
       </ul>
 

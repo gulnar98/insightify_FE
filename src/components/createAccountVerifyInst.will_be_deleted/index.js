@@ -28,7 +28,6 @@ function CreateAccountVerifyInst() {
         .then((result) => {
           if (result.status !== 200) {
             // error
-
           } else {
             return result.json();
           }

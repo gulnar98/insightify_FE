@@ -6,7 +6,7 @@ export default function VerifyInProgress({ button }) {
     <>
       <div className={style.main}>
         <p className={style.about}>
-          Connecting to your site to verify Usersnap installation
+          Connecting to your site to verify Insightify installation
         </p>
         <p className={style.information}>This can take up to 60 seconds.</p>
         {button}

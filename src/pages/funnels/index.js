@@ -1,8 +1,11 @@
 import Head from "next/head";
 import style from "./assets/css/style.module.css";
 import VotePopup from "../../components/VotePopUp";
+import { useState } from "react";
 
 export default function Funnels() {
+  const [isVotePopup, setIsVotePopup] = useState(true);
+
   return (
     <>
       <Head>
@@ -13,7 +16,7 @@ export default function Funnels() {
       </Head>
 
       <div className={style.container}>
-        <VotePopup />
+        {isVotePopup && <VotePopup setIsVotePopup={setIsVotePopup} />}
       </div>
     </>
   );

@@ -47,6 +47,8 @@
 
 .leftbtn {
   flex: 5;
+  display: flex;
+  gap: 12px;
 }
 
 .verify {

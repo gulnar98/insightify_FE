@@ -4,10 +4,22 @@ import notification from "./asset/images/notification.svg";
 import styles from "./asset/css/style.module.css";
 import iconX from "./asset/images/Xicon.svg";
 
-function VotePopUp() {
+function VotePopUp({ setIsVotePopup }) {
+  const onClick = () => {
+    setIsVotePopup(false);
+  };
+
   return (
-    <>
+    <div className={styles.modal}>
       <div className={styles.container}>
+        <div className={styles.closeBtn}>
+          <Button
+            onClick={onClick}
+            border="none"
+            btncolor="#ffff"
+            imgprops={iconX.src}
+          />
+        </div>
         <div className={styles.imgContainer}>
           <img src={notification.src} />
         </div>
@@ -34,7 +46,7 @@ function VotePopUp() {
           />
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

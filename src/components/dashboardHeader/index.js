@@ -1,6 +1,6 @@
 import Link from "next/link";
-import style from "./style.module.css";
-import logo from "@//assets/images/header/logo.svg";
+import style from "./assets/css/style.module.css";
+import logo from "./assets/images/logo.svg";
 import profile from "@//assets/images/header/profile.svg";
 
 function DashboardHeader({ setIsOpen, isOpen, children }) {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ChartBarBody from "../ChartBarBody";
 import HeaderChartBar from "../headerChartBar";
 import Drop_down from "@/UI/drop-down";
@@ -16,7 +16,7 @@ import { allPagesItems } from "../dashboard_topPages/constants";
 import { useState } from "react";
 import DonutChartBody from "../DonutChartBody";
 
-function TechnologyContainer() {
+function TechnologyContainer({devices}) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [chartType, setChartType] = useState("Bar");
   const [hashType, setHashType] = useState("Numbers");
@@ -24,106 +24,81 @@ function TechnologyContainer() {
 
   let chartComponent;
 
+  const max = Math.max(devices?.desktop || 0, devices?.phone || 0);
+
   switch (chartType) {
     case "Bar":
       chartComponent = (
         <>
           {" "}
           <ChartBarBody
-            iconSrc={desktop.src}
-            imageSrc={line1.src}
-            pTagText="Desktop"
-            anchorHref="#"
-            anchorText="4.8k sessions"
-            faLeftIconSrc={faleft.src}
-            row={{ display: "flex", justifyContent: "space-between" }}
-            aStyle={{
-              textDecoration: "none",
+              iconSrc={desktop.src}
+              imageSrc={line1.src}
+              pTagText={'Desktop'}
+              anchorHref="#"
+              anchorText={`${devices.desktop} sessions`}
+              indicatorLevel={(devices?.desktop || 0) * 100 / max}
+              faLeftIconSrc={faleft.src}
+              row={{ display: "flex", justifyContent: "space-between" }}
+              firstColumn={{
+                width: '80%'
+              }}
+              aStyle={{
+                textDecoration: "none",
 
-              fontWeight: "500",
-              fontSize: "12px",
-              color: "#707070",
-            }}
-            pStyle={{
-              marginBottom: "2px",
-              color: "#303742",
+                fontWeight: "500",
+                fontSize: "12px",
+                color: "#707070",
+              }}
+              pStyle={{
+                marginBottom: "2px",
+                color: "#303742",
 
-              fontWeight: "500",
-              fontSize: "14px",
-              padding: "5px",
-            }}
-            secondColumn={{
-              alignSelf: "end",
-              display: "flex",
-              justifyContent: "space-between",
-              columnGap: "5px",
-            }}
-            firstRow={{ display: "flex", columnGap: "5px" }}
-            iconStyle={{ marginBottom: "2px", padding: "3px" }}
+                fontWeight: "500",
+                fontSize: "14px",
+                padding: "5px",
+              }}
+              secondColumn={{
+                alignSelf: "end",
+                display: "flex",
+                justifyContent: "space-between",
+                columnGap: "5px",
+              }}
+              firstRow={{ display: "flex", columnGap: "5px" }}
+              iconStyle={{ marginBottom: "2px", padding: "3px" }}
           />
           <ChartBarBody
-            iconSrc={phone.src}
-            imageSrc={line2.src}
-            pTagText="Phone"
-            anchorHref="#"
-            anchorText="1.9k sessions"
-            faLeftIconSrc={faleft.src}
-            row={{ display: "flex", justifyContent: "space-between" }}
-            aStyle={{
-              textDecoration: "none",
+              iconSrc={phone.src}
+              imageSrc={line1.src}
+              pTagText={'Phone'}
+              anchorHref="#"
+              anchorText={`${devices.phone} sessions`}
+              indicatorLevel={(devices?.phone || 0) * 100 / max}
+              faLeftIconSrc={faleft.src}
+              row={{ display: "flex", justifyContent: "space-between" }}
+              aStyle={{
+                textDecoration: "none",
 
-              fontWeight: "500",
-              fontSize: "12px",
-              color: "#707070",
-            }}
-            pStyle={{
-              marginBottom: "2px",
-              color: "#303742",
+                fontWeight: "500",
+                fontSize: "12px",
+                color: "#707070",
+              }}
+              pStyle={{
+                marginBottom: "2px",
+                color: "#303742",
 
-              fontWeight: "500",
-              fontSize: "14px",
-              padding: "5px",
-            }}
-            secondColumn={{
-              alignSelf: "end",
-              display: "flex",
-              justifyContent: "space-between",
-              columnGap: "5px",
-            }}
-            firstRow={{ display: "flex", columnGap: "5px" }}
-            iconStyle={{ marginBottom: "2px" }}
-          />
-          <ChartBarBody
-            iconSrc={tablet.src}
-            imageSrc={line3.src}
-            pTagText="Tablet"
-            anchorHref="#"
-            anchorText="29 sessions"
-            faLeftIconSrc={faleft.src}
-            row={{ display: "flex", justifyContent: "space-between" }}
-            aStyle={{
-              textDecoration: "none",
-
-              fontWeight: "500",
-              fontSize: "12px",
-              color: "#707070",
-            }}
-            pStyle={{
-              marginBottom: "2px",
-              color: "#303742",
-
-              fontWeight: "500",
-              fontSize: "14px",
-              padding: "5px",
-            }}
-            secondColumn={{
-              alignSelf: "end",
-              display: "flex",
-              justifyContent: "space-between",
-              columnGap: "5px",
-            }}
-            firstRow={{ display: "flex", columnGap: "5px" }}
-            iconStyle={{ marginBottom: "2px" }}
+                fontWeight: "500",
+                fontSize: "14px",
+                padding: "5px",
+              }}
+              secondColumn={{
+                alignSelf: "end",
+                display: "flex",
+                justifyContent: "space-between",
+                columnGap: "5px",
+              }}
+              firstRow={{ display: "flex", columnGap: "5px" }}
+              iconStyle={{ marginBottom: "2px", padding: "3px" }}
           />
         </>
       );

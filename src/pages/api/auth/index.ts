@@ -62,6 +62,7 @@ async function handleLogin(req, res) {
     const result = await db.collection(USERS_COLLECTION).insertOne({
       address,
     });
+
     user._id = result.insertedId;
     isNewUser = true;
   } else {
@@ -161,6 +162,7 @@ const handleSignup = async (req, res) => {
 
 const handleRefreshToken = async (req, res) => {
   const { refreshToken } = req.cookies;
+
   if (!refreshToken) {
     return res.status(401).json({ message: "Refresh token missing" });
   }
@@ -209,6 +211,7 @@ const handleRefreshToken = async (req, res) => {
       isNewUser,
     });
   } catch (error) {
+    console.log(error);
     return res.status(401).json({ message: "Invalid refresh token" });
   }
 };

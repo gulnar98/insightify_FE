@@ -41,7 +41,7 @@ export function useRefreshToken () {
                     action: "logout",
                 }),
             });
-            
+
             setAccessToken(state => undefined);
             setRefreshToken(state => undefined);
             setIsNewUser(state => undefined);
