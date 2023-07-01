@@ -1,0 +1,20 @@
+.container {
+    display: flex;
+}
+
+.contentWrapper {
+    background: #f8f8f8;
+}
+
+.header {
+    padding: 28px 72px 28px 26px;
+    border-bottom: 1px solid #d6d6d6;
+}
+
+.snapshotWrapper {
+    padding: 28px 0 28px 26px;
+}
+
+.groupBtnWrapper {
+    margin-bottom: 28px;
+}

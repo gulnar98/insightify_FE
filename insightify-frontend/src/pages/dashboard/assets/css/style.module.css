@@ -1,0 +1,73 @@
+.container {
+  padding: 44px 72px 32px 26px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.header h1 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.header p {
+  font-size: 12px;
+  color: #707070;
+}
+
+.header p u {
+  text-decoration: underline;
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.addTrendBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: #303742;
+}
+
+.lastDayAddFilterContainer {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.metricBoxesContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 22px;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.mainWrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 435px);
+  grid-gap: 22px;
+}
+
+.mainWrapper > div {
+  justify-items: stretch;
+}
+
+@media screen and (max-width: 1330px) {
+  .metricBoxesContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .mainWrapper {
+    grid-template-columns: 1fr;
+  }
+}

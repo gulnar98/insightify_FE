@@ -1,0 +1,25 @@
+.container {
+  position: absolute;
+  overflow: hidden;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 16px;
+}
+
+.isActiveBtn {
+  background-color: #f4f7ff;
+}
+
+.button:hover {
+  background-color: #f4f7ff;
+}
+
+.button p {
+  margin-right: auto;
+}

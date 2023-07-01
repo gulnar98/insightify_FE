@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-bottom: 28px;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #303742;
+  text-decoration: none;
+}

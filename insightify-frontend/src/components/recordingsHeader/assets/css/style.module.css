@@ -1,0 +1,13 @@
+.container {
+    font-weight: 600;
+    width: 2550px;
+    background-color: #F4F7FF;
+    border-radius: 5px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    box-sizing: border-box;
+}
+
+.container th {
+    min-width: 200px;
+    text-align: left;
+}

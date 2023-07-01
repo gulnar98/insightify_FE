@@ -1,0 +1,26 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 30px;
+}
+
+.text {
+  font-size: 16px;
+  font-weight: 600;
+  color: #303742;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+}
+
+.hashWrapper {
+  position: relative;
+}
+
+.chartWrapper {
+  position: relative;
+}
